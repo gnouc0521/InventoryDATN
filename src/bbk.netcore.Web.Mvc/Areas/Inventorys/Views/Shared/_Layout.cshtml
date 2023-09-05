@@ -1,0 +1,52 @@
+﻿@using bbk.netcore.Web.Resources
+@inject IWebResourceManager WebResourceManager
+<!DOCTYPE html>
+@*<partial name="_CopyrightHeader" />*@
+<html lang="en">
+<head>
+    @*<partial name="_Head" />*@
+    @await Html.PartialAsync("~/Areas/App/Views/Shared/_Head.cshtml")
+
+    @RenderSection("Header", required: false)
+</head>
+<body class="mod-bg-1 desktop chrome webkit pace-done">
+    <partial name="_ScriptsLoadingSaving" />
+    <div class="page-wrapper">
+        <div class="page-inner">
+            <partial name="~/Areas/App/Views/Shared/_LeftPanel.cshtml" />
+            <div class="page-content-wrapper">
+                <partial name="~/Areas/App/Views/Shared/_PageHeader.cshtml" />
+                <div class="page-main-content">
+                    <main id="js-page-content" role="main" class="page-content">
+                        @*<partial name="_PageBreadCrumb" />*@
+                        @RenderSection("PageHeading", required: false)
+                        @RenderBody()
+                    </main>
+                   
+                    
+                </div>
+              @*  <partial name="~/Areas/PersonalProfile/Views/Shared/_RightPanel.cshtml" />*@
+                <partial name="_PageContentOverlay" />
+                <partial name="~/Areas/App/Views/Shared/_PageFooter.cshtml" />
+             @*   <partial name="~/Areas/App/Views/Shared/_ShortCutModal.cshtml" />*@
+            </div>
+        </div>
+       
+    </div>
+   @* <partial name="~/Areas/App/Views/Shared/_ShortCutMenu.cshtml" />*@
+    <partial name="~/Areas/App/Views/Shared/_ShortCutMessenger.cshtml" />
+    <partial name="~/Areas/App/Views/Shared/_PageSettings.cshtml" />
+    @*<partial name="~/Areas/App/Views/Shared/_GoogleAnalytics.cshtml" />*@
+    <partial name="_ScriptBasePlugins" />
+    @RenderSection("Scripts", required: false)
+    @*<script src="~/view-resources/Areas/PersonalProfile/_Bundles/getsettingheader.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/PersonalProfile/Staffs/GetSettingHeader.js" asp-append-version="true"></script>*@
+    <environment names="Development">
+        <script src="~/view-resources/Areas/PersonalProfile/Uis/getUi.js" asp-append-version="true"></script>
+        <script src="~/js/app.bundle.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Areas/PersonalProfile/_Bundles/getUi.min.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>

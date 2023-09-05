@@ -1,0 +1,160 @@
+﻿@using Abp.Localization
+@using bbk.netcore.Web.Areas.Inventorys.Models.ExportRequests
+@model ExportRequestModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ExportRequests/ViewDetail.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ExportRequests/ViewDetail.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row">
+    <input type="hidden" name="Id" value="@Model.exportRequests.Id" id="Id" />
+    <input type="hidden" name="WarehouseId" value="@Model.warehouse.Id" id="WarehouseId" />
+  
+    <ol class="breadcrumb breadcrumb-seperator-3">
+        <li class="breadcrumb-item ">
+
+            <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "ExportRequests", "PersonalProfile")">Phiếu xuất kho</a>
+        </li>
+        <li class="breadcrumb-item active"> Chi tiết phiếu xuất kho @Model.exportRequests.Code</li>
+    </ol>
+    <div class="col-xl-12 mb-4 mt-2">
+        <div class="form-row align-items-center">
+            <div class="">
+                <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "ExportRequests", "PersonalProfile")">
+                    <i class="fal fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="d-flex flex-column ml-3">
+                <h4 class="font-weight-bold">Chi tiết phiếu xuất kho </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <i class="fal fa-info-circle" style="color: #f19a5b;"></i>
+                    Thông tin
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>*@
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="infor-warehouse">
+                                <p class="mb-2"><span class="font-weight-bold">Mã phiếu: </span>@Model.exportRequests.Code  </p>
+                                <p class="mb-2"><span class="font-weight-bold">Tên kho: </span> @Model.warehouse.Name</p>
+                               @* <p class="mb-2"><span class="font-weight-bold">Tên người nhận hàng </span> @Model.exportRequests.ReceiverName</p>
+                                <p class="mb-2"><span class="font-weight-bold">SĐT người nhận hàng: </span>@Model.exportRequests.Phone</p>
+                                <p class="mb-2"><span class="font-weight-bold">Địa chỉ (Bộ phận): </span>@Model.exportRequests.Address</p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày cần: </span>@Model.exportRequests.RequestDate.ToShortDateString()</p>*@
+                                <p class="mb-2"><span class="font-weight-bold">Lý do xuất kho: </span>@Model.exportRequests.Remark</p>
+                                <table id="ExportTable" class="table table-bordered table-hover table-striped w-100">
+                                    <thead class="bg-primary-600">
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>MÃ HÀNG HÓA</th>
+                                            <th>ĐƠN VỊ TÍNH</th>
+                                          
+                                            <th>SL HỆ THỐNG</th>
+                                            <th>SL XUẤT</th>
+                                            <th>ĐƠN GIÁ</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>Cộng</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody></tbody>
+                                </table>
+                                <p class="mb-2"><span class="font-weight-bold">Người tạo phiếu: </span>@Model.CreatedByName</p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày tạo: </span>@Model.exportRequests.CreationTime.ToShortDateString()</p>
+                                @if (Model.exportRequests.LastModificationTime.HasValue)
+                                {
+                                    <p class="mb-2"><span class="font-weight-bold">Ngày chỉnh sửa : </span>@Model.exportRequests.LastModificationTime.Value.ToShortDateString()</p>
+                                }
+                                <button class="btn btn-success " id="btnPrint">
+                                    <span class="fal fa-print"></span>
+                                    @(new FixedLocalizableString("Tạo Phiếu Xuất"))
+                                </button>
+                            </div>
+                            @if (IsGranted("Inventorys.ExportRequests.Approve"))
+                            {
+                                @if (Model.exportRequests.Status == 0)
+                                {
+                                    <div class="col-xl-12 mt-4">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <button class="btn btn-browse" data-quo="@Model.exportRequests.Id" style="background: #58a572; color: #fff;">
+                                                    Phê duyệt
+                                                </button>
+                                            </div>
+                                            <div class="col-1">
+                                                <button class="btn btn-reject" data-quo="@Model.exportRequests.Id" style="background: #f56064; color: #fff;">Từ chối</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="col-xl-12 mt-4">
+                                        <div class="row">
+                                            <div class="col-1">
+                                                <button class="btn btn-browse" disabled data-quo="@Model.exportRequests.Id" style="background: #58a572; color: #fff;">
+                                                    Phê duyệt
+                                                </button>
+                                            </div>
+                                            <div class="col-1">
+                                                <button class="btn btn-reject" disabled data-quo="@Model.exportRequests.Id" style="background: #f56064; color: #fff;">Từ chối</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

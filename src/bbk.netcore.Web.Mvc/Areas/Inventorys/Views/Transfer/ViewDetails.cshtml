@@ -1,0 +1,245 @@
+﻿@using Abp.Localization
+@using bbk.netcore.Web.Areas.Inventorys.Models.Transfer
+@using bbk.netcore.mdl.OMS.Core.Enums
+
+@model TransferViewModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/summernote/dist/summernote-bs4.min.css" rel="stylesheet" asp-append-version="true" />
+
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/summernote/dist/summernote-bs4.min.css" rel="stylesheet" asp-append-version="true" />
+
+    </environment>
+}
+@section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/libs/summernote/dist/summernote-bs4.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Transfer/ViewDetails.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/libs/summernote/dist/summernote-bs4.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Transfer/ViewDetails.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row">
+    <input type="hidden" name="Id" value="@Model.TransferList.Id" id="Id" />
+    <input type="hidden" value="@Model.TransferList.TransferCode" id="Transfercode" />
+    <input type="hidden" name="Id" value="@Model.TransferList.IdWarehouseExport" id="IdWareHouseEx" />
+    <input type="text" value="@ViewBag.email" id="email" hidden />
+    <input type="text" value="@ViewBag.name" id="name" hidden />
+
+    @if (IsGranted("Inventorys.Transfer.Create"))
+    {
+        <ol class="breadcrumb breadcrumb-seperator-3">
+            <li class="breadcrumb-item ">
+
+                <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Transfer", "PersonalProfile")">Phiếu Điều chuyển</a>
+            </li>
+            <li class="breadcrumb-item active"> Chi tiết phiếu xuất kho @Model.TransferList.TransferCode</li>
+        </ol>
+        <div class="col-xl-12 mb-4 mt-2">
+            <div class="form-row align-items-center">
+                <div class="">
+                    <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "Transfer", "PersonalProfile")">
+                        <i class="fal fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="d-flex flex-column ml-3">
+                    <h4 class="font-weight-bold">Chi tiết phiếu Điều chuyển </h4>
+                </div>
+            </div>
+        </div>
+    }
+    @if (IsGranted("Inventorys.TransferManagement"))
+    {
+        <ol class="breadcrumb breadcrumb-seperator-3">
+            <li class="breadcrumb-item ">
+
+                <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("TransferManagement", "Transfer", "PersonalProfile")">Quản lý Điều chuyển</a>
+            </li>
+            <li class="breadcrumb-item active"> Chi tiết phiếu xuất kho @Model.TransferList.TransferCode</li>
+        </ol>
+        <div class="col-xl-12 mb-4 mt-2">
+            <div class="form-row align-items-center">
+                <div class="">
+                    <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("TransferManagement", "Transfer", "PersonalProfile")">
+                        <i class="fal fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="d-flex flex-column ml-3">
+                    <h4 class="font-weight-bold">Chi tiết phiếu Điều chuyển </h4>
+                </div>
+            </div>
+        </div>
+    }
+
+    
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <i class="fal fa-info-circle mr-2" style="color: #f19a5b;"></i>
+                    Thông tin
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>*@
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="infor-warehouse">
+                                <p class="mb-2"><span class="font-weight-bold">Kho xuất: </span> <span class="NameWareExport"></span></p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày tạo phiếu: </span> @Model.TransferList.CreationTime.ToShortDateString()</p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngươi tạo phiếu: </span> @Model.CreatedBy</p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày chỉnh sửa: </span>
+                                    @if (Model.TransferList.LastModificationTime.HasValue)
+                                    {
+                                        <span>@Model.TransferList.BrowsingTime.ToShortDateString()</span>
+                                    }
+                                    </p>
+                                <p class="mb-2"><span class="font-weight-bold">Trạng thái: </span>
+                                    @if(Model.TransferList.Status == TransferEnum.TransferStatus.Original)
+                                    {
+                                       <span>Chờ xử lý</span> 
+                                    }
+                                    @if(Model.TransferList.Status == TransferEnum.TransferStatus.Waitinng)
+                                    {
+                                       <span>Đã gửi</span> 
+                                    }
+                                    @if(Model.TransferList.Status == TransferEnum.TransferStatus.Approve)
+                                    {
+                                       <span>Đã phê duyệt</span> 
+                                    }
+                                    @if(Model.TransferList.Status == TransferEnum.TransferStatus.Reject)
+                                    {
+                                       <span>Từ chối</span> 
+                                    } 
+                                </p>
+                                <p class="mb-2"><span class="font-weight-bold">Lý do xuất kho: </span>@Model.TransferList.TransferNote</p>
+                                <table id="TransferItemTable" class="table table-bordered table-hover table-striped w-100">
+                                    <thead class="bg-primary-600">
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>MÃ HÀNG HÓA</th>
+                                            <th>GIÁ NHẬP</th>
+                                            <th>DVT</th>
+                                            <th>TỒN KHO</th>
+                                            <th>SL ĐIỀU CHUYỂN</th>
+                                            <th>KHO NHẬN</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    @if (IsGranted("Inventorys.Transfer.Create"))
+                    {
+
+                        @if (Model.TransferList.Status == TransferEnum.TransferStatus.Original)
+                        {
+                            <div class="row mt-4 justify-content-end">
+                                <button id="btnSubmit" class="btn btn-primary mr-2">
+                                    Gửi duyệt
+                                </button>
+                            </div>
+                        }
+                        @if (Model.TransferList.Status == TransferEnum.TransferStatus.Waitinng)
+                        {
+                            <div class="row mt-4 justify-content-end">
+                                <button id="btnSubmit" style="cursor: default;" class="btn btn-primary mr-2" disabled>
+                                    Gửi duyệt
+                                </button>
+                            </div>
+                        }
+
+                    }
+                    @if (IsGranted("Inventorys.TransferManagement"))
+                    {
+                        @if (Model.TransferList.Status == TransferEnum.TransferStatus.Waitinng)
+                        {
+                            <div class="row mt-4 justify-content-end">
+                                <button id="btn-contract_Reject" class="btn mr-2">
+                                    Từ chối
+                                </button>
+                                <button id="btn-contract_Approve" class="btn mr-2">
+                                    Duyệt
+                                </button>
+                            </div>
+                        }
+                        @if (Model.TransferList.Status == TransferEnum.TransferStatus.Reject || Model.TransferList.Status == TransferEnum.TransferStatus.Approve)
+                        {
+                            <div class="row mt-4 justify-content-end">
+                                <button id="btn-contract_Reject" style="cursor: default;" class="btn mr-2" disabled>
+                                    Từ chối
+                                </button>
+                                <button id="btn-contract_Approve" style="cursor: default;" class="btn mr-2" disabled>
+                                    Duyệt
+                                </button>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (IsGranted("Inventorys.Transfer.Create"))
+    {
+        @if(Model.TransferList.Status == TransferEnum.TransferStatus.Reject)
+        {
+            <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        <i class="fal fa-info-circle mr-2" style="color: #f19a5b;"></i>
+                        Lý do từ chối
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>*@
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="row mt-2">
+                            @Html.Raw(Model.TransferList.CommentText)
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    }
+    
+</div>

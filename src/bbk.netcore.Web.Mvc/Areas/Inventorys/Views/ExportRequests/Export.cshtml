@@ -1,0 +1,124 @@
+﻿@using Abp.Localization
+@using bbk.netcore.Web.Areas.Inventorys.Models.ExportRequests
+@model ExportRequestModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ExportRequests/Export.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ExportRequests/Export.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row">
+    @*        <input type="hidden" name="Id" value="@Model.exportRequests.Id" id="Id" />
+    <input type="hidden" name="WarehouseId" value="@Model.exportRequests.WarehouseDestinationId" id="WarehouseId" />*@
+    <ol class="breadcrumb breadcrumb-seperator-3">
+        <li class="breadcrumb-item ">
+
+            <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a>Tạo phiếu xuất</a>
+        </li>
+    </ol>
+    <div class="col-xl-12 mb-4 mt-2">
+        <div class="form-row align-items-center">
+            <div class="">
+                <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "Dashboard", "PersonalProfile")">
+                    <i class="fal fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="d-flex flex-column ml-3">
+                <h4 class="font-weight-bold">Tạo phiếu xuất</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <i class="fal fa-info-circle" style="color: #f19a5b;"></i>
+                    Danh sách yêu cầu điều chuyển chưa phê duyệt 
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                                <table id="ExportTable" class="table table-bordered table-hover table-striped w-100">
+                                    <thead class="bg-primary-600">
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>MÃ PHIẾU</th>
+                                            <th>KHO NHẬP</th>
+                                            <th>KHO XUẤT</th>
+                                            <th>THỜI GIAN YÊU CẦU</th>
+                                            <th>NGÀY PHÊ DUYỆT</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <i class="fal fa-info-circle" style="color: #f19a5b;"></i>
+                    Danh sách phiếu xuất
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <table id="ExportTableDone" class="table table-bordered table-hover table-striped w-100">
+                                <thead class="bg-primary-600">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>MÃ PHIẾU</th>
+                                        <th>KHO XUẤT</th>
+                                        <th>NGƯỜI YÊU CẦU</th>
+                                        <th>THỜI GIAN TẠO</th>
+                                        <th>TRẠNG THÁI</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

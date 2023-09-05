@@ -1,0 +1,757 @@
+﻿@using bbk.netcore.Authorization
+@using bbk.netcore.Web.Areas.App.Startup
+@{ ViewBag.CurrentPageName = AppPageNames.AdminCommon.OrganizationUnits; }
+
+@section Header
+    {
+    <environment names="Development">
+        <link rel="stylesheet" href="/libs/jstree/dist/themes/default/style.css" asp-append-version="true" />
+        <link rel="stylesheet" href="/Common/Styles/jstree.css" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="/_cdn/jstree.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="stylesheet" href="/view-resources/Areas/App/Views/OrganizationUnits/Index.css" asp-append-version="true" />
+    @*<style>
+
+            .tree, .tree ul {
+                margin: 0;
+                padding: 0;
+                list-style: none
+            }
+
+                .tree ul {
+                    margin-left: 1em;
+                    position: relative
+                }
+
+                    .tree ul ul {
+                        margin-left: .5em
+                    }
+
+                    .tree ul:before {
+                        content: "";
+                        display: block;
+                        width: 0;
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        border-left: 1px solid
+                    }
+
+                .tree li {
+                    margin: 0;
+                    padding: 0 1em;
+                    line-height: 2em;
+                    color: #369;
+                    font-weight: 700;
+                    position: relative
+                }
+
+                    .tree li .active span {
+                        background-color: #74b273;
+                        color: #fefefe;
+                        padding: 5px 2px;
+                    }
+
+                .tree ul li:before {
+                    content: "";
+                    display: block;
+                    width: 10px;
+                    height: 0;
+                    border-top: 1px solid;
+                    margin-top: -1px;
+                    position: absolute;
+                    top: 1em;
+                    left: 0
+                }
+
+                .tree ul li:last-child:before {
+                    background: #fff;
+                    height: auto;
+                    top: 1em;
+                    bottom: 0
+                }
+
+            .indicator {
+                margin-right: 5px;
+            }
+
+            .tree li a {
+                text-decoration: none;
+                color: #369;
+            }
+
+            .tree li button, .tree li button:active, .tree li button:focus {
+                text-decoration: none;
+                color: #369;
+                border: none;
+                background: transparent;
+                margin: 0px 0px 0px 0px;
+                padding: 0px 0px 0px 0px;
+                outline: 0;
+            }
+        </style>*@
+}
+@section Scripts
+    {
+    <script src="~/_cdn/jstree.min.js" asp-append-version="true"></script>
+    <script src="/view-resources/Areas/App/Views/OrganizationUnits/Index.js" asp-append-version="true"></script>
+    @*<script>
+
+            $.fn.extend({
+                treed: function (o) {
+
+                    var openedClass = 'fa-box';
+                    var closedClass = 'fa-box';
+
+                    if (typeof o != 'undefined') {
+                        if (typeof o.openedClass != 'undefined') {
+                            openedClass = o.openedClass;
+                        }
+                        if (typeof o.closedClass != 'undefined') {
+                            closedClass = o.closedClass;
+                        }
+                    };
+
+                    //initialize each of the top levels
+                    var tree = $(this);
+                    tree.addClass("tree");
+                    tree.find('li').has("ul").each(function () {
+                        var branch = $(this); //li with children ul
+                        branch.prepend("<i class='indicator fas " + closedClass + "'></i>");
+                        branch.addClass('branch');
+                        branch.on('click', function (e) {
+                            if (this == e.target) {
+                                var icon = $(this).children('i:first');
+                                icon.toggleClass(openedClass + " " + closedClass);
+                                $(this).children().children().toggle();
+                            }
+                        })
+                        //branch.children().children().toggle();
+                    });
+                    //fire event from the dynamically added icon
+                    tree.find('.branch .indicator').each(function () {
+                        $(this).on('click', function () {
+                            $(this).closest('li').click();
+                        });
+                    });
+                    //fire event to open branch if the li contains an anchor instead of text
+                    tree.find('.branch>a').each(function () {
+                        $(this).on('click', function (e) {
+                            $(this).closest('li').click();
+                            e.preventDefault();
+                        });
+                    });
+                    //fire event to open branch if the li contains a button instead of text
+                    tree.find('.branch>button').each(function () {
+                        $(this).on('click', function (e) {
+                            $(this).closest('li').click();
+                            e.preventDefault();
+                        });
+                    });
+                }
+            });
+
+            //Initialization of treeviews
+
+            $('#tree1').treed();
+
+            $('#tree2').treed({ openedClass: 'fa-plus-square', closedClass: 'glyphicon-folder-close' });
+
+            $('#tree3').treed({ openedClass: 'glyphicon-chevron-right', closedClass: 'glyphicon-chevron-down' });
+
+        </script>*@
+}
+
+<div class="row">
+
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Danh sách
+                    <span class="fw-300"><i>tài khoản</i></span>
+                </h2>
+                <div class="panel-toolbar">
+                    <button id="AddRootUnitButton" class="btn btn-sm btn-toolbar-full btn-primary">
+                        <span class="fal fa-plus-square"></span>
+                        Thêm gốc
+                    </button>
+                    @*<button type="button" class="btn btn-sm btn-toolbar-full btn-success">
+                            <span class="fal fa-download mr-1"></span>
+                            Tải về
+                        </button>*@
+                    @*<button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>*@
+                    <button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>
+                    @*<button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>*@
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div id="OrganizationUnitEditTree"></div>
+                            <div id="OrganizationUnitTreeEmptyInfo" ng-if="!vm.organizationTree.unitCount" class="text-muted">
+                                @L("NoOrganizationUnitDefinedYet")
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <!-- datatable start -->
+                            <table id="dt-basic-example" class="table table-sm table-bordered table-hover table-striped w-100">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Họ và tên</th>
+                                        <th>Chức vụ</th>
+                                        <th>Số hiệu</th>
+                                        <th>Tuổi</th>
+                                        <th>Ngày bắt đầu làm việc</th>
+                                        <th>Mức lương</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="tccb_hosocanbo.html">Nguyễn Văn Thùy</a></td>
+                                        <td>Giám đốc Trung tâm</td>
+                                        <td>Lãnh đạo đơn vị</td>
+                                        <td>61</td>
+                                        <td>2011/04/25</td>
+                                        <td>$320,800</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="tccb_hosocanbo.html">Nguyễn Xuân Thủy</a></td>
+                                        <td>Phó giám đốc</td>
+                                        <td>Lãnh đạo đơn vị</td>
+                                        <td>63</td>
+                                        <td>2011/07/25</td>
+                                        <td>$170,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ashton Cox</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>66</td>
+                                        <td>2009/01/12</td>
+                                        <td>$86,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cedric Kelly</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>22</td>
+                                        <td>2012/03/29</td>
+                                        <td>$433,060</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Airi Satou</td>
+                                        <td>Nhân viên</td>
+                                        <td>Văn Phòng</td>
+                                        <td>33</td>
+                                        <td>2008/11/28</td>
+                                        <td>$162,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brielle Williamson</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>61</td>
+                                        <td>2012/12/02</td>
+                                        <td>$372,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Herrod Chandler</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>59</td>
+                                        <td>2012/08/06</td>
+                                        <td>$137,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rhona Davidson</td>
+                                        <td>Nhân viên</td>
+                                        <td>Văn Phòng</td>
+                                        <td>55</td>
+                                        <td>2010/10/14</td>
+                                        <td>$327,900</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Colleen Hurst</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>39</td>
+                                        <td>2009/09/15</td>
+                                        <td>$205,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sonya Frost</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>23</td>
+                                        <td>2008/12/13</td>
+                                        <td>$103,600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jena Gaines</td>
+                                        <td>Trưởng phòng</td>
+                                        <td>Thời vụ</td>
+                                        <td>30</td>
+                                        <td>2008/12/19</td>
+                                        <td>$90,560</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Quinn Flynn</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>22</td>
+                                        <td>2013/03/03</td>
+                                        <td>$342,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Charde Marshall</td>
+                                        <td>Trưởng Phòng</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>36</td>
+                                        <td>2008/10/16</td>
+                                        <td>$470,600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Haley Kennedy</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>43</td>
+                                        <td>2012/12/18</td>
+                                        <td>$313,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tatyana Fitzpatrick</td>
+                                        <td>Trưởng Phòng</td>
+                                        <td>Thời vụ</td>
+                                        <td>19</td>
+                                        <td>2010/03/17</td>
+                                        <td>$385,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michael Silva</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>66</td>
+                                        <td>2012/11/27</td>
+                                        <td>$198,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paul Byrd</td>
+                                        <td>Trưởng phòng</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>64</td>
+                                        <td>2010/06/09</td>
+                                        <td>$725,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gloria Little</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>59</td>
+                                        <td>2009/04/10</td>
+                                        <td>$237,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bradley Greer</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>41</td>
+                                        <td>2012/10/13</td>
+                                        <td>$132,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Dai Rios</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>35</td>
+                                        <td>2012/09/26</td>
+                                        <td>$217,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jenette Caldwell</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>30</td>
+                                        <td>2011/09/03</td>
+                                        <td>$345,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Yuri Berry</td>
+                                        <td>Phó Giám Đốc</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>40</td>
+                                        <td>2009/06/25</td>
+                                        <td>$675,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Caesar Vance</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>21</td>
+                                        <td>2011/12/12</td>
+                                        <td>$106,450</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Doris Wilder</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>23</td>
+                                        <td>2010/09/20</td>
+                                        <td>$85,600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Angelica Ramos</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>47</td>
+                                        <td>2009/10/09</td>
+                                        <td>$1,200,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gavin Joyce</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>42</td>
+                                        <td>2010/12/22</td>
+                                        <td>$92,575</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jennifer Chang</td>
+                                        <td>Trưởng Phòng</td>
+                                        <td>Phòng Thông tin môi trường</td>
+                                        <td>28</td>
+                                        <td>2010/11/14</td>
+                                        <td>$357,650</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Brenden Wagner</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>28</td>
+                                        <td>2011/06/07</td>
+                                        <td>$206,850</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fiona Green</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>48</td>
+                                        <td>2010/03/11</td>
+                                        <td>$850,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shou Itou</td>
+                                        <td>Nhân viên</td>
+                                        <td>Văn Phòng</td>
+                                        <td>20</td>
+                                        <td>2011/08/14</td>
+                                        <td>$163,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michelle House</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>37</td>
+                                        <td>2011/06/02</td>
+                                        <td>$95,400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suki Burks</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>53</td>
+                                        <td>2009/10/22</td>
+                                        <td>$114,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Prescott Bartlett</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>27</td>
+                                        <td>2011/05/07</td>
+                                        <td>$145,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gavin Cortez</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>22</td>
+                                        <td>2008/10/26</td>
+                                        <td>$235,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Martena Mccray</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>46</td>
+                                        <td>2011/03/09</td>
+                                        <td>$324,050</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Unity Butler</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>47</td>
+                                        <td>2009/12/09</td>
+                                        <td>$85,675</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Howard Hatfield</td>
+                                        <td>Trưởng phòng</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>51</td>
+                                        <td>2008/12/16</td>
+                                        <td>$164,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hope Fuentes</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>41</td>
+                                        <td>2010/02/12</td>
+                                        <td>$109,850</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Vivian Harrell</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>62</td>
+                                        <td>2009/02/14</td>
+                                        <td>$452,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Timothy Mooney</td>
+                                        <td>Trưởng phòng</td>
+                                        <td>Thời vụ</td>
+                                        <td>37</td>
+                                        <td>2008/12/11</td>
+                                        <td>$136,200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jackson Bradshaw</td>
+                                        <td>Giám đốc</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>65</td>
+                                        <td>2008/09/26</td>
+                                        <td>$645,750</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Olivia Liang</td>
+                                        <td>Phó phòng</td>
+                                        <td>Phòng Thông tin môi trường</td>
+                                        <td>64</td>
+                                        <td>2011/02/03</td>
+                                        <td>$234,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Bruno Nash</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>38</td>
+                                        <td>2011/05/03</td>
+                                        <td>$163,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sakura Yamamoto</td>
+                                        <td>Phó phòng</td>
+                                        <td>Văn Phòng</td>
+                                        <td>37</td>
+                                        <td>2009/08/19</td>
+                                        <td>$139,575</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Thor Walton</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>61</td>
+                                        <td>2013/08/11</td>
+                                        <td>$98,540</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Finn Camacho</td>
+                                        <td>Phó phòng</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>47</td>
+                                        <td>2009/07/07</td>
+                                        <td>$87,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Serge Baldwin</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Thông tin môi trường</td>
+                                        <td>64</td>
+                                        <td>2012/04/09</td>
+                                        <td>$138,575</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zenaida Frank</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>63</td>
+                                        <td>2010/01/04</td>
+                                        <td>$125,250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Zorita Serrano</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>56</td>
+                                        <td>2012/06/01</td>
+                                        <td>$115,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jennifer Acosta</td>
+                                        <td>Nhân viên</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>43</td>
+                                        <td>2013/02/01</td>
+                                        <td>$75,650</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cara Stevens</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>46</td>
+                                        <td>2011/12/06</td>
+                                        <td>$145,600</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hermione Butler</td>
+                                        <td>Trưởng Phòng</td>
+                                        <td>Thời vụ</td>
+                                        <td>47</td>
+                                        <td>2011/03/21</td>
+                                        <td>$356,250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lael Greer</td>
+                                        <td>Nhân viên</td>
+                                        <td>Thời vụ</td>
+                                        <td>21</td>
+                                        <td>2009/02/27</td>
+                                        <td>$103,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Jonas Alexander</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Dữ liệu môi trường</td>
+                                        <td>30</td>
+                                        <td>2010/07/14</td>
+                                        <td>$86,500</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shad Decker</td>
+                                        <td>Trưởng Phòng</td>
+                                        <td>Tạp chí Môi trường</td>
+                                        <td>51</td>
+                                        <td>2008/11/13</td>
+                                        <td>$183,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Michael Bruce</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Thông tin môi trường</td>
+                                        <td>29</td>
+                                        <td>2011/06/27</td>
+                                        <td>$183,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Donna Snider</td>
+                                        <td>Nhân viên</td>
+                                        <td>Phòng Phát triển và Ứng dụng công nghệ</td>
+                                        <td>27</td>
+                                        <td>2011/01/25</td>
+                                        <td>$112,000</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot class="thead-themed">
+                                    <tr>
+                                        <th>Họ và tên</th>
+                                        <th>Chức vụ</th>
+                                        <th>Số hiệu</th>
+                                        <th>Tuổi</th>
+                                        <th>Ngày bắt đầu làm việc</th>
+                                        <th>Mức lương</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            <!-- datatable end -->
+                        </div>
+                    </div>
+                    @*<div class="col-lg-6">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                @L("OrganizationTree")
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+                                        @if (IsGranted(PermissionNames.Pages_Administration_OrganizationUnits_ManageOrganizationTree))
+                                        {
+                            <button type="button" id="AddRootUnitButton" class="btn btn-primary">
+                                <i class="la la-plus"></i> @L("AddRootUnit")
+                            </button>}
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div id="OrganizationUnitEditTree"></div>
+                                    <div id="OrganizationUnitTreeEmptyInfo" ng-if="!vm.organizationTree.unitCount" class="text-muted">
+                                        @L("NoOrganizationUnitDefinedYet")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                @L("Members")
+                                                <span id="SelectedOuRightTitle"></span>
+                                            </h3>
+                                        </div>
+                                    </div>
+                                    <div class="m-portlet__head-tools">
+                                        @if (IsGranted(PermissionNames.Pages_Administration_OrganizationUnits_ManageMembers))
+                                        {
+                            <button type="button" id="AddUserToOuButton" class="btn btn-primary" style="display:none">
+                                <i class="la la-plus"></i> @L("AddMember")
+                            </button>}
+                                    </div>
+                                </div>
+                                <div class="m-portlet__body">
+                                    <div id="OuMembersTable" style="display:none">
+                                        <table class="organization-members-table display table table-striped table-bordered table-hover dt-responsive nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th></th>
+                                                    <th>@L("Delete")</th>
+                                                    <th>@L("UserName")</th>
+                                                    <th>@L("AddedTime")</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+
+                                    <div id="OuMembersEmptyInfo" class="text-muted">
+                                        @L("SelectAnOrganizationUnitToSeeMembers")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

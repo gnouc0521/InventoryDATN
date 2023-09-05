@@ -1,0 +1,134 @@
+﻿bg-white {
+    background-color: #fff;
+}
+
+#FluctiationSalaryIncrease i {
+    font-size: 2rem;
+}
+
+.color-sum_word {
+    color: #1794aa;
+}
+
+.color-process_word {
+    color: #058515;
+}
+
+.color-success_word {
+    color: #24c7a0;
+}
+
+.color-expired_word {
+    color: #ec3b48;
+}
+
+/*shadow-1 {
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+}*/
+
+/*---------------------------------------------Doughnut Chart----------------------------------------*/
+
+.h-400 {
+    height: 400px;
+}
+.h-500 {
+    height: 500px;
+}
+.check-input {
+    accent-color: #9d3039;
+    height: 14px;
+    width: 14px;
+}
+
+.legend-center {
+    display: flex;
+    justify-content: center;
+}
+
+[class$="-legend"] {
+    list-style: none;
+    cursor: pointer;
+    padding-left: 0;
+}
+
+    [class$="-legend"] li {
+        display: block;
+        padding: 0 5px;
+    }
+
+        [class$="-legend"] li.hidden {
+            text-decoration: line-through;
+        }
+
+        [class$="-legend"] li span {
+            border-radius: 5px;
+            display: inline-block;
+            height: 10px;
+            margin: 0 10px;
+            width: 10px;
+        }
+
+/*---------------------------------------------/Doughnut Chart----------------------------------------*/
+
+/*---------------------------------------------Icon---------------------------------------------------*/
+.ic-success {
+    color: #24c7a0;
+}
+.ic-process {
+    color: #058515;
+}
+.ic-wait-process {
+    color: #0094f2;
+}
+.ic-limit {
+    color: #ec3b48;
+}
+
+.ic-dcg {
+    color: #9A9EAB;
+}
+.ic-dag{
+    color: #5D535E;
+}
+.ic-phh{
+    color: #EC96A4;
+}
+.ic-thd{
+    color: #DFE166;
+}
+
+.bg-success {
+    background-color: #24c7a0;
+}
+
+.bg-process {
+    background-color: #058515;
+}
+
+.bg-wait-process {
+    background-color: #0094f2;
+}
+
+.bg-limit {
+    background-color: #ec3b48;
+}
+
+.fz-16{
+    font-size: 1.6rem;
+}
+.fz-09 {
+    font-size: 0.9rem;
+}
+.w-8 {
+    width: 8%;
+}
+.dot-li {
+    border-radius: 5px;
+    display: inline-block;
+    height: 10px;
+    margin: 0 10px;
+    width: 10px;
+}
+/*---------------------------------------------/Icon---------------------------------------------------*/

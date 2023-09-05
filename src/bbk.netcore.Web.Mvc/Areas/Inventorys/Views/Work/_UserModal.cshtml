@@ -1,0 +1,29 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@{
+    Layout = null;
+}
+<div class="modal-content" id="DayOffCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table id="SelectUserTable" class="table table-bordered table-hover m-0" style="width: 100%">
+            <thead class="thead-themed">
+                <tr>
+                    <th class="text-center"></th>
+                    <th class="text-center">Họ Tên</th>
+                    <th class="text-center">Email</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+

@@ -1,0 +1,567 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+	<PropertyGroup>
+		<AssemblyName>bbk.netcore.Web.Mvc</AssemblyName>
+		<OutputType>Exe</OutputType>
+		<PackageId>bbk.netcore.Web.Mvc</PackageId>
+		<UserSecretsId>bbk-netcore-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
+		<RootNamespace>bbk.netcore.Web</RootNamespace>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+		<GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<PreserveCompilationContext>true</PreserveCompilationContext>
+		<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+	</PropertyGroup>
+	<ItemGroup>
+		<Compile Remove="wwwroot\view-resources\Areas\Oms\WarehouseItems\**" />
+		<Compile Remove="wwwroot\_cdn\data\**" />
+		<Content Remove="wwwroot\view-resources\Areas\Oms\WarehouseItems\**" />
+		<Content Remove="wwwroot\_cdn\data\**" />
+		<EmbeddedResource Remove="wwwroot\view-resources\Areas\Oms\WarehouseItems\**" />
+		<EmbeddedResource Remove="wwwroot\_cdn\data\**" />
+		<None Remove="wwwroot\view-resources\Areas\Oms\WarehouseItems\**" />
+		<None Remove="wwwroot\_cdn\data\**" />
+		<TypeScriptCompile Remove="wwwroot\view-resources\Areas\Oms\WarehouseItems\**" />
+		<TypeScriptCompile Remove="wwwroot\_cdn\data\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="app.config" />
+		<None Include="Areas\Inventorys\Views\WorkGroup\_CreateWorkRootModal.cshtml" />
+		<None Include="wwwroot\libs-ext\summernote\.babelrc" />
+		<None Include="wwwroot\libs-ext\summernote\.editorconfig" />
+		<None Include="wwwroot\libs-ext\summernote\.envrc" />
+		<None Include="wwwroot\libs-ext\summernote\.eslintrc" />
+		<None Include="wwwroot\libs-ext\summernote\.github\CODE_OF_CONDUCT.md" />
+		<None Include="wwwroot\libs-ext\summernote\.github\CONTRIBUTING.md" />
+		<None Include="wwwroot\libs-ext\summernote\.github\FUNDING.yml" />
+		<None Include="wwwroot\libs-ext\summernote\.github\ISSUE_TEMPLATE.md" />
+		<None Include="wwwroot\libs-ext\summernote\.github\PULL_REQUEST_TEMPLATE.md" />
+		<None Include="wwwroot\libs-ext\summernote\.github\workflows\codeql-analysis.yml" />
+		<None Include="wwwroot\libs-ext\summernote\.husky\pre-commit" />
+		<None Include="wwwroot\libs-ext\summernote\.husky\pre-push" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\config.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\config.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\debug.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\debug.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\saucelabs.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\saucelabs.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\travis.js" />
+		<None Include="wwwroot\libs-ext\summernote\.karma\travis.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\CHANGES.md" />
+		<None Include="wwwroot\libs-ext\summernote\config\build-fonts.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\build-fonts.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\common.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\common.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\webpack.development.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\webpack.development.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\webpack.karma.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\webpack.karma.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\webpack.production.js" />
+		<None Include="wwwroot\libs-ext\summernote\config\webpack.production.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\font\summernote.hash" />
+		<None Include="wwwroot\libs-ext\summernote\dist\font\summernote.woff2" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ar-AR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ar-AR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ar-AR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-az-AZ.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-az-AZ.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-az-AZ.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-bg-BG.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-bg-BG.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-bg-BG.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-bn-BD.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-bn-BD.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-bn-BD.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ca-ES.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ca-ES.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ca-ES.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-cs-CZ.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-cs-CZ.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-cs-CZ.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-da-DK.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-da-DK.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-da-DK.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-de-CH.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-de-CH.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-de-CH.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-de-DE.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-de-DE.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-de-DE.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-el-GR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-el-GR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-el-GR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-en-US.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-en-US.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-en-US.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-es-ES.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-es-ES.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-es-ES.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-es-EU.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-es-EU.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-es-EU.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fa-IR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fa-IR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fa-IR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fi-FI.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fi-FI.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fi-FI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fr-FR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fr-FR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-fr-FR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-gl-ES.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-gl-ES.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-gl-ES.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-he-IL.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-he-IL.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-he-IL.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-hr-HR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-hr-HR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-hr-HR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-hu-HU.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-hu-HU.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-hu-HU.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-id-ID.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-id-ID.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-id-ID.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-it-IT.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-it-IT.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-it-IT.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ja-JP.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ja-JP.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ja-JP.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ko-KR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ko-KR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ko-KR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-lt-LT.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-lt-LT.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-lt-LT.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-lt-LV.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-lt-LV.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-lt-LV.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-mn-MN.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-mn-MN.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-mn-MN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-nb-NO.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-nb-NO.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-nb-NO.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-nl-NL.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-nl-NL.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-nl-NL.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pl-PL.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pl-PL.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pl-PL.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pt-BR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pt-BR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pt-BR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pt-PT.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pt-PT.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-pt-PT.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ro-RO.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ro-RO.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ro-RO.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ru-RU.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ru-RU.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ru-RU.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sk-SK.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sk-SK.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sk-SK.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sl-SI.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sl-SI.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sl-SI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sr-RS-Latin.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sr-RS-Latin.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sr-RS-Latin.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sr-RS.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sr-RS.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sr-RS.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sv-SE.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sv-SE.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-sv-SE.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ta-IN.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ta-IN.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-ta-IN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-th-TH.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-th-TH.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-th-TH.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-tr-TR.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-tr-TR.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-tr-TR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-uk-UA.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-uk-UA.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-uk-UA.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-uz-UZ.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-uz-UZ.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-uz-UZ.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-vi-VN.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-vi-VN.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-vi-VN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-zh-CN.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-zh-CN.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-zh-CN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-zh-TW.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-zh-TW.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\lang\summernote-zh-TW.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\plugin\databasic\summernote-ext-databasic.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\plugin\databasic\summernote-ext-databasic.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\plugin\hello\summernote-ext-hello.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\plugin\hello\summernote-ext-hello.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\plugin\specialchars\summernote-ext-specialchars.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\plugin\specialchars\summernote-ext-specialchars.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-0.8.20-dist.zip" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs4.css.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs4.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs4.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs4.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs5.css.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs5.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs5.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-bs5.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-lite.css.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-lite.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-lite.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote-lite.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote.css.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote.js" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote.js.map" />
+		<None Include="wwwroot\libs-ext\summernote\dist\summernote.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\examples\index.template" />
+		<None Include="wwwroot\libs-ext\summernote\examples\README.md" />
+		<None Include="wwwroot\libs-ext\summernote\LICENSE" />
+		<None Include="wwwroot\libs-ext\summernote\plugin\databasic\summernote-ext-databasic.js" />
+		<None Include="wwwroot\libs-ext\summernote\plugin\databasic\summernote-ext-databasic.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\plugin\hello\summernote-ext-hello.js" />
+		<None Include="wwwroot\libs-ext\summernote\plugin\hello\summernote-ext-hello.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+		<None Include="wwwroot\libs-ext\summernote\plugin\specialchars\summernote-ext-specialchars.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\README.md" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align-center.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align-indent.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align-justify.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align-left.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align-outdent.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align-right.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\align.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrow-circle-down.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrow-circle-left.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrow-circle-right.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrow-circle-up.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrows-alt.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrows-h.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\arrows-v.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\bold.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\caret.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\chain-broken.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\circle.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\close.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\code.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\col-after.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\col-before.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\col-remove.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\eraser.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\float-left.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\float-none.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\float-right.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\font.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\frame.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\italic.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\link.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\magic.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\menu-check.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\minus.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\orderedlist.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\pencil.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\picture.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\question.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\redo.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\rollback.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\row-above.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\row-below.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\row-remove.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\special-character.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\square.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\strikethrough.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\subscript.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\summernote.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\superscript.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\table.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\text-height.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\trash.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\underline.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\undo.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\unorderedlist.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\icons\video.svg" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\summernote.hash" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\summernote.woff2" />
+		<None Include="wwwroot\libs-ext\summernote\src\font\template.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\Context.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\Context.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\async.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\async.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\dom.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\dom.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\env.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\env.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\func.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\func.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\key.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\key.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\lists.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\lists.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\range.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\core\range.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Bullet.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Bullet.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\History.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\History.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Style.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Style.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Table.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Table.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Typing.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\editing\Typing.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AirPopover.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AirPopover.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AutoLink.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AutoLink.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AutoReplace.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AutoReplace.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AutoSync.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\AutoSync.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Buttons.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Buttons.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Clipboard.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Clipboard.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Codeview.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Codeview.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Dropzone.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Dropzone.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Editor.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Editor.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Fullscreen.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Fullscreen.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Handle.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Handle.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\HelpDialog.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\HelpDialog.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\HintPopover.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\HintPopover.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\ImageDialog.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\ImageDialog.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\ImagePopover.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\ImagePopover.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\LinkDialog.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\LinkDialog.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\LinkPopover.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\LinkPopover.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Placeholder.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Placeholder.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Statusbar.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Statusbar.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\TablePopover.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\TablePopover.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Toolbar.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\Toolbar.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\VideoDialog.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\module\VideoDialog.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\renderer.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\renderer.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\settings.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\settings.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\summernote.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\js\summernote.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\README.md" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ar-AR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ar-AR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-az-AZ.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-az-AZ.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-bg-BG.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-bg-BG.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-bn-BD.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-bn-BD.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ca-ES.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ca-ES.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-cs-CZ.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-cs-CZ.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-da-DK.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-da-DK.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-de-CH.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-de-CH.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-de-DE.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-de-DE.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-el-GR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-el-GR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-en-US.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-en-US.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-es-ES.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-es-ES.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-es-EU.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-es-EU.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-fa-IR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-fa-IR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-fi-FI.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-fi-FI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-fr-FR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-fr-FR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-gl-ES.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-gl-ES.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-he-IL.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-he-IL.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-hr-HR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-hr-HR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-hu-HU.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-hu-HU.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-id-ID.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-id-ID.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-it-IT.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-it-IT.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ja-JP.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ja-JP.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ko-KR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ko-KR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-lt-LT.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-lt-LT.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-lt-LV.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-lt-LV.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-mn-MN.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-mn-MN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-nb-NO.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-nb-NO.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-nl-NL.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-nl-NL.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-pl-PL.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-pl-PL.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-pt-BR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-pt-BR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-pt-PT.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-pt-PT.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ro-RO.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ro-RO.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ru-RU.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ru-RU.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sk-SK.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sk-SK.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sl-SI.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sl-SI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sr-RS-Latin.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sr-RS-Latin.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sr-RS.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sr-RS.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sv-SE.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-sv-SE.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ta-IN.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-ta-IN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-th-TH.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-th-TH.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-tr-TR.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-tr-TR.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-uk-UA.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-uk-UA.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-uz-UZ.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-uz-UZ.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-vi-VN.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-vi-VN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-zh-CN.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-zh-CN.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-zh-TW.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\lang\summernote-zh-TW.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs3\summernote-bs3.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs3\summernote-bs3.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs3\summernote-bs3.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs4\summernote-bs4.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs4\summernote-bs4.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs4\summernote-bs4.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs5\summernote-bs5.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs5\summernote-bs5.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\bs5\summernote-bs5.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\js\DropdownUI.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\js\DropdownUI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\js\ModalUI.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\js\ModalUI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\js\TooltipUI.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\js\TooltipUI.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\btn-group.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\buttons.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\common.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\dropdown.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\form.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\mixins.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\mixins\buttons.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\modal.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\popover.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\toolbar.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\tooltip.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\scss\variables.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\summernote-lite.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\summernote-lite.min.js" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\lite\summernote-lite.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\README.md" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\summernote\common.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\summernote\elements.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\summernote\font.scss" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\summernote\font\summernote.hash" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\summernote\font\summernote.woff2" />
+		<None Include="wwwroot\libs-ext\summernote\src\styles\summernote\README.md" />
+		<None Update="Dockerfile">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="log4net.config">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+		<None Update="wwwroot\**\*;Views\**\*">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\dbs\bbk.netcore.EntityFrameworkCore\bbk.netcore.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\modules\OMS\OMS.Application\OMS.Application.csproj" />
+		<ProjectReference Include="..\..\modules\PersonalProfile\PersonalProfile.Application\PersonalProfile.Application.csproj" />
+		<ProjectReference Include="..\bbk.netcore.Web.Core\bbk.netcore.Web.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Abp.AutoMapper" Version="5.13.0" />
+		<PackageReference Include="Abp.MailKit" Version="5.13.0" />
+		<PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="5.13.0" />
+		<PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
+		<PackageReference Include="MailKit" Version="3.4.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.10">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.10" />
+		<PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.1.2">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+		<PackageReference Include="MimeKit" Version="3.4.3" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+		<PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
+		<PackageReference Include="Abp.HangFire" Version="5.13.0" />
+		<PackageReference Include="Abp.RedisCache" Version="5.13.0" />
+		<PackageReference Include="Abp.Castle.Log4Net" Version="5.13.0" />
+		<PackageReference Include="Polly" Version="7.2.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="bbk.netcore.Application">
+			<HintPath>..\..\runlibs\bbk.netcore.Application.dll</HintPath>
+			<Private>true</Private>
+		</Reference>
+		<Reference Include="bbk.netcore.Core">
+			<HintPath>..\..\runlibs\bbk.netcore.Core.dll</HintPath>
+			<Private>true</Private>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="mailssave\" />
+		<Folder Include="wwwroot\data\tenants\1\ContractPO\" />
+		<Folder Include="wwwroot\data\tenants\1\Quotation\" />
+		<Folder Include="wwwroot\libs-ext\qrcode\" />
+		<Folder Include="wwwroot\_cdn\tenants\1\" />
+	</ItemGroup>
+</Project>

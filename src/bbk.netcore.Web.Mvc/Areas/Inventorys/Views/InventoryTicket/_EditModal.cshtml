@@ -1,0 +1,95 @@
+﻿@using bbk.netcore.Web.Areas.Inventorys.Models.InventoryTicket;
+@{
+    Layout = null;
+}
+@model InventoryTicketViewModel
+<div class="modal-content" id="ItemsCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title"> Cập nhật phiếu kiểm kho</h5><button type="button" class="close" data-dismiss="modal"
+                                                       aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="FrmEdit" role="form" class="needs-validation" novalidate="">
+            <input value="@Model.Id" name="Id" id="Id" hidden />
+            <div class="form-group row required">
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Kho kiểm kê"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="WarehouseId" name="WarehouseId" asp-for="WarehouseId" asp-items="@Model.GetWarehouse()" required>
+                        <option value="" selected disabled>Chọn Kho</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn Kho.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Kiểm kê từ ngày"))<span class="text-danger">*</span></label>
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="@Model.StartDate.ToString("dd/MM/yyyy")" placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="StartDate" name="StartDate">
+                    <div class="invalid-feedback">
+                        Vui lòng chọn thời gian.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Kiểm kê đến ngày"))<span class="text-danger">*</span></label>
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="@Model.EndDate.ToString("dd/MM/yyyy")" placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="EndDate" name="EndDate">
+                    <div class="invalid-feedback">
+                        Vui lòng chọn thời gian.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Ngày chốt kiểm kê"))<span class="text-danger">*</span></label>
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="@Model.CompleteTime.ToString("dd/MM/yyyy")" placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="CompleteTime" name="CompleteTime">
+                    <div class="invalid-feedback">
+                        Vui lòng chọn thời gian.
+                    </div>
+                </div>
+              <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Ngày tạo phiếu"))<span class="text-danger">*</span></label>
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="@Model.CreationTime.ToString("dd/MM/yyyy")" disabled>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Người tao phiếu"))<span class="text-danger">*</span></label>
+                    <input type="text" name="CreatedBy" class="form-control" value="@Model.CreatedBy" disabled minlength="">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class=" col-form-label">@(new FixedLocalizableString("Mô tả"))</label>
+                <textarea id="Remark" name="Remark"  class="form-control"></textarea>
+            </div>
+
+            <div class="col-md-12">
+                <label class=" col-form-label">@(new FixedLocalizableString("Danh sách hàng hóa"))</label>
+                <table id="InvenTicketTable" class="table table-bordered table-hover table-striped w-100">
+                    <thead class="bg-primary-600">
+                        <tr>
+                            <th>STT</th>
+                            <th>HÀNG HOÁ</th>
+                            <th>SL NHẬP</th>
+                            <th>SL XUẤT</th>
+                            <th>SL TỒN</th>
+                            <th>SL KIỂM KÊ</th>
+                            <th>SL CHÊNH LỆCH</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+
+        </form>
+        <div class="col-md-12 text-center">
+            <button id="addRow" name="addRow" class="btn btn-sm btn-primary ml-auto">
+                <span class="fal fa-plus-square"></span>
+                @(new FixedLocalizableString("Thêm mới hàng hóa"))
+            </button>
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancelAndHuy.cshtml")
+
+

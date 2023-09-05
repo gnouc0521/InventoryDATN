@@ -1,0 +1,93 @@
+﻿@using Abp.Application.Services.Dto
+@using bbk.netcore.Authorization
+@using bbk.netcore.Web.Areas.App.Models.Roles
+@using bbk.netcore.Web.Areas.App.Startup
+@model RoleListViewModel
+@{
+    ViewBag.CurrentPageName = AppPageNames.AdminCommon.Roles;
+}
+@section Header
+    {
+    <environment names="Development">
+        <link rel="stylesheet" href="/libs/jstree/dist/themes/default/style.css" asp-append-version="true" />
+        <link rel="stylesheet" href="/Common/Styles/jstree.css" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="/_cdn/jstree.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="stylesheet" href="~/view-resources/Areas/App/Views/Roles/Index.css" asp-append-version="true" />
+}
+    @section Scripts
+    {
+    <script src="/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/_cdn/jstree.min.js" asp-append-version="true"></script>
+    <environment names="Development">
+        <script src="/view-resources/Areas/App/Views/Common/_PermissionTree.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Roles/Index.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Roles/_CreateOrEditModal.js" asp-append-version="true"></script>
+        @*<script src="~/view-resources/Areas/App/Views/_Bundles/role-list.js" asp-append-version="true"></script>*@
+    </environment>
+	 <environment names="Staging,Production">
+        <script src="/view-resources/Areas/App/Views/Common/_PermissionTree.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Roles/Index.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Roles/_CreateOrEditModal.js" asp-append-version="true"></script>
+        @*<script src="~/view-resources/Areas/App/Views/_Bundles/role-list.js" asp-append-version="true"></script>*@
+    </environment>
+}
+
+<div class="row">
+	<div class="col-xl-12">
+		<div id="panel-1" class="panel">
+			<div class="panel-hdr">
+				<h2>
+					Danh sách
+					<span class="fw-300"><i>vai trò</i></span>
+				</h2>
+				<div class="panel-toolbar">
+					@if (IsGranted(PermissionNames.Pages_Administration_Roles_Create))
+					{
+						<button id="CreateNewUserButton" class="btn btn-sm btn-toolbar-full btn-primary">
+							<span class="fal fa-plus-square"></span>
+							Thêm mới
+						</button>
+					}
+					<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>
+				</div>
+			</div>
+			<div class="panel-container show">
+				<div class="panel-content">
+					<div class="row mb-5">
+						<div class="col-xl-6">
+							<div class="form-group">
+								@Html.DropDownList(
+								"PermissionSelectionCombobox", Model.Permissions.Select(i => i.ToSelectListItem()),
+								new
+								{
+								@class = "form-control selectpicker",
+								data_live_search = "true",
+								data_none_selected_text = L("FilterByPermission"),
+								id = "PermissionSelectionCombo"
+								})
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<button id="RefreshRolesButton" class="btn btn-info"><i class="la la-refresh"></i> @L("Refresh")</button>
+						</div>
+					</div>
+					<!-- datatable start -->
+					<table id="RolesTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+						<thead>
+							<tr>
+								<th></th>
+								<th>@L("Actions")</th>
+								<th>@L("RoleName")</th>
+								<th>@L("CreationTime")</th>
+							</tr>
+						</thead>
+					</table>
+					<!-- datatable end -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

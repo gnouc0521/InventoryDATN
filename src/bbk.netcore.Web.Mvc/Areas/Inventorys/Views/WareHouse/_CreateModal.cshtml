@@ -1,0 +1,178 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.Web.Areas.Inventorys.Models.WareHouse
+@using static bbk.netcore.mdl.OMS.Core.Enums.WarehouseEnum
+@model WareHouseAddressModel
+@{
+    Layout = null;
+}
+<div class="modal-content" id="WareHouseCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới kho </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <div class="row">
+                @*<div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Mã kho"))</label>
+                    <input type="text" name="Code" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>*@
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Tên kho"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Name" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Loại kho"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="typeCode-select" name="TypeCode" asp-items="@Model.GetWarehouseType()" required>
+                        <option value="" selected disabled>Chọn Loại kho</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Trạng thái"))<span class="text-danger">*</span></label>
+                    <select class="form-control" asp-items="Html.GetEnumSelectList<TypeWarehouse>()" id="typeWarehouse" required>
+                        <option value="" selected disabled>Chọn trạng thái</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Thành phố"))<span class="text-danger">*</span></label>
+                    <select class="form-control" id="selectProvinceOfBirth" name="CityId" required>
+                            <option value="" selected disabled class="title-address" style="font-size:12px;">Chọn Tỉnh/TP</option>
+                            @foreach (var item in Model.provinces.Addresses)
+                            {
+                                <option value="@item.Id" data-select-id="@item.Name" data-id="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Quận/Huyện"))<span class="text-danger">*</span></label>
+                    <select class="form-control" id="selectDistrictOfBirth" name="DistrictId" required>
+                        <option value="" selected disabled>Chọn Quận/Huyện</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Phường/Xã"))<span class="text-danger">*</span></label>
+                    <select class="form-control" id="selectVillageOfBirth" name="WardsId" required>
+                        <option value="" selected disabled>Chọn xã/phường</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Số nhà/Tên đường"))<span class="text-danger">*</span></label>
+                    <div class="">
+                        <input type="text" name="Number" class="form-control" required minlength="">
+                        <div class="invalid-feedback">
+                            @(new FixedLocalizableString("Không được để trống trường này!"))
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Kinh độ"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Longitude" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Vĩ độ"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Lattitude" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Chiều dài"))<span class="text-danger">*</span></label>
+                    <div class="">
+                        <input type="number" name="Length" class="form-control" required minlength="">
+                        <div class="invalid-feedback">
+                            @(new FixedLocalizableString("Không được để trống trường này!"))
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Chiều rộng"))<span class="text-danger">*</span></label>
+                    <input type="number" name="Width" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Chiều cao"))<span class="text-danger">*</span></label>
+                    <input type="number" name="Height" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+            @*<div class="row mb-3">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Trạng thái"))</label>
+                    <select class="form-control" asp-items="Html.GetEnumSelectList<TypeWarehouse>()" id="typeWarehouse" required>
+                        <option value="" selected disabled>Chọn trạng thái</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="form-group col-md-12 required">
+                    <label class="">@(new FixedLocalizableString("Mô tả"))</label>
+                    <textarea type="text" name="Description" class="form-control" minlength="" rows="4" cols="50"></textarea>
+                    @*<div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>*@
+                </div>
+            </div>
+           
+            @*<div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="IssuedDate">@(new FixedLocalizableString("Ngày kết thúc"))</label>
+                <div class="col-md-9 d-flex">
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="" required placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="EndDate" name="EndDate">
+                    <div class="input-group-append">
+                        <span class="input-group-text fs-xl">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>*@
+            
+           
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+

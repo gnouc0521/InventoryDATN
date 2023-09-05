@@ -1,0 +1,21 @@
+﻿@using bbk.netcore.Web.Areas.App.Models.Common.Modals
+@using bbk.netcore.Web.Areas.App.Models.Users
+@model UserPermissionsEditViewModel
+
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Permissions") + " - " + Model.User.UserName))
+
+<div class="modal-body">
+    @await Html.PartialAsync("~/Areas/App/Views/Common/_PermissionTree.cshtml", Model)
+    
+    <div class="note note-warning" style="margin-bottom: 0; margin-top: 15px">
+        <em>
+            @(new FixedLocalizableString("Note_RefreshPageForPermissionChanges"))</em>
+    </div>
+</div>
+
+<div class="modal-footer">
+    @*<button type="button" class="btn btn-warning pull-left reset-permissions-button" data-toggle="tooltip" title="@(new FixedLocalizableString("ResetPermissionsTooltip"))" data-placement="top"><span>@L("ResetSpecialPermissions")</span></button>*@
+            <button type="button" class="btn btn-secondary close-button" data-dismiss="modal">@(new FixedLocalizableString("Hủy"))</button>
+            <button type="button" class="btn btn-primary save-button"><i class="fal fa-save"></i> <span>@(new FixedLocalizableString("Save"))</span></button>
+</div>
+

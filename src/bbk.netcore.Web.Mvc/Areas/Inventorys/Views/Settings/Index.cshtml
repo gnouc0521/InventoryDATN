@@ -1,0 +1,80 @@
+﻿@using bbk.netcore.mdl.PersonalProfile.Core
+@using bbk.netcore.mdl.PersonalProfile.Application.Settings.Dto
+@{ 
+    SettingDto data = ViewBag.data as SettingDto;
+}
+@section Scripts
+{
+    <environment names="Development">
+        <script src="~/view-resources/Areas/PersonalProfile/Uis/settingUi.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Areas/PersonalProfile/_Bundles/settingUi.min.js"></script>
+    </environment>
+}
+<div id="panel-6" class="panel">
+    <div class="panel-hdr">
+        <h2>
+            Quản Lý <span class="fw-300"><i>Cài Đặt</i></span>
+        </h2>
+        <div class="panel-toolbar">
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+        </div>
+    </div>
+    <div class="panel-container show">
+        <div class="panel-content p-0">
+            <form id="setting-form" >
+                <div class="panel-content" style="height:650px">
+                    <div class="form-group">
+                        <label class="form-label" for="header">Text Header</label><span class="text-danger">*</span>
+                        <input type="text" class="form-control" id="header" name="header" value="@data.Header" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="footer">Text Footer</label><span class="text-danger">*</span>
+                        <input type="text" class="form-control" id="footer" name="footer" value="@data.Footer" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Banner</label><span class="text-danger">*</span>
+                        <div class="custom-file">
+                            <input type="file" id="banner-file" class="custom-file-input">
+                            <label class="custom-file-label" id="banner-label" for="custom-file">Chọn ảnh</label>
+                            <p></p>
+                            <div class="img-preview preview-lg" style="width:  1000px; height: 144px;" id="image-cover-thumbnail-banner">
+                                <img id="banner-url" class="display_banner" src="@data.BannerUrl" style="width: 1000px; height: 150px; min-width: 0px !important; min-height: 0px !important; max-width: none !important; max-height: none !important;margin-bottom: 150px;">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Logo</label><span class="text-danger">*</span>
+                        <div class="custom-file">
+                            <input type="file" id="logo-file" class="custom-file-input file-upload-field">
+                            <label class="custom-file-label" id="logo-label" for="custom-file">Chọn ảnh</label>
+
+                            <p id="Logo" style="color:red"></p>
+                            <div class="img-preview preview-lg" style="width: 256px; height: 144px;" id="image-cover-thumbnail">
+                                <img id="logo-url" class="display_logo" src="@data.LogoUrl" style="width: 150px; height: 150px; min-width: 0px !important; min-height: 0px !important; max-width: none !important; max-height: none !important; ">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-content border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row" style="margin-top: 60px;">
+
+                    <div class="dt-buttons">
+                        <button type="button" class="btn btn-primary btn-sm refresh" id="update_setting" tabindex="0" aria-controls="dt-basic-example">
+                            <span><i class="fal fa-sync mr-1"></i>Cập nhật</span>
+                        </button>
+                        <button class="btn buttons-selected btn-primary btn-sm mr-1 delete" id="setting_default" tabindex="0" aria-controls="dt-basic-example" type="button">
+                            <span><i class="fal fa-times mr-1"></i> Cài đặt mặc định</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+

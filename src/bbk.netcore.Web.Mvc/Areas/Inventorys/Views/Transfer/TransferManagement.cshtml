@@ -1,0 +1,173 @@
+﻿@using Abp.Localization
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <link href="~/libs-ext/summernote/dist/summernote-bs4.min.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs-ext/summernote/dist/summernote-bs4.min.css" rel="stylesheet" />
+    </environment>
+}
+    @section Scripts{
+    <environment names="Development">
+
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/libs-ext/xlsx/package/dist/xlsx.full.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Transfer/TransferManagement.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs-ext/xlsx/package/dist/xlsx.full.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Transfer/TransferManagement.js" charset="UTF-8" asp-append-version="true"></script>
+    </environment>
+}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-seperator-3">
+            <li class="breadcrumb-item ">
+                <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a>Quản lý điều chuyển</a>
+
+        </li>
+    </ol>
+  @*  <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <span class="fw-300"><i>Danh sách phiếu nhập kho chưa duyệt </i></span>
+                </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                      <div class="form-row">
+                      <div class="col-lg-6 col-md-12 mb-3">
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 mb-3 d-flex">
+                            <input type="text" id="SearchTerm" name="SearchTerm" placeholder="@(new FixedLocalizableString("Tìm kiếm"))" class="form-control" required>
+                            <button type="button" id="Search" class="btn btn-primary"><i class="fal fa-search"></i></button>
+                        </div>
+                    </div>
+                    
+                    <table id="ImportTable" class="table table-bordered table-hover table-striped w-100">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã Phiếu</th>
+                                <th>Kho nhập</th>
+                                <th>Kho xuất</th>
+                                <th>Người yêu cầu</th>
+                                <th>Thời gian tạo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div> *@
+   @* <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <span class="fw-300"><i>Danh sách phiếu xuất kho chưa duyệt</i></span>
+                </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                       
+                    </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                      <div class="form-row">
+                      <div class="col-lg-6 col-md-12 mb-3">
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 mb-3 d-flex">
+                            <input type="text" id="SearchTerm" name="SearchTerm" placeholder="@(new FixedLocalizableString("Tìm kiếm"))" class="form-control" required>
+                            <button type="button" id="Search" class="btn btn-primary"><i class="fal fa-search"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- datatable start -->
+                    <table id="ExportTable" class="table table-bordered table-hover table-striped w-100">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã Phiếu</th>
+                                <th>Kho xuất</th>
+                                <th>Kho nhập</th>
+                                <th>Người yêu cầu</th>
+                                <th>Thời gian tạo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <!-- datatable end -->
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <span class="fw-300"><i>Danh sách yêu cầu Điều chuyển</i></span>
+                </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>*@
+                    </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                      <div class="form-row">
+                      <div class="col-lg-6 col-md-12 mb-3">
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 mb-3 d-flex">
+                            <input type="text" id="SearchTerm" name="SearchTerm" placeholder="@(new FixedLocalizableString("Tìm kiếm"))" class="form-control" required>
+                            <button type="button" id="Search" class="btn btn-primary"><i class="fal fa-search"></i></button>
+                        </div>
+                    </div>
+                    
+                    <!-- datatable start -->
+                    <table id="TransferTable" class="table table-bordered table-hover table-striped w-100">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th>STT</th>
+                                <th>MÃ PHIẾU</th>
+                                <th>KHO NHẬN</th>
+                                <th>KHO XUẤT</th>
+                                <th>THỜI GIAN YÊU CẦU</th>
+                                <th>THỜI GIAN DUYỆT</th>
+                                <th>TRẠNG THÁI</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <!-- datatable end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

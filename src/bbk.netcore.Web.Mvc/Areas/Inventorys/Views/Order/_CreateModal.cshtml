@@ -1,0 +1,74 @@
+﻿@using bbk.netcore.Web.Areas.Inventorys.Models.Order;
+@{
+    Layout = null;
+}
+@model OrderViewModel
+<div class="modal-content" id="OrderCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Tạo đơn hàng </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <input id="Id" name="Id" hidden value="@Model.Contract.Id" />
+            <div class="form-group row required">
+                <div class="col-md-3">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Mã hợp đồng"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Supplier" class="form-control" value="@Model.Contract.Code" required minlength="" disabled>
+                </div>
+                <div class="col-md-3">
+                    <label class=" col-form-label">@(new FixedLocalizableString("NCC"))<span class="text-danger">*</span></label>
+                    <input type="text" name="" class="form-control" required minlength="" value="@Model.Supplier.Name"  disabled>
+                   
+                </div>
+                <div class="col-md-3">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Ngày tạo"))<span class="text-danger">*</span></label>
+                    <input type="text" name="ShipperName" class="form-control" value="@Model.Contract.CreationTime.ToShortDateString()" required minlength="" disabled>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn Kho.
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Trạng thái"))<span class="text-danger">*</span></label>
+                    <input type="text" name="ShipperName" class="form-control" required minlength="" value="Chưa xử lý" disabled>
+                </div> 
+                <div class="col-md-3">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Người Mua"))<span class="text-danger">*</span></label>
+                    <input type="text" name="" class="form-control" required minlength="" value="@ViewBag.UserName" disabled>
+                </div>
+                <div class="col-md-3">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Khoảng thời gian mua hàng"))<span class="text-danger">*</span></label>
+                    <div class="input-daterange input-group" id="date-picker">
+                        <input type="text" class="form-control" name="start">
+                        <div class="input-group-append input-group-prepend">
+                            <span class="input-group-text fs-xl"><i class="fal fa-ellipsis-h"></i></span>
+                        </div>
+                        <input type="text" class="form-control" name="end">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class=" col-form-label"><h4>@(new FixedLocalizableString("Danh sách đơn đặt hàng"))</h4></label>
+                <table id="ItemTable" class="table table-bordered table-hover table-striped w-100">
+                    <thead class="bg-primary-600">
+                        <tr>
+                            <th>STT</th>
+                            <th>HÀNG HÓA</th>
+                            <th>ĐVT</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>GIÁ/ĐVT</th>
+                            <th>THÀNH TIỀN</th>
+                            <th>GHI CHÚ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+

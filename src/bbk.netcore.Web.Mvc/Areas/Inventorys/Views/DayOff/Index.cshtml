@@ -1,0 +1,78 @@
+﻿@using Abp.Localization
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+    @section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/DayOffs/index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/DayOffs/_CreateModal.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/DayOffs/Index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        <span class="fw-300"><i>Quản lý Ngày nghỉ</i></span>
+                    </h2>
+                    <div class="panel-toolbar">
+                        
+                    <button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="form-row">
+                            <div class="col-lg-6 col-md-12 mb-3">
+                                <label class="form-label" for="SearchTerm">@(new FixedLocalizableString("Tìm kiếm"))</label>
+                                <input type="text" id="SearchTerm" name="SearchTerm" placeholder="@(new FixedLocalizableString("Nhập tên ngày nghỉ"))" class="form-control" required>
+                            </div>
+                            <div class="col-lg-6 col-md-12 mb-3 mt-auto">
+                                <button class="btn btn-primary ml-auto waves-effect waves-themed" id="Search" type="button">@(new FixedLocalizableString("Tìm kiếm"))</button>
+                            </div>
+                        </div>
+                        <div class="panel-content border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row">
+                            <button id="CreateNewButtonxx" name="CreateNewButton" class="btn btn-sm btn-toolbar-full btn-primary ml-auto">
+                            <span class="fal fa-plus-square"></span>
+                            @(new FixedLocalizableString("Thêm mới"))
+                    </button>
+                        </div>
+                        <!-- datatable start -->
+                        <table id="dayOffTable" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="bg-primary-600">
+                                <tr>
+                                    <th></th>
+                                    <th>STT</th>
+                                    <th>Tên ngày nghỉ</th>
+                                    <th>Ngày bắt đầu nghỉ</th>
+                                    <th>Ngày kết thúc</th>
+                                    <th>Tổng ngày nghỉ</th>
+                                    <th>Loại</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- datatable end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

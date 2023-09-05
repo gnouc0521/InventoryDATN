@@ -1,0 +1,331 @@
+﻿@using Abp.Application.Services.Dto
+@using bbk.netcore.Authorization
+@using bbk.netcore.Web.Areas.App.Models.Users
+@using bbk.netcore.Web.Areas.App.Startup
+@model UsersViewModel
+@{ ViewBag.CurrentPageName = AppPageNames.AdminCommon.Users; }
+@section Header
+    {
+    <environment names="Development">
+        <link rel="stylesheet" href="/libs/jstree/dist/themes/default/style.css" asp-append-version="true" />
+        <link rel="stylesheet" href="/Common/Styles/jstree.css" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="/_cdn/jstree.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="stylesheet" abp-href="/view-resources/Areas/App/Views/Users/Index.css" asp-append-version="true" />
+}
+@section Scripts
+    {
+    <script src="/js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="~/_cdn/jstree.min.js" asp-append-version="true"></script>
+    <environment names="Development">
+        <script src="/view-resources/Areas/App/Views/Common/_PermissionTree.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Common/_OrganizationTree.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Users/_CreateOrEditModal.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Users/_PermissionsModal.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/App/Views/Users/Index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="/view-resources/Areas/App/Views/_Bundles/userindex.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @*<script>
+            $(document).ready(function () {
+                // initialize datatable
+                $('#dt-basic-example').dataTable(
+                    {
+                        responsive: true,
+                        columnDefs: [
+                            {
+                                targets: -1,
+                                title: 'Admin Controls',
+                                orderable: false,
+                                render: function (data, type, full, meta) {
+
+                                    /*
+                                    -- ES6
+                                    -- convert using https://babeljs.io online transpiler
+                                    return `
+                                    <div class='d-flex mt-2'>
+                                        <a href='javascript:void(0);' class='btn btn-sm btn-outline-danger mr-2' title='Delete Record'>
+                                            <i class="fal fa-times"></i> Delete Record
+                                        </a>
+                                        <a href='javascript:void(0);' class='btn btn-sm btn-outline-primary mr-2' title='Edit'>
+                                            <i class="fal fa-edit"></i> Edit
+                                        </a>
+                                        <div class='dropdown d-inline-block'>
+                                            <a href='#'' class='btn btn-sm btn-outline-primary mr-2' data-toggle='dropdown' aria-expanded='true' title='More options'>
+                                                <i class="fal fa-plus"></i>
+                                            </a>
+                                            <div class='dropdown-menu'>
+                                                <a class='dropdown-item' href='javascript:void(0);'>Change Status</a>
+                                                <a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>
+                                            </div>
+                                        </div>
+                                    </div>`;
+
+                                    ES5 example below:
+
+                                    */
+                                    return "\n\t\t\t\t\t\t<div class='d-flex mt-2'>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-danger mr-2' title='Delete Record'><i class=\"fal fa-times\"></i> Delete Record</a>\n\t\t\t\t\t\t\t<a href='javascript:void(0);' class='btn btn-sm btn-outline-primary mr-2' title='Edit'><i class=\"fal fa-edit\"></i> Edit</a>\n\t\t\t\t\t\t\t<div class='dropdown d-inline-block'>\n\t\t\t\t\t\t\t\t<a href='#'' class='btn btn-sm btn-outline-primary mr-2' data-toggle='dropdown' aria-expanded='true' title='More options'><i class=\"fal fa-plus\"></i></a>\n\t\t\t\t\t\t\t\t<div class='dropdown-menu'>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Change Status</a>\n\t\t\t\t\t\t\t\t\t<a class='dropdown-item' href='javascript:void(0);'>Generate Report</a>\n\t\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>";
+                                },
+                            },
+                            {
+                                targets: 17,
+                                /*	The `data` parameter refers to the data for the cell (defined by the
+                                    `data` option, which defaults to the column being worked with, in this case `data: 16`.*/
+                                render: function (data, type, full, meta) {
+                                    var badge = {
+                                        1:
+                                        {
+                                            'title': 'Pending',
+                                            'class': 'badge-warning'
+                                        },
+                                        2:
+                                        {
+                                            'title': 'Delivered',
+                                            'class': 'badge-success'
+                                        },
+                                        3:
+                                        {
+                                            'title': 'Canceled',
+                                            'class': 'badge-secondary'
+                                        },
+                                        4:
+                                        {
+                                            'title': 'Attempt #1',
+                                            'class': 'bg-danger-100 text-white'
+                                        },
+                                        5:
+                                        {
+                                            'title': 'Attempt #2',
+                                            'class': 'bg-danger-300 text-white'
+                                        },
+                                        6:
+                                        {
+                                            'title': 'Failed',
+                                            'class': 'badge-danger'
+                                        },
+                                        7:
+                                        {
+                                            'title': 'Attention!',
+                                            'class': 'badge-primary'
+                                        },
+                                        8:
+                                        {
+                                            'title': 'In Progress',
+                                            'class': 'badge-success'
+                                        },
+                                    };
+                                    if (typeof badge[data] === 'undefined') {
+                                        return data;
+                                    }
+                                    return '<span class="badge ' + badge[data].class + ' badge-pill">' + badge[data].title + '</span>';
+                                },
+                            }],
+                    });
+            });
+
+        </script>*@
+}
+
+@*<div class="subheader">
+        <h1 class="subheader-title">
+            <i class='subheader-icon fal fa-table'></i> Users: <span class='fw-300'>Responsive</span> <sup class='badge badge-primary fw-500'>ADDON</sup>
+            <small>
+                Create headache free searching, sorting and pagination tables without any complex configuration
+            </small>
+        </h1>
+    </div>*@
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    Danh sách
+                    <span class="fw-300"><i>tài khoản</i></span>
+                </h2>
+                <div class="panel-toolbar">
+                    <button id="CreateNewUserButton" class="btn btn-sm btn-toolbar-full btn-primary">
+                        <span class="fal fa-plus-square"></span>
+                        Thêm mới
+                    </button>
+                    @*<button type="button" class="btn btn-sm btn-toolbar-full btn-success">
+                        <span class="fal fa-download mr-1"></span>
+                        Tải về
+                    </button>*@
+                <button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <!-- datatable start -->
+                    <table id="usersTbl" class="table table-bordered table-hover table-striped w-100">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Xử lý</th>
+                                <th>Tài khoản</th>
+                                <th>Tên</th>
+                                <th>Họ</th>
+                                <th>Vai trò</th>
+                                <th>Email</th>
+                                <th>Trạng thái</th>
+                                <th>Thời gian tạo</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    @*<table id="usersTbl" class="table table-bordered table-hover table-striped w-100">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@L("Actions")</th>
+                                <th>@L("UserName")</th>
+                                <th>@L("Name")</th>
+                                <th>@L("Surname")</th>
+                                <th>@L("Roles")</th>
+                                <th>@L("EmailAddress")</th>
+                                <th>@L("Active")</th>
+                                <th>@L("CreationTime")</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>@L("Actions")</th>
+                                <th>@L("UserName")</th>
+                                <th>@L("Name")</th>
+                                <th>@L("Surname")</th>
+                                <th>@L("Roles")</th>
+                                <th>@L("EmailAddress")</th>
+                                <th>@L("Active")</th>
+                                <th>@L("CreationTime")</th>
+                            </tr>
+                        </tfoot>
+                    </table>*@
+                    <!-- datatable end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="UserEditModal" tabindex="-1" role="dialog" aria-labelledby="UserEditModalLabel" data-backdrop="static">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+@*<div class="m-subheader">
+        <div class="row align-items-center">
+            <div class="mr-auto col-sm-12 col-md-6">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    <span>@L("Users")</span>
+                </h3>
+                <span class="m-section__sub">
+                    @L("UsersHeaderInfo")
+                </span>
+            </div>
+            <div class="col-sm-12 col-md-6 text-right">
+                <button id="ExportUsersToExcelButton" class="btn btn-outline-success"><i class="far fa-file-excel"></i> @L("ExportToExcel")</button>
+                @if (IsGranted(PermissionNames.Pages_Administration_Users_Create))
+                {
+                    <button id="CreateNewUserButton" class="btn btn-primary"><i class="fa fa-plus"></i> @L("CreateNewUser")</button>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="m-portlet m-portlet--mobile">
+            <div class="m-portlet__body">
+                <div class="m-form m-form--label-align-right">
+                    <div class="row align-items-center m--margin-bottom-10">
+                        <div class="col-xl-12">
+                            <div class="form-group m-form__group align-items-center">
+                                <div class="input-group">
+                                    <input type="text" id="UsersTableFilter" class="form-control m-input" placeholder="@L("SearchWithThreeDot")" value="@Model.FilterText">
+                                    <span class="input-group-btn">
+                                        <button id="GetUsersButton" class="btn btn-primary" type="submit"><i class="flaticon-search-1" aria-label="@L("Search")"></i></button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="AdvacedAuditFiltersArea" style="display: none" class="row m--margin-bottom-10">
+                        <div class="@(IsGranted(PermissionNames.Pages_Administration_Roles) ? "col-xl-6" : "col-xl-12")">
+                            <div class="form-group">
+                                @Html.DropDownList(
+                                        "PermissionSelectionCombobox", Model.Permissions.Select(i => i.ToSelectListItem()),
+                                        new
+                                        {
+                                            @class = "form-control selectpicker",
+                                            data_live_search = "true",
+                                            data_none_selected_text = L("FilterByPermission"),
+                                            id = "PermissionSelectionCombo"
+                                        })
+                            </div>
+                        </div>
+                        @if (IsGranted(PermissionNames.Pages_Administration_Roles))
+                        {
+                            <div class="col-xl-6">
+                                <div class="form-group">
+                                    @Html.DropDownList(
+                                            "RoleSelectionCombobox", Model.Roles.Select(i => i.ToSelectListItem()),
+                                            new
+                                            {
+                                                @class = "form-control selectpicker",
+                                                data_live_search = "true",
+                                                data_none_selected_text = L("FilterByRole"),
+                                                id = "RoleSelectionCombo"
+                                            })
+                                </div>
+                            </div>
+                        }
+                        <div class="col-xl-6">
+                            <div class="m-checkbox-list">
+                                <label class="m-checkbox">
+                                    <input type="checkbox"
+                                           id="UsersTable_OnlyLockedUsers"
+                                           name="OnlyLockedUsersCheckbox"
+                                           value="true">
+                                    @L("OnlyLockedUsers")
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 text-right">
+                            <button id="RefreshUserListButton" class="btn btn-metal"><i class="fa fa-sync"></i> @L("Refresh")</button>
+                        </div>
+                    </div>
+                    <div class="row m--margin-bottom-10">
+                        <div class="col-xl-12">
+                            <span id="ShowAdvancedFiltersSpan" class="text-muted clickable-item"><i class="fa fa-angle-down"></i> @L("ShowAdvancedFilters")</span>
+                            <span id="HideAdvancedFiltersSpan" class="text-muted clickable-item" style="display: none"><i class="fa fa-angle-up"></i> @L("HideAdvancedFilters")</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <table id="UsersTable" class="display table table-striped table-bordered table-hover dt-responsive nowrap">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>@L("Actions")</th>
+                                <th>@L("UserName")</th>
+                                <th>@L("Name")</th>
+                                <th>@L("Surname")</th>
+                                <th>@L("Roles")</th>
+                                <th>@L("EmailAddress")</th>
+                                <th>@L("EmailConfirm")</th>
+                                <th>@L("Active")</th>
+                                <th>@L("LastLoginTime")</th>
+                                <th>@L("CreationTime")</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>*@

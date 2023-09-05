@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AssemblyName>bbk.netcore.mdl.PersonalProfile.Application</AssemblyName>
+		<RootNamespace>bbk.netcore.mdl.PersonalProfile.Application</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Remove="Reports\Dto\BM10Dto - Copy.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Abp.AutoMapper" Version="5.13.0" />
+		<PackageReference Include="Abp.EntityFrameworkCore" Version="5.13.0" />
+		<PackageReference Include="AutoMapper" Version="10.1.1" />
+		<PackageReference Include="EPPlus.Core" Version="1.5.4" />
+		<PackageReference Include="MailKit" Version="3.4.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+		<PackageReference Include="MimeKit" Version="3.4.3" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+		<PackageReference Include="Spire.Doc" Version="9.2.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\PersonalProfile.Core\PersonalProfile.Core.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="bbk.netcore.Application">
+			<HintPath>..\..\..\runlibs\bbk.netcore.Application.dll</HintPath>
+		</Reference>
+		<Reference Include="bbk.netcore.Core">
+			<HintPath>..\..\..\runlibs\bbk.netcore.Core.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+
+</Project>

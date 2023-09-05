@@ -1,0 +1,62 @@
+﻿@using bbk.netcore.Url
+@using Abp.Configuration.Startup
+@using Abp.Web.Mvc.Alerts
+@using Abp.Web.Security.AntiForgery
+@using bbk.netcore.Web.Resources
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IMultiTenancyConfig MultiTenancyConfig
+@inject IWebResourceManager WebResourceManager
+@inject IAlertManager AlertManager
+@inject ILanguageManager LanguageManager
+
+@inject IWebUrlService WebUrlService
+@{ AbpAntiForgeryManager.SetCookie(Context);
+ }
+<!DOCTYPE html>
+@*<partial name="_CopyrightHeader" />*@
+<html lang="@LanguageManager.CurrentLanguage.Name">
+<head>
+    <partial name="_Head" />
+    @RenderSection("Header", required: false)
+</head>
+<body class="mod-bg-1 desktop chrome webkit pace-done">
+    <partial name="_ScriptsLoadingSaving" />
+    <div class="page-wrapper">
+        <div class="page-inner">
+            <partial name="_LeftPanel" />
+            <div class="page-content-wrapper">
+                <partial name="_PageHeader" />
+                <div class="page-main-content">
+                    <main id="js-page-content" role="main" class="page-content">
+                        @*<partial name="_PageBreadCrumb" />*@
+                        @RenderSection("PageHeading", required: false)
+                        @RenderBody()
+                    </main>
+                    @*<partial name="~/Areas/Inventorys/Views/Shared/_RightPanel.cshtml" />*@
+                    
+                </div>
+                <partial name="_PageContentOverlay" />
+                <partial name="_PageFooter" />
+               @* <partial name="_ShortCutModal" />*@
+            </div>
+        </div>
+    </div>
+    @*<partial name="_ShortCutMenu" />*@
+    <partial name="_ShortCutMessenger" />
+    <partial name="_PageSettings" />
+    @*<partial name="_GoogleAnalytics" />*@
+    <partial name="_ScriptBasePlugins" />
+    @RenderSection("Scripts", required: false)
+    <script>
+        app.supportsTenancyNameInUrl = @(WebUrlService.SupportsTenancyNameInUrl.ToString().ToLower());
+    </script>
+    @WebResourceManager.RenderScripts()
+    <environment names="Development">
+        <script src="~/view-resources/Areas/PersonalProfile/Uis/getUi.js" asp-append-version="true"></script>
+        <script src="~/js/app.bundle.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Areas/PersonalProfile/_Bundles/getUi.min.js" asp-append-version="true"></script>
+    </environment>
+</body>
+</html>

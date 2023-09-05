@@ -1,0 +1,142 @@
+﻿@using Abp.Localization
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/select2/dist/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/summernote/dist/summernote-bs4.min.css" rel="stylesheet" asp-append-version="true" />
+
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/select2/dist/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/summernote/dist/summernote-bs4.min.css" rel="stylesheet" asp-append-version="true" />
+
+    </environment>
+}
+@section Scripts{
+    <environment names="Development">
+
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+       @* <script src="~/libs/select2/dist/js/select2.min.js" asp-append-version="true"></script>*@
+       <script src="~/libs/summernote/dist/summernote-bs4.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Contracts/index.js" charset="UTF-8" asp-append-version="true"></script>
+        @*<script src="~/view-resources/Areas/Oms/Contracts/_CreateModal.js" charset="UTF-8" asp-append-version="true"></script>*@
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-date picker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/summernote/dist/summernote-bs4.min.js" asp-append-version="true"></script>
+       @* <script src="~/libs/select2/dist/js/select2.min.js" asp-append-version="true"></script>*@
+        <script src="~/view-resources/Areas/Oms/Contracts/index.js" charset="UTF-8" asp-append-version="true"></script>
+
+       @* <script src="~/view-resources/Areas/Oms/Contracts/index.min.js" charset="UTF-8" asp-append-version="true"></script>*@
+    </environment>
+}
+<div class="row">
+    <ol class="breadcrumb breadcrumb-seperator-3">
+        <li class="breadcrumb-item ">
+            <a href="@Url.Action("Index", "Dashboard", "Inventorys")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active">Taọ hợp đồng</li>
+    </ol>
+    <div class="col-xl-12 mb-4 mt-2">
+        <div class="form-row align-items-center">
+            <div class="">
+                <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "Dashboard", "Inventorys")">
+                    <i class="fal fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="d-flex flex-column ml-3 ">
+                 <h4 class="font-weight-bold ">Tạo hợp đồng</h4>
+            </div>
+        </div>
+    </div>
+   
+
+    @*Bảng trình báo gia da Phe duyet*@
+    <div class="col-xl-12">
+        <div class="form-row">
+            <div class="col-lg-6 col-md-12 mb-3">
+            </div>
+        </div>
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <span class="fw-300"><i>Danh sách trình báo giá <span class="font-weight-bold">Được duyệt</span></i></span>
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <!-- datatable start -->
+                    <table id="QuoteSynTableApprove" class="table table-bordered table-hover table-striped w-100">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th>STT</th>
+                                <th>MÃ TRÌNH BÁO GIÁ</th>
+                                <th>NCC</th>
+                                <th>THỜI GIAN TẠO</th>
+                                <th>THỜI GIAN DUYỆT</th>
+                                <th>TRẠNG THÁI</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <!-- datatable end -->
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    @*Bảng Hop dong moi tao*@
+    <div class="col-xl-12">
+        <div class="form-row">
+        <div class="col-lg-6 col-md-12 mb-3">
+        </div>
+    </div>
+    <div id="panel-1" class="panel">
+        <div class="panel-hdr">
+            <h2>
+                <span class="fw-300"><i>Danh sách hợp đồng</i></span>
+            </h2>
+            <div class="panel-toolbar">
+                <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+            </div>
+        </div>
+        <div class="panel-container show">
+            <div class="panel-content">
+                <!-- datatable start -->
+                <table id="ContractTable" class="table table-bordered table-hover table-striped w-100">
+                    <thead class="bg-primary-600">
+                        <tr>
+                            <th>STT</th>
+                            <th>MÃ HỢP ĐỒNG</th>
+                            <th>MÃ TRÌNH BÁO GIÁ</th>
+                            <th>NCC</th>
+                            <th>THỜI GIAN TẠO</th>
+                            <th>TỔNG GIÁ TRỊ HỢP ĐỒNG</th>
+                            <th>TRẠNG THÁI</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <!-- datatable end -->
+            </div>
+        </div>
+    </div>
+</div>
+    
+</div>

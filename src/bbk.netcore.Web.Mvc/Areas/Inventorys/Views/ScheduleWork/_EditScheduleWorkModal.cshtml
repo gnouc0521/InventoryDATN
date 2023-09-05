@@ -1,0 +1,78 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.Web.Areas.Inventorys.Models.ScheduleWorks
+@using bbk.netcore.mdl.OMS.Application.ScheduleWorks.Dto
+@using static bbk.netcore.mdl.OMS.Core.Enums.ScheduleWorkEnum
+@{
+    Layout = null;
+}
+@model IndexViewScheduleWorkModel
+
+<div class="modal-content" id="ScheduleWorkCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <input type="text" hidden value="@Model.scheduleWorkList.Id" id="ColorId" name="Id"/>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Tiêu đề lịch hoặc sự kiện"))</label>
+                <div class="col-md-9">
+                    <input type="text" name="Title" class="form-control" value="@Model.scheduleWorkList.Title" required minlength="">
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Nơi diễn ra"))</label>
+                <div class="col-md-9">
+                    <input type="text" name="Address" class="form-control" value="@Model.scheduleWorkList.Address" required minlength="">
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Thời gian bắt đầu"))</label>
+                <div class="col-md-9 d-flex">
+                    <input type="datetime-local" class="form-control date date-picker" value="" required placeholder="@(new FixedLocalizableString("Nhập ngày"))" id="StartDay" name="StartDay">
+                    @*<div class="input-group-append">
+                        <span class="input-group-text fs-xl">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="IssuedDate">@(new FixedLocalizableString("Thời gian kết thúc"))</label>
+                <div class="col-md-9 d-flex">
+                    <input type="datetime-local" autocomplete="off" class="form-control date date-picker" value="@Model.scheduleWorkList.EndDay" required placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="EndDay" name="EndDay">
+                    @*<div class="input-group-append">
+                        <span class="input-group-text fs-xl">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>*@
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Mức độ"))</label>
+                <div class="col-md-9">
+                    <select asp-items="Html.GetEnumSelectList<ColorPriority>()" class="form-control" id="selectColor" name="Color">
+                        <option value="" selected disabled>Chọn mức độ</option>
+                    </select>
+                </div>
+            </div>
+           <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="IssuedDate">@(new FixedLocalizableString("Mô tả"))</label>
+                <div class="col-md-9">
+                    <textarea asp-for="@Model.scheduleWorkList.Description" id="Description" name="Description" required class="form-control"></textarea>
+                    @*<textarea id="Description" name="Description" class="form-control" required></textarea>*@
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+
+

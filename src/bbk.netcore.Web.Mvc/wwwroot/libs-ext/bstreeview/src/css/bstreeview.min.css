@@ -1,0 +1,8 @@
+/**
+ * Minified by jsDelivr using clean-css v4.2.1.
+ * Original file: /npm/bstreeview@1.2.0/src/css/bstreeview.css
+ *
+ * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files
+ */
+.bstreeview{position:relative;display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;min-width:0;word-wrap:break-word;background-color:#fff;background-clip:border-box;border:1px solid rgba(0,0,0,.125);border-radius:.25rem;padding:0;overflow:hidden}.bstreeview .list-group{margin-bottom:0}.bstreeview .list-group-item{border-radius:0;border-width:1px 0 0 0;padding-top:.5rem;padding-bottom:.5rem;cursor:pointer}.bstreeview .list-group-item:hover{background-color:#dee2e6}.bstreeview>.list-group-item:first-child{border-top-width:0}.bstreeview .state-icon{margin-right:8px;width:12px;text-align:center}.bstreeview .item-icon{margin-right:5px}
+/*# sourceMappingURL=/sm/47b36ced8c60fcaf30b7c8e11d32cefd987d3bbc1f89e6cc77cfdcfedd0708fa.map */

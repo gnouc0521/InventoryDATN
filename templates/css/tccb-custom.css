@@ -1,0 +1,135 @@
+#s4-bodyContainer .Header {
+	max-width: 100%;
+	background-image: url("/img/tccb/VEAnoibo03.png");
+	background-repeat: no-repeat;
+	background-size: 100%;
+	text-transform: uppercase;
+	padding: 0px 0 15px;
+}
+#s4-bodyContainer .Header .logo {
+	margin-right: 25px;
+}
+
+#s4-bodyContainer .Header .logo img {
+	max-width: 130px;
+	max-height: 130px;
+}
+
+#s4-bodyContainer .Header .title {
+	padding-top: 30px;
+}
+
+#s4-bodyContainer .Header .title h1 {
+	font-size: 34px;
+}
+
+#s4-bodyContainer .Header .title p {
+	font-size: 19px;
+	margin-top: -10px;
+}
+
+#s4-bodyContainer .header-bgbaoton {
+	background-image: url("/img/tccb/VEAnoibo03.png");
+}
+
+#s4-bodyContainer .color-title-mt h1 {
+	color: #006b2d;
+}
+
+#s4-bodyContainer .color-title-mt p {
+	color: #44745a;
+}
+
+#s4-bodyContainer .color-title-bt h1 {
+	color: #fefefe;
+}
+#s4-bodyContainer .Header .title h1 {
+	
+	font-weight: 500;
+}
+
+#s4-bodyContainer .Header .title p {
+	font-size: 19px;
+  margin-top: -10px;
+  font-weight: 500;
+}
+
+.nav-function-top .page-content-wrapper {
+  /* margin-top: 8.125rem;  */
+}
+
+.page-content {
+	/* max-width: 1140px;	 */
+}
+
+.nav-function-top .page-header {
+  height: 8.125rem;
+}
+
+/* Content custom */
+.app-list-home {
+	margin: 0 auto;
+	display: block;
+	width: 21.875rem !important;
+	height: 22.5rem !important;
+	font-size: 0;
+	padding: 0.5rem 1rem;
+	text-align: center;
+}
+.file-app-home{
+	height: 20.5rem !important;
+}
+.app-list-home > li {
+	display: inline-block;
+	text-align: center;
+	padding: 0;
+}
+.app-list-home .app-list-item {
+	color: #666666;
+}
+.app-list-home .app-list-item {
+	height: 5.9375rem;
+	width: 6.25rem;
+	display: block;
+	text-decoration: none;
+	color: #666666;
+	margin: 10px 2px;
+	border: 1px solid transparent !important;
+	outline: none;
+	border-radius: 3px;
+	padding-top: 8px;
+	border-radius: 100%;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+.app-list-home .app-list-item .icon-stack {
+	font-size: 3.125rem;
+	margin-top: 4px;
+}
+
+.app-list-home .app-list-name {
+	text-align: center;
+	font-size: 0.8125rem;
+	text-overflow: ellipsis;
+	display: block;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.bgvea {
+	background-color: #74b273;
+	color: #fefefe;
+}
+
+.dt-buttons {
+	display: none;
+}

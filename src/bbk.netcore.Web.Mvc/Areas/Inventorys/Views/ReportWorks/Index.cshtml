@@ -1,0 +1,110 @@
+﻿@using Abp.Localization
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/chartjs/dist/Chart.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/view-resources/Areas/PersonalProfile/Dashboard/index.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/chartjs/dist/Chart.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/view-resources/Areas/PersonalProfile/Dashboard/index.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+    @section Scripts{
+    <environment names="Development">
+        <!-- Chart js -->
+         <script src="~/libs/chartjs/dist/Chart.js"  asp-append-version="true"></script>
+        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"  asp-append-version="true"></script>
+        <!-- date Datapicker js -->
+		<script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+		<script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+			<!-- Datetime datapicker -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/4.2.0/core/locales-all.min.js" asp-append-version="true"></script>
+
+		<script src="~/libs/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ReportWorks/index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+         <script src="~/libs/chartjs/dist/Chart.js" asp-append-version="true"></script>
+        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ReportWorks/index.min.js" asp-append-version="true"></script>
+    </environment>
+}
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Báo cáo
+                    </h2>
+            </div>
+            <div class="panel-container show">
+                <input type="text" hidden value="@AbpSession.UserId" id="UserId" />
+                <div class="panel-content">
+                    <div class="form-row">
+                        <div class="col-lg-6 col-md-12 mb-3">
+                            <label class="form-label" for="SearchTerm">@(new FixedLocalizableString("Từ Ngày"))</label>
+                            <input type="text" id="FromDate" name="fromDate" class="form-control date-picker">
+                        </div>
+                        <div class="col-lg-6 col-md-12 mb-3">
+                            <label class="form-label" for="SearchTerm">@(new FixedLocalizableString("Đến ngày"))</label>
+                            <input type="text" id="ToDate" name="toDate" class="form-control date-picker">
+                        </div>
+                    </div>
+                    <div class="panel-content border-faded border-left-0 border-right-0 border-bottom-0 d-flex flex-row">
+                        <button class="btn btn-primary ml-auto waves-effect waves-themed" id="Search" type="button">@(new FixedLocalizableString("Tìm kiếm"))</button>
+                    </div>
+                    <!-- datatable start -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="p-3 rounded mb-g shadow-2 h-500">
+                                <h3>Công việc được giao (<span id="sumdg"></span>)</h3>
+                                <div class="mt-4">
+                                    <canvas id="assignedChart"  width="229" height="180"></canvas>
+                                    <div id="legend" class="mt-4 legend-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 rounded mb-g shadow-2 h-500">
+                                <h3>Công việc đã giao (<span id="sumdag"></span>)</h3>
+                                <div class="mt-4">
+                                    <canvas id="deliveredChart"  width="229" height="180"></canvas>
+                                    <div id="legendDelivered" class="mt-4 legend-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 rounded mb-g shadow-2 h-500">
+                                <h3>Công việc phối hợp (<span id="sumph"></span>)</h3>
+                                <div class="mt-4">
+                                    <canvas id="combinationChart"  width="229" height="180"></canvas>
+                                    <div id="combinationDelivered" class="mt-4 legend-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="p-3 rounded mb-g shadow-2 h-500">
+                                <h3>Theo dõi (<span id="sumtg"></span>)</h3>
+                                <div class="mt-4">
+                                    <canvas id="followChart"  width="229" height="180"></canvas>
+                                    <div id="followDelivered" class="mt-4 legend-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- datatable end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

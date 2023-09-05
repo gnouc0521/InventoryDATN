@@ -1,0 +1,1675 @@
+﻿@using bbk.netcore.mdl.PersonalProfile.Web.Navigation
+@model bbk.netcore.mdl.PersonalProfile.Web.Models.PersonalProfileViewModel
+
+@{
+    ViewBag.CurrentPageName = PersonalProfileAppPageNames.PersonalProfile_Management; //The menu item will be active for this page.
+}
+@section scripts
+{
+    <script src="~/Resources/PersonalProfile/index.js" asp-append-version="true"></script>
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    <button class="btn btn-panel" data-action="panel-close" data-toggle="tooltip" data-offset="0,10" data-original-title="Close"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <form>
+                        <table class="table table-striped m-0" style="width: 100%; font-size: 12px;" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="5" class="txtinput data" align="center">
+                                        <div class="img-preview preview-lg" style="width: 256px; height: 144px;">
+                                            <img src="img/demo/gallery/3.jpg" style="display: block; width: 264.463px; height: 150px; min-width: 0px !important; min-height: 0px !important; max-width: none !important; max-height: none !important; ">
+                                        </div>
+                                    </td>
+                                    <td class="label" colspan="1">
+                                        <label class="form-label" for="example-date">
+                                            1. Họ và tên khai sinh
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="5">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.FullName">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" style="width: 18%;">
+                                        <label class="form-label" for="example-date">
+                                            2. Tên gọi khác:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="5">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.OtherName">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            3. Sinh ngày
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.DateOfBirth">
+                                    </td>
+                                    <td class="label" style="width: 12%;">
+                                        <label class="form-label" for="example-date">
+                                            Giới tính
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <div class="frame-wrap">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" id="defaultInline1Radio" name="inlineDefaultRadiosExample">
+                                                <label class="custom-control-label" for="defaultInline1Radio">Nam</label>
+                                            </div>
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input type="radio" class="custom-control-input" id="defaultInline2Radio" name="inlineDefaultRadiosExample" checked="">
+                                                <label class="custom-control-label" for="defaultInline2Radio">Nữ</label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            4. Nơi sinh: (<span class="txtresize10">tỉnh, TP</span>)
+                                        </label>
+                                    </td>
+                                    <td class="value" style="width: 10%">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.ProvinceOfBirth">
+                                    </td>
+                                    <td class="label" style="width: 9%">
+                                        <label class="form-label" for="example-date">
+                                            (<span class="txtresize10">huyện, quận</span>)
+                                        </label>
+                                    </td>
+                                    <td class="value" style="width: 10%">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.DistrictOfBirth">
+                                    </td>
+                                    <td class="label" style="width: 12%">
+                                        <label class="form-label" for="example-date">
+                                            (<span class="txtresize10">xã, phường</span>)
+                                        </label>
+                                    </td>
+                                    <td class="value" style="width: 10%">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.VillageOfBirth">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            5. Quê quán: (<span class="txtresize10">tỉnh, TP</span>)
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.ProvinceOfNativePlace">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            (<span class="txtresize10">huyện, quận</span>)
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.DisctricOfNativePlace">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            (<span class="txtresize10">xã, phường</span>)
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.VillageOfNativePlace">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            6. Dân tộc
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.Ethnic">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            7. Tôn giáo
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="3">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.Religion">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            8. Nơi đăng ký hộ khẩu thường trú:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.PermanentPlace">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            9. Nơi ở hiện nay:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.ResidentialPlace">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" colspan="1">
+                                        <label class="form-label" for="example-date">
+                                            10. Nghề nghiệp bản thân khi được tuyển dụng:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.Occupation">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            11. Ngày tuyển dụng
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input class="form-control" id="example-date" type="date" name="date" value="1989-07-23">
+                                    </td>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            Cơ quan tuyển dụng:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="Sở Lương thực Hà Sơn Bình">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne30" aria-expanded="false" aria-controls="collapseOne30">
+                                                            <label class="form-label" for="example-date">
+                                                                Thông tin tuyển dụng chi tiết
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne30" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <label class="form-label" for="example-date">
+                                                                    a) Hồ sơ dự tuyển
+                                                                </label>
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Đơn dự tuyển</th>
+                                                                            <th>Lý lịch có xác nhận của chính quyển ĐP</th>
+                                                                            <th>Bản sao khai sinh + Đủ 18 tuổi trở lên</th>
+                                                                            <th>Giấy chứng nhận sức khoẻ</th>
+                                                                            <th>Chứng nhận thuộc đối tượng ưu tiên (ghi rõ loại ưu tiên)</th>
+                                                                            <th>Không bị kỷ luật, lý lịch tư pháp</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Có</th>
+                                                                            <td>Kỹ sư</td>
+                                                                            <td>Có</td>
+                                                                            <td>Có</td>
+                                                                            <td>Có</td>
+                                                                            <td>Có</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <label class="form-label" for="example-date" style="margin-top:10px">
+                                                                    b) Điều kiện về trình độ theo tiêu chuẩn ngạch dự tuyển
+                                                                </label>
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Chuyên môn</th>
+                                                                            <th>Ngoại ngữ hoặc tiếng dân tộc</th>
+                                                                            <th>Tin học</th>
+                                                                            <th>...</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>Thạc sĩ Kỹ thuật môi trường</th>
+                                                                            <td>Anh A2</td>
+                                                                            <td>UD CNTT cơ bản</td>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <label class="form-label" for="example-date" style="margin-top:10px">
+                                                                    c) Sau khi được tuyển dụng
+                                                                </label>
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Thời gian gửi thông báo công nhận kết quả trúng tuyển</th>
+                                                                            <th>Thời gian ra quyết định tuyển dụng</th>
+                                                                            <th>Đơn vị, vị trí công tác</th>
+                                                                            <th>Thời gian đến nhận việc</th>
+                                                                            <th>QĐ Hướng dẫn tập sự </th>
+                                                                            <th>Tập sự, Chế độ của người tập sự</th>
+                                                                            <th>Chế độ của người hướng dẫn tập sự</th>
+                                                                            <th>Miễn tập sự</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th>06/01/2020</th>
+                                                                            <td>19/02/2020</td>
+                                                                            <td>Phòng PTUDCN</td>
+                                                                            <td>15/2/2020</td>
+                                                                            <td>27B/QĐ-TTDL </td>
+                                                                            <td>Có</td>
+                                                                            <td>Hưởng Phụ cấp 0,3</td>
+                                                                            <td>Không</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label" colspan="2" style="width: 40%;">
+                                        <label class="form-label" for="example-date">
+                                            12. Chức vụ (chức danh) hiện tại:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="5">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Bí thư Đảng ủy
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">Bí thư Đảng ủy</a>
+                                                <a class="dropdown-item" href="#">Giám đốc</a>
+                                                <a class="dropdown-item" href="#">Trưởng phòng</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            13. Công việc chính được giao:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.KeyResponsibilities">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            14. Ngạch công chức (viên chức)
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Bí thư Đảng ủy
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">Bí thư Đảng ủy</a>
+                                                <a class="dropdown-item" href="#">Giám đốc</a>
+                                                <a class="dropdown-item" href="#">Trưởng phòng</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Mã ngạch:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="3">
+                                        <input type="text" class="form-control" value=" 19.223">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Bậc lương:
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                10
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">8</a>
+                                                <a class="dropdown-item" href="#">9</a>
+                                                <a class="dropdown-item" href="#">10</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="label" colspan="5">
+                                        <table class="table table-sm m-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <label class="form-label" for="example-date">
+                                                            Hệ số:
+                                                        </label>
+                                                        <input type="text" class="form-control" value="4,06">
+                                                    </td>
+                                                    <td>
+                                                        <label class="form-label" for="example-date">
+                                                            Ngày hưởng:
+                                                        </label>
+                                                        <input class="form-control" id="example-date" type="date" name="date" value="2020-07-23">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="form-label" for="example-date">
+                                                            Phụ cấp chức vụ:
+                                                        </label>
+                                                        <input type="text" class="form-control" value="0">
+                                                    </td>
+                                                    <td>
+                                                        <label class="form-label" for="example-date">
+                                                            Phụ cấp khác:
+                                                        </label>
+                                                        <input type="text" class="form-control" value="P/c Ưu đãi nghề (%): 25">
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            15.1. Trình độ giáo dục phổ thông:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="10/10">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            15.2. Trình độ chuyên môn cao nhất
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Đaị học
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">Cao đẳng</a>
+                                                <a class="dropdown-item" href="#">Đaị học</a>
+                                                <a class="dropdown-item" href="#">Thạc sỹ</a>
+                                                <a class="dropdown-item" href="#">Tiến sỹ</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Chuyên ngành
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="3">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.Specialized">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            15.3. Lý luận chính trị
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Sơ cấp
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">Sơ cấp</a>
+                                                <a class="dropdown-item" href="#">Trung cấp</a>
+                                                <a class="dropdown-item" href="#">Cao cấp</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            15.4. Quản lý nhà nước
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Chuyên viên
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">Cán sự</a>
+                                                <a class="dropdown-item" href="#">Chuyên viên</a>
+                                                <a class="dropdown-item" href="#">Chuyên viên cao cấp</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            15.5. Ngoại ngữ
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="Anh B">
+                                    </td>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            15.6. Tin học: chuyên viên, cán sự
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="Tin B">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            16. Ngày vào Đảng cộng sản Việt Nam
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.DateOfJoiningInVNCommunistParty">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Ngày chính thức
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="3">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.OfficialDateOfJoiningInVNCommunistParty">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            17. Ngày tham gia các tổ chức chính trị - xã hội:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="5">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.DateOfJoiningSocialPoliticalAssosiations">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            18. Ngày nhập ngũ
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.DateOfEnlistment">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Ngày xuất ngũ
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.DateOfDisCharge">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Quân hàm cao nhất:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.HighestArmyRank">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label" colspan="1">
+                                        <label class="form-label" for="example-date">
+                                            19. Danh hiệu được phong tặng cao nhất:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.HighestAwardedTitle">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne31" aria-expanded="false" aria-controls="collapseOne31">
+                                                            <label class="form-label" for="example-date">
+                                                                Thông tin khen thưởng chi tiết
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne31" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Tháng/Năm</th>
+                                                                            <th>Danh hiệu thi đua, hình thức khen thưởng đạt được</th>
+                                                                            <th>Hiện vật, tiền thưởng kèm theo</th>
+                                                                            <th>Cấp ra quyết định khen thưởng</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>11/1997</td>
+                                                                            <td>CSTĐCS</td>
+                                                                            <td></td>
+                                                                            <td>TCMT</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>11/1997</td>
+                                                                            <td>Giấy khen TCT </td>
+                                                                            <td></td>
+                                                                            <td>TCMT</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>11/1997</td>
+                                                                            <td>Giấy khen</td>
+                                                                            <td>447,000</td>
+                                                                            <td>
+                                                                                Công đoàn
+                                                                                Bộ TNMT
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            20. Sở trường công tác:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="6">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.WorkStrength">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            21. Khen thưởng
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.Awards">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            22. Kỷ luật
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="3">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.Discipline">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            23. Tình trạng sức khỏe:
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.HealthStatus">
+                                    </td>
+                                    <td class="label" colspan="5">
+                                        <label class="form-label" for="example-date">
+                                            Chiều cao:
+                                        </label>@Model.PersonProfile.Height
+                                        &nbsp;<b>
+                                        </b> (m)&nbsp;&nbsp;
+                                        <label class="form-label" for="example-date">
+                                            Cân nặng:
+                                        </label>@Model.PersonProfile.Weight
+                                        &nbsp; <b>
+                                        </b> (Kg)&nbsp;&nbsp;
+                                        <label class="form-label" for="example-date">
+                                            Nhóm máu:
+                                        </label>@Model.PersonProfile.BloodGroup
+                                        &nbsp; <b>
+                                        </b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            24. Là thương binh hạng:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <div class="btn-group">
+                                            <button class="btn btn-outline-secondary dropdown-toggle waves-effect waves-themed" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                1/4
+                                            </button>
+                                            <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: top, left; top: 37px; left: 0px;">
+                                                <a class="dropdown-item" href="#">1/4</a>
+                                                <a class="dropdown-item" href="#">2/4</a>
+                                                <a class="dropdown-item" href="#">3/4</a>
+                                                <a class="dropdown-item" href="#">4/4</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="label" colspan="2">
+                                        <label class="form-label" for="example-date">
+                                            Là con gia đình chính sách:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.SonOfFamilyPolicy">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            25. Số chứng minh nhân dân
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.IdentityCardNo">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            Ngày cấp:
+                                        </label>
+                                    </td>
+                                    <td class="value">
+                                        <input class="form-control" id="example-date" type="date" name="date" asp-for="PersonProfile.DateOfIssuanceIdentityCard">
+                                    </td>
+                                    <td class="label">
+                                        <label class="form-label" for="example-date">
+                                            26. Số sổ BHXH:
+                                        </label>
+                                    </td>
+                                    <td class="value" colspan="2">
+                                        <input type="text" class="form-control" value="@Model.PersonProfile.SocialInsuranceBookNo">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne27" aria-expanded="false" aria-controls="collapseOne27">
+                                                            <label class="form-label" for="example-date">
+                                                                27. ĐÀO TẠO, BỒI DƯỠNG VỀ CHUYÊN MÔN, NGHIỆP VỤ, LÝ LUẬN CHÍNH TRỊ, NGOẠI NGỮ, TIN
+                                                                HỌC
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne28" aria-expanded="false" aria-controls="collapseOne28">
+                                                            <label class="form-label" for="example-date">
+                                                                28. TÓM TẮT QUÁ TRÌNH CÔNG TÁC
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne28" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Số quyết định</th>
+                                                                            <th>Ngày quyết định</th>
+                                                                            <th>Từ ngày</th>
+                                                                            <th>Đến ngày</th>
+                                                                            <th>Đơn vị</th>
+                                                                            <th>Phòng ban</th>
+                                                                            <th>Chức vụ</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">358/DT-QĐ</th>
+                                                                            <td>05/08/1992</td>
+                                                                            <td>01/06/1992</td>
+                                                                            <td>31/03/1993</td>
+                                                                            <td>Chi cục DT Hà Sơn Bình</td>
+                                                                            <td>Phòng lương thực Kỳ Sơn</td>
+                                                                            <td>Nhân viên kế toán</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">358/DT-QĐ</th>
+                                                                            <td>05/08/1992</td>
+                                                                            <td>01/06/1992</td>
+                                                                            <td>31/03/1993</td>
+                                                                            <td>Chi cục DT Hà Sơn Bình</td>
+                                                                            <td>Phòng lương thực Kỳ Sơn</td>
+                                                                            <td>Nhân viên kế toán</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne278" aria-expanded="false" aria-controls="collapseOne278">
+                                                            <label class="form-label" for="example-date">
+                                                                29. ĐÁNH GIÁ, XẾP LOẠI THEO NĂM
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne278" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Năm</th>
+                                                                            <th>Tự đánh giá</th>
+                                                                            <th>Nhận xét của người đứng đầu cơ quan</th>
+                                                                            <th>Góp ý của tập thể</th>
+                                                                            <th>Người có thẩm quyền đánh giá</th>
+                                                                            <th>Kết quả xếp loại</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">2018</th>
+                                                                            <td>Hoàn thành tốt nhiệm vụ</td>
+                                                                            <td>Có trách nhiệm trong công việc, lối sống tốt</td>
+                                                                            <td>Có tinh thần trách nhiệm với công việc, có ý thức nâng cao năng lực chuyên môn</td>
+                                                                            <td>Q. Giám đốc Nguyễn Văn Thùy</td>
+                                                                            <td>Hoàn thành tốt nhiệm vụ</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2019</th>
+                                                                            <td>Hoàn thành tốt nhiệm vụ</td>
+                                                                            <td>Có trách nhiệm trong công việc, lối sống tốt</td>
+                                                                            <td>Có tinh thần trách nhiệm với công việc, có ý thức nâng cao năng lực chuyên môn</td>
+                                                                            <td>Q. Giám đốc Nguyễn Văn Thùy</td>
+                                                                            <td>Hoàn thành tốt nhiệm vụ</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2020</th>
+                                                                            <td>Hoàn thành tốt nhiệm vụ</td>
+                                                                            <td>Có trách nhiệm trong công việc, lối sống tốt</td>
+                                                                            <td>Có tinh thần trách nhiệm với công việc, có ý thức nâng cao năng lực chuyên môn</td>
+                                                                            <td>Q. Giám đốc Nguyễn Văn Thùy</td>
+                                                                            <td>Hoàn thành tốt nhiệm vụ</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne279" aria-expanded="false" aria-controls="collapseOne279">
+                                                            <label class="form-label" for="example-date">
+                                                                30. KHEN THƯỞNG THEO NĂM
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne279" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Năm</th>
+                                                                            <th>Danh hiệu thi đua, hình thức khen thưởng đạt được</th>
+                                                                            <th>Hiện vật, tiền thưởng kèm theo</th>
+                                                                            <th>Cấp ra quyết định khen thưởng</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">2018</th>
+                                                                            <td>Giấy khen TCT</td>
+                                                                            <td>Không</td>
+                                                                            <td>TCMT</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2019</th>
+                                                                            <td>Giấy khen TCT</td>
+                                                                            <td>Có</td>
+                                                                            <td>TCMT</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">2020</th>
+                                                                            <td>Giấy khen TCT</td>
+                                                                            <td>Không</td>
+                                                                            <td>TCMT</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne2730" aria-expanded="false" aria-controls="collapseOne2730">
+                                                            <label class="form-label" for="example-date">
+                                                                31. TỪ CHỨC, MIỄN NHIỆM CHỨC VỤ LÃNH ĐẠO, QUẢN LÝ
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne
+                                                         30" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Ngày hiệu lực</th>
+                                                                            <th>Chức vụ người ban hành quyết định</th>
+                                                                            <th>Hình thức</th>
+                                                                            <th>Chức vụ sau miễn nhiệm</th>
+                                                                            <th>Đơn vị công tác sau miễn nhiệm</th>
+                                                                            <th>Ghi chú</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">05/08/1992</th>
+                                                                            <td>Bí thư Đảng ủy</td>
+                                                                            <td>Từ chức</td>
+                                                                            <td>Giám đốc trung tâm</td>
+                                                                            <td>TCMT</td>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne2732" aria-expanded="false" aria-controls="collapseOne2732">
+                                                            <label class="form-label" for="example-date">
+                                                                32. ĐIỀU ĐỘNG, LUÂN CHUYỂN, BIỆT PHÁI, CHUYỂN ĐỔI VỊ TRÍ CÔNG TÁC
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne2732" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Ngày hiệu lực</th>
+                                                                            <th>Hình thức</th>
+                                                                            <th>Chức vụ người ra quyết định</th>
+                                                                            <th>Chế độ chính sách</th>
+                                                                            <th>Ghi chú</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">05/08/2019</th>
+                                                                            <td>Điều động</td>
+                                                                            <td>Tổng cục trưởng TCMT</td>
+                                                                            <td>
+                                                                                - Trước điều động:Quyền Giám đốc Trung tâm Quan trắc môi trường miền Bắc
+                                                                                <br />- Sau điều động: Quyền Giám đốc Trung tâm Thông tin và Dữ liệu môi trường
+                                                                            </td>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne3137" aria-expanded="false" aria-controls="collapseOne3137">
+                                                            <label class="form-label" for="example-date">
+                                                                33. BIÊN CHẾ, HỢP ĐỒNG LAO ĐỘNG
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne3137" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Ngày hiệu lực</th>
+                                                                            <th>Loại hình</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">20/11/2019</th>
+                                                                            <td>Biên chế</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">20/11/2020</th>
+                                                                            <td>HĐLĐ</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne2731" aria-expanded="false" aria-controls="collapseOne2731">
+                                                            <label class="form-label" for="example-date">
+                                                                34. BỔ NHIỆM, BỔ NHIỆM LẠI CÔNG CHỨC, VIÊN CHỨC, LÃNH ĐẠO, QUẢN LÝ
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne2731" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Ngày hiệu lực</th>
+                                                                            <th>Chức danh được bổ nhiệm hoặc bổ nhiệm lại</th>
+                                                                            <th>Chủ trương</th>
+                                                                            <th>Hình thức</th>
+                                                                            <th>Đề nghị, tờ trình bổ nhiệm, bổ nhiệm lại</th>
+                                                                            <th>QĐ bổ nhiệm, bổ nhiệm lại, kéo dài thời gian giữ chức vụ</th>
+                                                                            <th>Ghi chú</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">05/08/1992</th>
+                                                                            <td>Phó Giám đốc điều hành kiêm Tổng biên tập Tạp chí Môi trường</td>
+                                                                            <td>Đề nghị</td>
+                                                                            <td>Trình tự thủ tục bổ nhiệm (nguồn nơi khác đến)</td>
+                                                                            <td>05/PT-TTDLMT ngày 21/6/2018</td>
+                                                                            <td>1020/QĐ-TCMT ngày 28/6/2018</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne29" aria-expanded="false" aria-controls="collapseOne29">
+                                                            <label class="form-label" for="example-date">
+                                                                35. ĐẶC ĐIỂM LỊCH SỬ BẢN THÂN
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne29" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                - Khai rõ: bị bắt, bị tù (<span class="txtresize10">
+                                                                    từ ngày tháng năm nào đến ngày tháng
+                                                                    năm nào, ở đâu
+                                                                </span>), đã khai báo cho ai, những vấn đề gì? Bản thân có làm
+                                                                việc trong chế độ cũ (<span class="txtresize10">
+                                                                    cơ quan, đơn vị nào, địa điểm, chức
+                                                                    danh, chức vụ, thời gian làm việc...
+                                                                </span>)
+                                                                <input type="text" class="form-control" value="Không">
+                                                                - Tham gia hoặc có quan hệ với các tổ chức chính trị, kinh tế, xã hội nào ở nước
+                                                                ngoài (<span class="txtresize10">làm gì, tổ chức nào, đặt trụ sở ở đâu...?</span>)
+                                                                <input type="text" class="form-control" value="Không">
+                                                                - Có thân nhân (<span class="txtresize10">Cha, Mẹ, Vợ, chồng, con, anh chị em ruột</span>)
+                                                                ở nước ngoài (<span class="txtresize10">làm gì, địa chỉ...?</span>)
+                                                                <input type="text" class="form-control" value="Không">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne30" aria-expanded="false" aria-controls="collapseOne30">
+                                                            <label class="form-label" for="example-date">
+                                                                36. QUAN HỆ GIA ĐÌNH
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne30" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <label class="form-label" for="example-date">
+                                                                    a) Về bản thân: Cha, Mẹ, Vợ (hoặc chồng), các con, anh chị em ruột
+                                                                </label>
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Quan hệ</th>
+                                                                            <th>Họ tên</th>
+                                                                            <th>Năm sinh</th>
+                                                                            <th>Quê quán, nghề nghiệp, chức danh, chức vụ, đơn vị công tác, học tập, nơi ở (trong, ngoài nước); thành viên các tổ chức chính trị - xã hội</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Bố</th>
+                                                                            <td>Đinh Huy Công</td>
+                                                                            <td>1942</td>
+                                                                            <td>Mông hóa, Kỳ Sơn, Hòa Bình. Cán bộ nghỉ hưu</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Mẹ</th>
+                                                                            <td>Nguyễn Thị Em</td>
+                                                                            <td>1938</td>
+                                                                            <td>Mông hóa, Kỳ Sơn, Hòa Bình. Làm ruộng</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <label class="form-label" for="example-date" style="margin-top:10px">
+                                                                    b) Bên vợ/ chồng: Cha, Mẹ, anh chị em ruột
+                                                                </label>
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Quan hệ</th>
+                                                                            <th>Họ tên</th>
+                                                                            <th>Năm sinh</th>
+                                                                            <th>Quê quán, nghề nghiệp, chức danh, chức vụ, đơn vị công tác, học tập, nơi ở (trong, ngoài nước); thành viên các tổ chức chính trị - xã hội</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">Bố vợ</th>
+                                                                            <td>Đinh Huy Công</td>
+                                                                            <td>1942</td>
+                                                                            <td>Mông hóa, Kỳ Sơn, Hòa Bình. Cán bộ nghỉ hưu</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">Mẹ vợ</th>
+                                                                            <td>Nguyễn Thị Em</td>
+                                                                            <td>1938</td>
+                                                                            <td>Mông hóa, Kỳ Sơn, Hòa Bình. Làm ruộng</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne31" aria-expanded="false" aria-controls="collapseOne31">
+                                                            <label class="form-label" for="example-date">
+                                                                37. DIỄN BIẾN QUÁ TRÌNH LƯƠNG CỦA CÁN BỘ CÔNG CHỨC
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne31" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Tháng/Năm</th>
+                                                                            <th>Mã ngạch/bậc</th>
+                                                                            <th>Hệ số lương</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <th scope="row">11/1997</th>
+                                                                            <td>19.223/10</td>
+                                                                            <td>2,66</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">11/2000</th>
+                                                                            <td>19.223/10</td>
+                                                                            <td>3,66</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th scope="row">11/2020</th>
+                                                                            <td>19.223/10</td>
+                                                                            <td>4,66</td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne32" aria-expanded="false" aria-controls="collapseOne32">
+                                                            <label class="form-label" for="example-date">
+                                                                38. NHẬN XÉT, ĐÁNH GIÁ CỦA CƠ QUAN, ĐƠN VỊ QUẢN LÝ VÀ SỬ DỤNG CÁN BỘ, CÔNG CHỨC
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne32" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <textarea class="form-control" id="example-textarea" rows="5"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="value" style="padding-right: 15px" colspan="7">
+                                        <div class="frame-wrap w-100">
+                                            <div class="accordion" id="accordionExample">
+                                                <div class="card">
+                                                    <div class="card-header" id="headingOne">
+                                                        <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#collapseOne31" aria-expanded="false" aria-controls="collapseOne31">
+                                                            <label class="form-label" for="example-date">
+                                                                40. THỐNG KÊ THÀNH PHẦN HỒ SƠ CÔNG CHỨC, VIÊN CHỨC
+                                                            </label>
+                                                            <span class="ml-auto">
+                                                                <span class="collapsed-reveal">
+                                                                    <i class="fal fa-minus-circle text-danger"></i>
+                                                                </span>
+                                                                <span class="collapsed-hidden">
+                                                                    <i class="fal fa-plus-circle text-success"></i>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                    <div id="collapseOne31" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                        <div class="card-body">
+                                                            <div class="frame-wrap">
+                                                                <table class="table table-sm m-0">
+                                                                    <thead class="bg-primary-500">
+                                                                        <tr>
+                                                                            <th>Quyển lý lịch cán bộ, công chức, viên chức</th>
+                                                                            <th>Bản sơ yếu lý lịch cán bộ, công chức, viên chức</th>
+                                                                            <th>Bản bổ sung lý lịch cán bộ, công chức, viên chức</th>
+                                                                            <th>Bản tiểu sử tóm tắt</th>
+                                                                            <th>Bản sao giấy khai sinh</th>
+                                                                            <th>Giấy chứng nhận sức khoẻ</th>
+                                                                            <th>Các văn bản về nhân thân</th>
+                                                                            <th>Các văn bằng chứng chỉ đào tạo, bồi dưỡng</th>
+                                                                            <th>Các quyết định tuyển dụng, sử dụng và quản lý công chức, viên chức</th>
+                                                                            <th>Các tài liệu có liên quan đến bổ nhiệm chức vụ lãnh đạo </th>
+                                                                            <th>Các bản tự kiểm điểm, nhận xét đánh giá của công chức, viên chức</th>
+                                                                            <th>Các bản đánh giá, nhận xét của cơ quan có thẩm quyền</th>
+                                                                            <th>Bản kê khai tài sản</th>
+                                                                            <th>Đơn thư và các văn bản xử lý liên quan</th>
+                                                                            <th>Các văn bản trực tiếp đến quá trình công tác và quan xã hội </th>
+                                                                            <th>Phiếu yêu cầu nghiên cứu hồ sơ (nếu có)</th>
+                                                                            <th>Mục tiêu tài liệu</th>
+                                                                            <th>Bìa kẹp tài liệu</th>
+                                                                            <th>Bìa hồ sơ (túi)</th>
+                                                                            <th>Ghi chú</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>0</td>
+                                                                            <td>0</td>
+                                                                            <td>0</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td>x</td>
+                                                                            <td></td>
+                                                                            <td></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="dt-buttons" style="padding-left: 10px;">
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-times mr-1"></i> Xóa</span>
+                                                            </button>
+                                                            <button class="btn buttons-selected btn-primary btn-sm mr-1 disabled" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-edit mr-1"></i> Sửa</span>
+                                                            </button>
+                                                            <button class="btn btn-success btn-sm mr-1" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-plus mr-1"></i> Thêm</span>
+                                                            </button>
+                                                            <button class="btn btn-primary btn-sm" tabindex="0" aria-controls="dt-basic-example" type="button">
+                                                                <span><i class="fal fa-sync mr-1"></i> Làm mới</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

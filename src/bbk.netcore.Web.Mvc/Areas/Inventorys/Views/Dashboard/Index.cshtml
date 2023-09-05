@@ -1,0 +1,220 @@
+﻿@using bbk.netcore.Web.Areas.Inventorys.Models.Dashboard
+@using bbk.netcore.mdl.PersonalProfile.Core
+@using bbk.netcore.mdl.PersonalProfile.Core.Enums
+@model DashboardViewModel
+@section Header
+    {
+    <link href="~/libs/chart.js/dist/Chart.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/view-resources/Areas/Oms/Dashboard/index.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts
+    {
+
+    <environment names="Development">
+        <script src="~/libs/chart.js/dist/Chart.js"></script>
+        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"></script>
+        <script src="~/view-resources/Areas/Oms/Dashboard/Index.js"></script>
+        <script src="~/view-resources/Areas/Oms/Dashboard/Ycxuatnhap.js"></script>
+        <script src="/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/chartjs/dist/Chart.js"></script>
+        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"></script>
+        <script src="/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Dashboard/Index.js"></script>
+        <script src="~/view-resources/Areas/Oms/Dashboard/Ycxuatnhap.js"></script>
+        <script src="~/_cdn/_bundles/js/pps.dashboard.min.js" rel="stylesheet" asp-append-version="true"></script>
+    </environment>
+}
+
+<div class="container">
+    <input type="text" hidden value="@ViewBag.userId" id="UserId" />
+    <input type="text" hidden value="@ViewBag.name" id="nameRole" />
+   @* <div class="row">
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="Tongcongviec" class="color-sum_word">@Model.Tongcongviec</span>
+                        <small class="m-0 pt-1 l-h-n">Tổng công việc</small>
+                    </h3>
+                </div>
+                <i class="fal fa-chart-bar color-sum_word"></i>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="Congviecxuly" class="color-process_word">@Model.Congviecxuly</span>
+                        <small class="m-0 pt-1 l-h-n">Chưa xử lý</small>
+                    </h3>
+                </div>
+                <i class="fal fa-chart-line color-process_word"></i>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="Congviechoanthanh" class="color-success_word">@Model.Congviechoanthanh</span>
+                        <small class="m-0 pt-1 l-h-n">Hoàn thành</small>
+                    </h3>
+                </div>
+
+                <i class="fal fa-chart-pie color-success_word"></i>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                @if (IsGranted("Inventorys.YCNK.Confirm"))
+                {
+                    <div class="">
+                        <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                            <span id="Congviectuchoi" class="color-expired_word">@Model.Congviectuchoi</span>
+                            <small class="m-0 pt-1 l-h-n">Từ chối</small>
+                        </h3>
+                    </div>
+                }
+                else
+                {
+                    <div class="">
+                        <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                            <span id="Congviecquahan" class="color-expired_word">@Model.Congviecquahan</span>
+                            <small class="m-0 pt-1 l-h-n">Quá hạn</small>
+                        </h3>
+                    </div>
+                }
+                <i class="fal fa-bell color-expired_word"></i>
+            </div>
+        </div>
+
+    </div>*@
+   
+    <!-- Biểu đồ hình tròn -->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="p-3 bg-white rounded mb-g shadow-2 h-400">
+                <div class="d-flex justify-content-between">
+                    <h3>Công việc được giao</h3>
+                    <div class="dropdown d-inline-block" id="chart-dg">
+                        <a href="#" class="btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0" data-toggle="dropdown" aria-expanded="true" title="More options">
+                            <i class="fal fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item dataDgSearch" data-objid="1" href="javascript:void(0); "><i class="fal fa-history mr-1"></i> 1 tháng trước </a>
+                            <a class="dropdown-item dataDgSearch" data-objid="3" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 3 tháng trước </a>
+                            <a class="dropdown-item dataDgSearch" data-objid="10" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 1 năm trước </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <canvas id="assignedChart" width="500" height="200"></canvas>
+                    <div id="legend" class="mt-4 legend-center"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-3 bg-white rounded mb-g shadow-2 h-400">
+                <div class="d-flex justify-content-between">
+                    <h3>Công việc đã giao</h3>
+                    <div class="dropdown d-inline-block" id="chart-dag">
+                        <a href="#" class="btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0" data-toggle="dropdown" aria-expanded="true" title="More options">
+                            <i class="fal fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item dataDagSearch" data-objid="1" href="javascript:void(0); "><i class="fal fa-history mr-1"></i> 1 tháng trước </a>
+                            <a class="dropdown-item dataDagSearch" data-objid="3" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 3 tháng trước </a>
+                            <a class="dropdown-item dataDagSearch" data-objid="10" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 1 năm trước </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <canvas id="deliveredChart" width="500" height="200"></canvas>
+                    <div id="legendDelivered" class="mt-4 legend-center"></div>
+                </div>
+            </div>
+        </div>
+        @if (IsGranted("Inventorys.YCNK.Confirm"))
+        {
+            <div class="col-md-6 ">
+                <div class="p-3 bg-white rounded mb-g shadow-2 h-400">
+                    <div class="d-flex justify-content-between">
+                        <h3>Công việc đợi duyyệt YC Phiếu nhập</h3>
+                        <div class="dropdown d-inline-block" id="chart-dgpn">
+                            <a href="#" class="btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0" data-toggle="dropdown" aria-expanded="true" title="More options">
+                                <i class="fal fa-ellipsis-v"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item dataDgSearch" data-objid="1" href="javascript:void(0); "><i class="fal fa-history mr-1"></i> 1 tháng trước </a>
+                                <a class="dropdown-item dataDgSearch" data-objid="3" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 3 tháng trước </a>
+                                <a class="dropdown-item dataDgSearch" data-objid="10" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 1 năm trước </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <canvas id="PNChart" width="500" height="200"></canvas>
+                        <div id="legend1" class="mt-4 legend-center"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="p-3 bg-white rounded mb-g shadow-2 h-400">
+                    <div class="d-flex justify-content-between">
+                        <h3>Công việc đợi duyệt YC Phiếu xuất</h3>
+                        <div class="dropdown d-inline-block" id="chart-dgpx">
+                            <a href="#" class="btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0" data-toggle="dropdown" aria-expanded="true" title="More options">
+                                <i class="fal fa-ellipsis-v"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item dataDgSearch" data-objid="1" href="javascript:void(0); "><i class="fal fa-history mr-1"></i> 1 tháng trước </a>
+                                <a class="dropdown-item dataDgSearch" data-objid="3" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 3 tháng trước </a>
+                                <a class="dropdown-item dataDgSearch" data-objid="10" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 1 năm trước </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <canvas id="PXChart" width="500" height="200"></canvas>
+                        <div id="legend2" class="mt-4 legend-center"></div>
+                    </div>
+                </div>
+            </div>
+        }
+        @if (IsGranted("Inventorys.MyWork"))
+        {
+            <div class="col-xl-12">
+                <div class="form-row">
+                    <div class="col-lg-6 col-md-12 mb-3">
+                    </div>
+                </div>
+                <div id="panel-1" class="panel">
+                    <div class="panel-hdr">
+                        <h2>
+                            <span class="fw-300"><i>Danh sách nhiệm vụ mới</i></span>
+                        </h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        </div>
+                    </div>
+                    <div class="panel-container show">
+                        <div class="panel-content">
+                            <table id="StaffTable" class="table table-bordered table-hover table-striped w-100">
+                                <thead class="bg-primary-600">
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Mã PHIẾU TỔNG HỢP</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿<meta charset="utf-8">
+<title>
+    bbk Solutions - v1.1
+</title>
+<meta name="description" content="BBK Solutions - v1.1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+<!-- Call App Mode on ios devices -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<!-- Remove Tap Highlight on Windows Phone IE -->
+<meta name="msapplication-tap-highlight" content="no">
+
+<!-- BEGIN: base css -->
+<link rel="stylesheet" media="screen, print" href="~/css/vendors.bundle.css" asp-append-version="true">
+<link rel="stylesheet" media="screen, print" href="~/css/app.bundle.css" asp-append-version="true">
+<!-- END: base css -->
+<environment names="Development">
+    <!-- BEGIN: smartad css -->
+    <link rel="stylesheet" media="screen, print" href="~/css/theme-demo.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/css/cust-theme-3.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/css/fa-brands.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/css/fa-solid.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/css/fontawesome-all.css" asp-append-version="true">
+    <!-- END: smartad css -->
+    <!-- BEGIN: bbk-layout css -->
+    @*<link rel="stylesheet" media="screen, print" href="~/css/themes_tccb/cust-theme.css" asp-append-version="true"> <!-- ONLY: custom for VEA css -->*@
+    <link rel="stylesheet" media="screen, print" href="~/css/datagrid/datatables/datatables.bundle.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/libs/toastr/toastr.css" asp-append-version="true">
+    <!-- END: bbk-layout css -->
+</environment>
+
+<environment names="Staging,Production">
+    <link rel="stylesheet" media="screen, print" href="~/css/smartad.min.css" asp-append-version="true">
+    <link rel="stylesheet" media="screen, print" href="~/_cdn/_bundles/css/bbk-layout.min.css" asp-append-version="true">
+</environment>
+
+<!-- Place favicon.ico in the root directory -->
+<partial name="_FavIcon" />

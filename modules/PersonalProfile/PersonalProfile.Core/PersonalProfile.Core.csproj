@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>bbk.netcore.mdl.PersonalProfile.Core</AssemblyName>
+    <RootNamespace>bbk.netcore.mdl.PersonalProfile.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp" Version="5.13.0" />
+    <PackageReference Include="Abp.Zero.Common" Version="5.13.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.10" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+	  <Reference Include="bbk.netcore.Core">
+		  <HintPath>..\..\..\runlibs\bbk.netcore.Core.dll</HintPath>
+	  </Reference>
+  </ItemGroup>
+
+</Project>

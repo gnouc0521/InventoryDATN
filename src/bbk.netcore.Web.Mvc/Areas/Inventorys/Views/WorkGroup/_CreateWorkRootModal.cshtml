@@ -1,0 +1,28 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@{
+    Layout = null;
+}
+
+<div class="modal-content" id="WorkrootCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Tiêu đề"))</label>
+                <div class="col-md-9">
+                    <input type="text" name="Title" class="form-control" required minlength="">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+
+

@@ -1,0 +1,195 @@
+﻿@using Abp.Localization
+@using bbk.netcore.Web.Areas.Inventorys.Models.WarehouseLocationItem
+@model WarehouseLocationItemModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs-ext/summernote/dist/summernote-bs4.min.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs-ext/summernote/dist/summernote-bs4.min.css" rel="stylesheet" />
+    </environment>
+}
+    @section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Items/SearchItems.js" asp-append-version="true"></script>
+
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Items/SearchItems.js" asp-append-version="true"></script>
+
+    </environment>
+}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-seperator-3">
+            <li class="breadcrumb-item text">
+
+                <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")">   <i class="fal fa-home mr-1"></i>Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                Tìm kiếm
+
+            </li>
+        </ol>
+        <div class="col-xl-12 mb-4 mt-2">
+            <div class="form-row align-items-center">
+                <div class="">
+                        <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "Dashboard", "PersonalProfile")">
+                            <i class="fal fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="d-flex flex-column ml-3">
+                    <h4 class="font-weight-bold mb-0">Tìm kiếm hàng hóa</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12">
+            <div class="panel">
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="row">
+                            <div class="col-3 form-group">
+                                <label class="col-md-8 col-form-label font-weight-bold">@(new FixedLocalizableString("Mã / Tên hàng hóa"))</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fal fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" id="SearchTerm" name="Lenght" class="form-control" minlength="">
+                                </div>
+                            </div>
+                            <div class="col-3 form-group">
+                                <label class="col-md-8 col-form-label font-weight-bold">@(new FixedLocalizableString("Kho"))</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fal fa-warehouse"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-control" asp-items="@Model.GetWarehouse()" id="WarehouseId">
+                                        <option value="0" selected disabled>Chọn Kho</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3 form-group">
+                                <label class="col-md-8 col-form-label font-weight-bold">@(new FixedLocalizableString("Nhà cung cấp"))</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                           <i class="fal fa-forklift"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-control" asp-items="@Model.GetSupplier()" id="SupplierId">
+                                        <option value="" selected disabled>Chọn nhà cung cấp</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3 form-group">
+                                <label class="col-md-8 col-form-label font-weight-bold">@(new FixedLocalizableString("Nhà sản xuất"))</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fal fa-industry"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-control" asp-items="@Model.GetProducer()" id="ProducerId">
+                                        <option value="" selected disabled>Chọn nhà sản xuất</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-3 form-group">
+                                <label class="col-md-8 col-form-label font-weight-bold">@(new FixedLocalizableString("Năm sản xuất"))</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                    <select class="form-control yearpicker" id="yearpicker">
+                                        <option value="0" selected disabled>Chọn năm sản xuất</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-3 form-group mt-auto">
+                                <label class="col-md-8 col-form-label font-weight-bold">@(new FixedLocalizableString("Hạn sử dụng"))</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" id="FromDate" class="form-control date-picker" placeholder="Từ Ngày"/>
+
+                                </div>
+                            </div>
+                            <div class="col-3 form-group mt-auto">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fal fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" id="ToDate" class="form-control date-picker" placeholder="Đến Ngày"/>
+
+                                </div>
+                            </div>
+                            <div class="col-3 form-group text-right m-auto">
+                                <button class="btn btn-primary" id="Search"> 
+                                    <i class="fal fa-search mr-1"></i>
+                                    Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col-xl-12">
+            <input type="text" hidden name="WarehouseId" id="WarehouseId" class="form-control" value="@ViewBag.WareHouseId">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        <span class="fw-300"><i>Danh sách tìm kiếm</i></span>
+                    </h2>
+                        <div class="panel-toolbar">
+                            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                            <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+
+                    <!-- datatable start -->
+                    <table id="ViewItemsTable" class="table table-bordered table-hover table-striped w-100">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã hàng hóa</th>
+                                <th>Tên hàng hóa</th>
+                                <th>Hạn sử dụng</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <!-- datatable end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

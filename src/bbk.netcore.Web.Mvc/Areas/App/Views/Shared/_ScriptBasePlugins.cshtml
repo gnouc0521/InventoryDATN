@@ -1,0 +1,109 @@
+﻿@*@using CultureHelper = tntms.PRM.Localization.CultureHelper*@
+@using System.Globalization
+@inject bbk.netcore.Timing.AppTimes AppTimes
+
+<script type="text/javascript">
+        // This is used to get the application's root path from javascript.
+        // It's useful if you're running application in a virtual directory under IIS.
+        var abp = abp || {};
+        abp.appPath = '@ApplicationPath';
+</script>
+
+<script src="~/js/vendors.bundle.js" asp-append-version="true"></script>
+<script src="~/js/app.bundle.js" asp-append-version="true"></script>
+@* theme core *@
+<environment names="Development">
+    <script src="~/libs/lodash.js/lodash.min.js"></script>
+    <script src="~/libs/block-ui/jquery.blockUI.js"></script>
+    <script src="~/libs/spin/spin.min.js"></script>
+    <script src="~/libs-ext/spin/jquery.spin.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/libs/toastr/toastr.min.js"></script>
+    <script src="~/js/holder.js"></script>
+    <script src="~/js/app.bundle.js"></script>
+    <script src="~/libs/moment/min/moment-with-locales.js"></script>
+    <script src="~/libs/jquery.form/dist/jquery.form.min.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/abp.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js" asp-append-version="true"></script>
+    <script src="~/libs/js-url/url.min.js" asp-append-version="true"></script>
+    <script src="~/js/abp.dataTable.js" asp-append-version="true"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    <!--Production Test -->
+    <script src="~/view-resources/Areas/App/Views/_Bundles/abp-layout.min.js"></script>
+</environment>
+
+<environment names="Staging,Production">
+    <script src="~/libs/lodash.js/lodash.min.js"></script>
+    <script src="~/libs/block-ui/jquery.blockUI.js"></script>
+    <script src="~/libs/spin/spin.min.js"></script>
+    <script src="~/libs-ext/spin/jquery.spin.js"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js"></script>
+    <script src="~/libs/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/libs/toastr/toastr.min.js"></script>
+    <script src="~/js/holder.js"></script>
+    <script src="~/js/app.bundle.js"></script>
+    <script src="~/libs/moment/min/moment-with-locales.js"></script>
+    <script src="~/libs/jquery.form/dist/jquery.form.min.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/abp.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js" asp-append-version="true"></script>
+    <script src="~/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js" asp-append-version="true"></script>
+    <script src="~/libs/js-url/url.min.js" asp-append-version="true"></script>
+    <script src="~/js/abp.dataTable.js" asp-append-version="true"></script>
+    <script src="~/js/main.js" asp-append-version="true"></script>
+    <!--Production Test -->
+    @*<script src="~/view-resources/Views/Areas/App/_Bundles/shared-layout.min.js" asp-append-version="true"></script>*@
+    <script src="~/view-resources/Areas/App/Views/_Bundles/abp-layout.min.js"></script>
+</environment>
+
+@if (CultureInfo.CurrentUICulture.Name != "en")
+{
+    var normalizedCurrentUICultureName = CultureInfo.CurrentUICulture.Name.Replace("-", "_");
+    var localizationFileNameWithExtension = "messages_";
+    switch (normalizedCurrentUICultureName)
+    {
+        case "zh_Hans":
+            localizationFileNameWithExtension += "zh";
+            break;
+        case "es_MX":
+            localizationFileNameWithExtension += "es";
+            break;
+        default:
+            localizationFileNameWithExtension += normalizedCurrentUICultureName;
+            break;
+    }
+    localizationFileNameWithExtension += ".min.js";
+    <script src="~/libs/jquery-validate/localization/@localizationFileNameWithExtension" asp-append-version="true"></script>
+}
+
+<script type="text/javascript">
+        // Localizing momentjs
+        moment.locale('@CultureInfo.CurrentUICulture.Name');
+</script>
+
+<!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+<script src="@(ApplicationPath)AbpServiceProxies/GetAll" asp-append-version="true" type="text/javascript"></script>
+<script src="@(ApplicationPath)AbpScripts/GetScripts?" asp-append-version="true" type="text/javascript"></script>
+
+<script src="/_cdn/_bundles/js/common-scripts.js" asp-append-version="true"></script>
+
+@*@if (isChatEnabled)
+    {
+        <script src="@(ApplicationPath)view-resources/Areas/App/Views/Layout/_ChatBar.js" asp-append-version="true"></script>
+        <script src="@(ApplicationPath)Common/Scripts/Chat/chat.signalr.js" asp-append-version="true"></script>
+    }*@
+
+@*<script type="text/javascript">
+            abp.localization.currentCulture = $.extend({}, abp.localization.currentCulture, { displayNameEnglish: '@CultureInfo.CurrentUICulture.EnglishName' });
+            moment.locale('@(CultureHelper.UsingLunarCalendar ? "en": CultureInfo.CurrentUICulture.Name )'); //Localizing moment.js
+    </script>*@
+
+<!-- Used for demo purpose only, please remove this for your own project  -->
+@*<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>*@

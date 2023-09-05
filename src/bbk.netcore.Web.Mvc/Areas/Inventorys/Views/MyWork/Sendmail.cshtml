@@ -1,0 +1,57 @@
+﻿@using bbk.netcore.Web.Areas.Inventorys.Models.MyWork;
+@using bbk.netcore.mdl.OMS.Application.SendMailSuppliers.Dto;
+@using bbk.netcore.mdl.OMS.Core;
+@model SendMailListDto
+@{
+    Layout = null;
+}
+<div class="modal-content" id="ItemsCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Gửi đơn đặt hàng đến NCC</h5>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate"  action="@Url.Action("UploadDocument","MyWork",new {area = OMSCoreConsts.AreaName} )" method="post" enctype="multipart/form-data" role="form" class="form-validation needs-validation" novalidate>
+            <div class="form-group row required">
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("NCC"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="SupplierId" asp-for="SupplierId" asp-items="@Model.GetSuppliers()" required>
+                        <option value="" selected disabled>Chọn NCC</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Vui lòng chọn NCC."))
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Địa chỉ"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Address" id="Address" class="form-control" disabled required minlength="" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label">@(new FixedLocalizableString("SDT"))<span class="text-danger">*</span></label>
+                    <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control" disabled required />
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Mã số thuế"))<span class="text-danger">*</span></label>
+                    <input type="text" name="TaxCode" id="TaxCode" disabled class="form-control" required minlength="">
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Email"))<span class="text-danger">*</span></label>
+                    <input type="text" name="EmailAddress" id="EmailAddress" disabled class="form-control" required minlength="">
+                </div>
+            </div>
+            <label class=" col-form-label">@(new FixedLocalizableString("Nội dung email"))<span class="text-danger">*</span></label>
+            <div class="col-md-12">
+                <textarea id="Comment" asp-for="Comment" name="Comment"></textarea>
+            </div>
+            <div class="col-md-12">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input file-upload-field" id="file" name="file" required>
+                    <label class="custom-file-label" for="customFile">File đính kèm</label>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+
+

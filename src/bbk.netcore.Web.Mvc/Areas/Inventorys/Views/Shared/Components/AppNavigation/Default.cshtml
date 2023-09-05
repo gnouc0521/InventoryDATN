@@ -1,0 +1,192 @@
+﻿@using System.IO
+@using bbk.netcore.Web.Areas.App.Views.Shared.Components.AppNavigation
+@model AppNavigationViewModel
+@*<nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-flat" data-widget="treeview" role="menu" data-accordion="false">
+            @{
+                foreach (var item in Model.MainMenu.Items.Where(x => x.IsVisible))
+                {
+                    @await Html.PartialAsync("Components/SideBarMenu/_MenuItem", item)
+                }
+            }
+        </ul>
+    </nav>*@
+
+<ul id="js-nav-menu" class="nav-menu">
+    @foreach (var group in Model.PersonalProfileMenu.Items.Where(x => x.IsVisible))
+    {
+        @if (group.Items.Any())
+        {
+            @*@await Html.PartialAsync("Components/AppNavigation/_UserMenuItem", item)*@
+            var groups = group.Items.Select(x => System.IO.Path.GetFileNameWithoutExtension(x.Url)).Where(x => x != "javascript:void(0);").ToList();
+
+            group.Items.ToList().ForEach(item =>
+            {
+                var result = item.Items?.Select(x => System.IO.Path.GetFileNameWithoutExtension(x.Url)).Where(x => x != "javascript:void(0);").ToList();
+                if (result?.Any() == true)
+                {
+                    groups = groups.Concat(result).ToList();
+                }
+            });
+
+            <li class="@(groups.Contains(ViewBag.CurrentPageName) ? "active open" : "")">
+                <a href="#" title="@group.DisplayName">
+                    <i class="@group.Icon"></i>
+                    <span class="nav-link-text">@group.DisplayName</span>
+                    @*@if (group.Span.HasValue())
+                        {
+                            <span class="@group.Span.Class">@group.Span.Text</span>
+                        }*@
+                </a>
+                <ul>
+                    @{
+                        foreach (var item in group.Items)
+                        {
+                            var items = item.Items?.Select(x => System.IO.Path.GetFileNameWithoutExtension(x.Url)).Where(x => x != "javascript:void(0);").ToList();
+
+                            if (items?.Any() == true)
+                            {
+                                <text>
+                                    <li class="@(items.Contains(ViewBag.CurrentPageName) ? "active open" : "")">
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                <li class="@(ViewBag.CurrentPageName == System.IO.Path.GetFileNameWithoutExtension(item.Url) ? "active" : "")">
+                                </text>
+                            }
+
+                            <text>
+                                <a href="@item.Url" title="@item.DisplayName">
+                                    <span class="nav-link-text">@item.DisplayName</span>
+                                    @*@if (item.Span.HasValue())
+                                        {
+                                            <span class="@item.Span.Class">@item.Span.Text</span>
+                                        }*@
+                                </a>
+                            </text>
+                            if (item.Items?.Any() == true)
+                            {
+                                <text>
+                                    <ul>
+                                        @foreach (var subItem in item.Items)
+                                        {
+
+                                            <text>
+                                            <li class="@(ViewBag.CurrentPageName == System.IO.Path.GetFileNameWithoutExtension(subItem.Url) ? "active" : "")">
+                                </text>
+
+                                <a href="@subItem.Url" title="@subItem.DisplayName">
+                                    <span class="nav-link-text">@subItem.DisplayName</span>
+                                </a>
+                            @:</li>
+                        }
+                                    </ul>
+                                    </text>
+                                }
+                            @:</li>
+                        }
+                    }
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@group.Url" title="@group.DisplayName">
+                    <i class="@group.Icon"></i>
+                    <span class="nav-link-text">@group.DisplayName</span>
+                    @*@if (group.Span.HasValue())
+                        {
+                            <span class="@group.Span.Class">@group.Span.Text</span>
+                        }*@
+                </a>
+            </li>
+        }
+    }
+
+    @foreach (var group in Model.AppMenu.Items.Where(x => x.IsVisible))
+    {
+        @if (group.Items.Any())
+        {
+            @*@await Html.PartialAsync("Components/AppNavigation/_UserMenuItem", item)*@
+            var groups = group.Items.Select(x => System.IO.Path.GetFileNameWithoutExtension(x.Url)).Where(x => x != "javascript:void(0);").ToList();
+
+            group.Items.ToList().ForEach(item =>
+            {
+                var result = item.Items?.Select(x => System.IO.Path.GetFileNameWithoutExtension(x.Url)).Where(x => x != "javascript:void(0);").ToList();
+                if (result?.Any() == true)
+                {
+                    groups = groups.Concat(result).ToList();
+                }
+            });
+
+            <li class="@(groups.Contains(ViewBag.CurrentPageName) ? "active open" : "")">
+                <a href="#" title="@group.DisplayName">
+                    <i class="@group.Icon"></i>
+                    <span class="nav-link-text">@group.DisplayName</span>
+                    @*@if (group.Span.HasValue())
+                        {
+                            <span class="@group.Span.Class">@group.Span.Text</span>
+                        }*@
+                </a>
+                <ul>
+                    @{
+                        foreach (var item in group.Items)
+                        {
+                            var items = item.Items?.Select(x => System.IO.Path.GetFileNameWithoutExtension(x.Url)).Where(x => x != "javascript:void(0);").ToList();
+
+                            if (items?.Any() == true)
+                            {
+                                <text>
+                                    <li class="@(items.Contains(ViewBag.CurrentPageName) ? "active open" : "")">
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                <li class="@(ViewBag.CurrentPageName == System.IO.Path.GetFileNameWithoutExtension(item.Url) ? "active" : "")">
+                                </text>
+                            }
+
+                            <text>
+                                <a href="@item.Url" title="@item.DisplayName">
+                                    <span class="nav-link-text">@item.DisplayName</span>
+                                    @*@if (item.Span.HasValue())
+                                        {
+                                            <span class="@item.Span.Class">@item.Span.Text</span>
+                                        }*@
+                                </a>
+                            </text>
+                            if (item.Items?.Any() == true)
+                            {
+                                <text>
+                                    <ul>
+                                        @foreach (var subItem in item.Items)
+                                        {
+
+                                            <text>
+                                            <li class="@(ViewBag.CurrentPageName == System.IO.Path.GetFileNameWithoutExtension(subItem.Url) ? "active" : "")">
+                                </text>
+
+                                <a href="@subItem.Url" title="@subItem.DisplayName">
+                                    <span class="nav-link-text">@subItem.DisplayName</span>
+                                </a>
+                            @:</li>
+                        }
+                                    </ul>
+                                    </text>
+                                }
+                            @:</li>
+                        }
+                    }
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li class="nav-title">@group.DisplayName</li>
+        }
+    }
+</ul>

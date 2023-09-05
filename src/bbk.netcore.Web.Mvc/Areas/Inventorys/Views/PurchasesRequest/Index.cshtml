@@ -1,0 +1,177 @@
+﻿@using Abp.Localization
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/select2/dist/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/select2/dist/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/libs/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+        <script src="~/libs-ext/xlsx/package/dist/xlsx.full.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/PurchasesRequests/index.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/PurchasesRequests/_CreateModal.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/PurchasesRequests/ViewDetail.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/InventoryTickets/paging.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/select2/dist/js/select2.min.js" asp-append-version="true"></script>
+        <script src="~/libs-ext/xlsx/package/dist/xlsx.full.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/PurchasesRequests/index.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/PurchasesRequests/_CreateModal.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/PurchasesRequests/ViewDetail.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/InventoryTickets/paging.js" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row">
+    <ol class="breadcrumb breadcrumb-seperator-3">
+        <li class="breadcrumb-item ">
+            <a href="@Url.Action("Index", "Dashboard", "Inventorys")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active">Yêu cầu mua hàng</li>
+    </ol>
+    <div class="col-xl-12 mb-4 mt-2">
+        <div class="form-row align-items-center">
+            <div class="">
+                <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "Dashboard", "Inventorys")">
+                    <i class="fal fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="d-flex flex-column ml-3 ">
+                <h4 class="font-weight-bold ">Mua hàng</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class="form-row">
+            <div class="col-lg-6 col-md-12 mb-3">
+                @if (IsGranted("Inventorys.PurchasesRequest.Create"))
+                {
+                    <button id="DeleteAll" name="DeleteAll" class="btn btn-sm btn-toolbar-full btn-primary ml-auto" disabled>
+                        <span class="fal fa-trash-alt"></span>
+                        @(new FixedLocalizableString("Xoá"))
+                    </button>
+                }
+            </div>
+        </div>
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <span class="fw-300"><i>Danh sách tổng hợp yêu cầu</i></span>
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <!-- datatable start -->
+                     @if (IsGranted("Inventorys.PurchasesRequest.Create"))
+                    {
+                        <table id="AllRequestTable" class="table table-bordered table-hover table-striped w-100 display" cellspacing="0" width="100%">
+                            <thead class="bg-primary-600">
+                                <tr>
+                                    <th><input type="checkbox" name="select_all" value="1" id="example-select-all1"></th>
+                                    <th>STT</th>
+                                    <th>Mã phiếu tổng hợp</th>
+                                    <th>Các đơn vị yêu cầu</th>
+                                    <th>Ngày tổng hợp</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- datatable end -->
+                    }
+                    else
+                    {
+                        <table id="AllRequestTableConfirm" class="table table-bordered table-hover table-striped w-100 display" cellspacing="0" width="100%">
+                            <thead class="bg-primary-600">
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Mã phiếu tổng hợp</th>
+                                    <th>Các đơn vị yêu cầu</th>
+                                    <th>Ngày tổng hợp</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- datatable end -->
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (IsGranted("Inventorys.PurchasesRequest.Create"))
+    {
+        <div class="col-xl-12">
+            <div class="form-row">
+                <div class="col-lg-6 col-md-12 mb-3">
+
+                    <button id="CreateNewButtonxx" name="CreateNewButtonxx" class="btn btn-sm btn-toolbar-full btn-primary ml-auto">
+                        <span class="fal fa-plus-square"></span>
+                        @(new FixedLocalizableString("Thêm mới"))
+                    </button>
+                    <button id="RequestAll" name="RequestAll" class="btn btn-sm btn-toolbar-full btn-primary ml-auto" disabled>
+                        @(new FixedLocalizableString("Tổng hợp yêu cầu"))
+                    </button>
+                    <button id="DeleteP" name="DeleteP" class="btn btn-sm btn-toolbar-full btn-primary ml-auto" disabled>
+                        <span class="fal fa-trash-alt"></span>
+                        @(new FixedLocalizableString("Xoá"))
+                    </button>
+                </div>
+            </div>
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        <span class="fw-300"><i>Danh sách yêu cầu mua hàng</i></span>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <!-- datatable start -->
+                        <table id="PurchasesRequestTable" class="table table-bordered table-hover table-striped w-100">
+                            <thead class="bg-primary-600">
+                                <tr>
+                                    <th><input type="checkbox" name="select_all" value="1" id="example-select-all"></th>
+                                    <th>STT</th>
+                                    <th>Đơn vị yêu cầu</th>
+                                    <th>Địa chỉ</th>
+                                    <th>SĐT</th>
+                                    <th>EMAIL</th>
+                                    <th>Ngày yêu cầu</th>
+                                    <th>Trạng thái</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                        <!-- datatable end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

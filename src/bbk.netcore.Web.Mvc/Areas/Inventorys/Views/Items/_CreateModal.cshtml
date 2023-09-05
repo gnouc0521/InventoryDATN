@@ -1,0 +1,83 @@
+﻿@{
+    Layout = null;
+}
+@using bbk.netcore.Web.Areas.Inventorys.Models.Items
+@model ItemsModel
+<div class="modal-content" id="ItemsCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới hàng hóa </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <div class="form-group row required">
+                <input type="text" hidden name="WarehouseId" class="form-control" value="@ViewBag.WareHouseId">
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Tên hàng hóa"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Name" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        Vui lòng nhập tên hàng hóa.
+                    </div>
+                </div>
+             @*   <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Giá nhập"))</label>
+                    <input type="text" name="EntryPrice" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        Vui lòng nhập giá nhập hàng hóa.
+                    </div>
+                </div>*@
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Mã hiệu sản phẩm của NCC/NSX"))<span class="text-danger">*</span></label>
+                    <input type="text" name="SymbolCode" class="form-control" minlength="">
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Ngành hàng"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="typeCode-select" name="CategoryCode" asp-items="@Model.GetCategory()" required>
+                        <option value="" selected disabled>Chọn Ngành hàng</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn ngành hàng.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Nhóm hàng"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="typeCode-select" name="GroupCode" asp-items="@Model.GetGroup()" required>
+                        <option value="" selected disabled>Chọn Nhóm hàng</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn nhóm hàng.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Loại hàng"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="typeCode-select" name="KindCode" asp-items="@Model.GetKind()" required>
+                        <option value="" selected disabled>Chọn Loại hàng</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn loại hàng.
+                    </div>
+                </div>
+              
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("NSX"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="typeCode-select" name="ProducerCode" asp-items="@Model.GetProducers()" required>
+                        <option value="" selected disabled>Chọn sản xuất</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn nhà sản xuất.
+                    </div>
+                </div>
+              
+                <div class="col-md-12">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Mô tả"))<span class="text-danger">*</span></label>
+                    <textarea id="Remark" name="Description" class="form-control"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+

@@ -1,0 +1,497 @@
+[
+
+  {
+    "outputFileName": "wwwroot/js/smartad.min.js",
+    "inputFiles": [
+      "wwwroot/js/vendors.bundle.js",
+      "wwwroot/js/holder.js",
+      "wwwroot/js/app.bundle.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/smartad.min.css",
+    "inputFiles": [
+      "wwwroot/css/theme-demo.css",
+      "wwwroot/css/site.css",
+      "wwwroot/css/fa-brands.css",
+      "wwwroot/css/fa-regular.css",
+      "wwwroot/css/fa-solid.css",
+      "wwwroot/css/fontawesome-all.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/_cdn/_bundles/css/bbk-layout.min.css",
+    "inputFiles": [
+      "wwwroot/css/themes_tccb/cust-theme.css",
+      "wwwroot/css/datagrid/datatables/datatables.bundle.css",
+      "wwwroot/libs/toastr/toastr.css"
+    ]
+  },
+  {
+    //"outputFileName": "wwwroot/view-resources/Areas/App/Views/_Bundles/common-scripts.js",
+    "outputFileName": "wwwroot/_cdn/_bundles/js/common-scripts.js",
+    "inputFiles": [
+      "wwwroot/Common/Scripts/**/*.js",
+      "!wwwroot/Common/Scripts/**/*min.js",
+      "!wwwroot/Common/Scripts/Chat/chat.signalr.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/_Bundles/account-layout.min.css",
+    "inputFiles": [
+      "wwwroot/libs/font-awesome/css/all.css",
+      "wwwroot/libs-ext/famfamfam-flags/dist/sprite/famfamfam-flags.css",
+      "wwwroot/libs/icheck-bootstrap/icheck-bootstrap.css",
+      "wwwroot/libs/toastr/toastr.css",
+      "wwwroot/libs/admin-lte/dist/css/adminlte.css",
+      "wwwroot/css/style.css",
+      "wwwroot/view-resources/Views/Account/_Layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/_Bundles/account-layout.min.js",
+    "inputFiles": [
+      "wwwroot/libs/jquery/jquery.js",
+      "wwwroot/libs/bootstrap/dist/js/bootstrap.bundle.js",
+      "wwwroot/libs/admin-lte/dist/js/adminlte.js",
+      "wwwroot/libs/jquery-validate/jquery.validate.js",
+      "wwwroot/libs/jquery-validate/jquery.validate.unobtrusive.js",
+      "wwwroot/libs/toastr/toastr.min.js",
+      "wwwroot/libs/block-ui/jquery.blockUI.js",
+      "wwwroot/libs/spin/spin.js",
+      "wwwroot/libs-ext/spin/jquery.spin.js",
+      "wwwroot/libs/sweetalert/sweetalert.min.js",
+      "wwwroot/libs/moment/moment-with-locales.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/abp.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+      "wwwroot/js/main.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/_Bundles/shared-layout.min.js",
+    "inputFiles": [
+      "wwwroot/libs/jquery/jquery.js",
+      "wwwroot/libs/bootstrap/dist/js/bootstrap.bundle.js",
+      "wwwroot/libs/admin-lte/dist/js/adminlte.js",
+      "wwwroot/libs/jquery-validate/jquery.validate.js",
+      "wwwroot/libs/jquery-validate/jquery.validate.unobtrusive.js",
+      "wwwroot/libs/block-ui/jquery.blockUI.js",
+      "wwwroot/libs/spin/spin.js",
+      "wwwroot/libs-ext/spin/jquery.spin.js",
+      "wwwroot/libs/sweetalert/sweetalert.min.js",
+      "wwwroot/libs/toastr/toastr.min.js",
+      "wwwroot/libs/push.js/push.js",
+      "wwwroot/libs/moment/moment-with-locales.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/abp.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+      "wwwroot/libs/datatables/js/jquery.dataTables.min.js",
+      "wwwroot/libs/datatables/js/dataTables.bootstrap4.min.js",
+      "wwwroot/libs/datatables/js/dataTables.responsive.min.js",
+      "wwwroot/libs/datatables/js/responsive.bootstrap4.min.js",
+      "wwwroot/libs/datatables/js/dataTables.buttons.js",
+      "wwwroot/libs/datatables/js/buttons.bootstrap4.js",
+      "wwwroot/js/main.js",
+      "wwwroot/view-resources/Views/Shared/_Layout.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/_Bundles/abp-layout.min.js",
+    "inputFiles": [
+      "wwwroot/libs/lodash.js/lodash.min.js",
+      "wwwroot/libs/block-ui/jquery.blockUI.js",
+      "wwwroot/libs/spin/spin.min.js",
+      "wwwroot/libs-ext/spin/jquery.spin.js",
+      "wwwroot/libs/jquery-validate/jquery.validate.js",
+      "wwwroot/libs/sweetalert/sweetalert.min.js",
+      "wwwroot/libs/toastr/toastr.min.js",
+      "wwwroot/js/holder.js",
+      "wwwroot/js/app.bundle.js",
+      "wwwroot/libs/moment/moment-with-locales.js",
+      "wwwroot/libs/jquery.form/jquery.form.min.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/abp.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js",
+      "wwwroot/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js",
+      "wwwroot/libs-ext/js-url/url.min.js",
+      "wwwroot/js/abp.dataTable.js",
+      "wwwroot/js/main.js"
+    ]
+  },
+  /* JSTREE Customs */
+  {
+    "outputFileName": "wwwroot/_cdn/jstree.min.css",
+    "inputFiles": [
+      "wwwroot/libs/jstree/dist/themes/default/style.css",
+      "wwwroot/Common/Styles/jstree.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/_cdn/jstree.min.js",
+    "inputFiles": [
+      "wwwroot/libs/jstree/dist/jstree.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/_Bundles/home-index.min.js",
+    "inputFiles": [
+      "wwwroot/libs/chartjs/dist/Chart.js",
+      "wwwroot/view-resources/Views/Home/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Tenants/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Tenants/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/_Bundles/userindex.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/Common/_PermissionTree.js",
+      "wwwroot/view-resources/Areas/App/Views/Common/_OrganizationTree.js",
+      "wwwroot/view-resources/Areas/App/Views/Users/_CreateOrEditModal.js",
+      "wwwroot/view-resources/Areas/App/Views/Users/_PermissionsModal.js",
+      "wwwroot/view-resources/Areas/App/Views/Users/Index.js"
+    ]
+  },
+  /* BEGIN: TCCB-VEA */
+  {
+    "outputFileName": "wwwroot/_cdn/_bundles/js/pps.dashboard.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Dashboard/Index.js"
+      //"wwwroot/view-resources/Areas/PersonalProfile/Dashboard/fluctuation.js"
+    ]
+  },
+  /* END: TCCB-VEA */
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Documents/Index.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Documents/_CreateOrEditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/report.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Reports/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/staffs.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_editStaff.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/findDocument.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/recruitmentInfomation.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/createRecruitmentInfomation.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/editRecruitmentInformation.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/salaryProcess.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/editSalaryProcess.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/createSalaryProcess.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/trainningInfo.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditTrainningInfoModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/workingProcess.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditWorkingProcessModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/relationShip.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditRelationShipModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/commendation.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditCommendationModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/staffPlainning.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditStaffPlainningModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/assessedByYear.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAssessedByYear.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/editAssessedByYear.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/propertyDeclaration.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditPropertyDeclarationModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/UploadFileProfile.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/EditFilePersonalProfile.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/goAbroad.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditGoAbroadModal.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/communist.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/_createAndEditCommunistModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/category.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/CreateCategory.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/EditCategory.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/GetCategory.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/statistics.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Statistics/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Users/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Users/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Users/ChangePassword.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Users/ChangePassword.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Roles/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Roles/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Account/Login.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Account/Login.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Account/Register.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Account/Register.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Shared/Components/TenantChange/Default.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Shared/Components/TenantChange/Default.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Shared/Components/TenantChange/_ChangeModal.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Shared/Components/TenantChange/_ChangeModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/App/Views/OrganizationUnits/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/App/Views/OrganizationUnits/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/TCCBLogin/Login.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/TCCBLogin/Login.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/category.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/CreateCategory.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/EditCategory.js",
+      "wwwroot/view-resources/Areas/PersonalProfile/Staffs/GetCategory.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/settingUi.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Uis/settingUi.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/PersonalProfile/_Bundles/getUi.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/PersonalProfile/Uis/getUi.js"
+    ]
+  },
+
+  //{
+  //  "outputFileName": "wwwroot/view-resources/Areas/Oms/ProfileWorks/index.min.js",
+  //  "inputFiles": [
+  //    "wwwroot/view-resources/Areas/Oms/ProfileWorks/Index.js",
+  //    "wwwroot/view-resources/Areas/Oms/ProfileWorks/_CreateModal.js",
+  //    "wwwroot/view-resources/Areas/Oms/ProfileWorks/_EditModal.js",
+  //    "wwwroot/view-resources/Areas/Oms/ProfileWorks/ViewDetails.js"
+  //  ]
+  //},
+  //{
+  //  "outputFileName": "wwwroot/view-resources/Areas/Oms/WorkGroups/index.min.js",
+  //  "inputFiles": [
+  //    "wwwroot/view-resources/Areas/Oms/WorkGroups/index.js"
+  //  ]
+  //},
+  //{
+  //  "outputFileName": "wwwroot/view-resources/Areas/Oms/Works/index.min.js",
+  //  "inputFiles": [
+  //    "wwwroot/view-resources/Areas/Oms/Works/Index.js",
+  //    "wwwroot/view-resources/Areas/Oms/Works/_CreateModal.js",
+  //    "wwwroot/view-resources/Areas/Oms/Works/_EditModal.js"
+  //  ]
+  //},
+  //{
+  //  "outputFileName": "wwwroot/view-resources/Areas/Oms/DayOffs/index.min.js",
+  //  "inputFiles": [
+  //    "wwwroot/view-resources/Areas/Oms/DayOffs/index.js",
+  //    "wwwroot/view-resources/Areas/Oms/DayOffs/_CreateModal.js",
+  //    "wwwroot/view-resources/Areas/Oms/DayOffs/_EditModal.js"
+  //  ]
+  //},
+  //{
+  //  "outputFileName": "wwwroot/view-resources/Areas/Oms/ReportWorks/index.min.js",
+  //  "inputFiles": [
+  //    "wwwroot//view-resources/Areas/Oms/ReportWorks/index.js"
+
+  //  ]
+  //},
+  //{
+  //  "outputFileName": "wwwroot/view-resources/Areas/Oms/ScheduleWorks/index.min.js",
+  //  "inputFiles": [
+  //    "wwwroot/view-resources/Areas/Oms/ScheduleWorks/index.js",
+  //    "wwwroot/view-resources/Areas/Oms/ScheduleWorks/_CreateModal.js"
+  //  ]
+  //},
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Producers/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Producers/index.js",
+      "wwwroot/view-resources/Areas/Oms/Producers/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Producers/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Suppliers/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Suppliers/index.js",
+      "wwwroot/view-resources/Areas/Oms/Suppliers/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Suppliers/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Items/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Items/index.js",
+      "wwwroot/view-resources/Areas/Oms/Items/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Items/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Rules/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Rules/index.js",
+      "wwwroot/view-resources/Areas/Oms/Rules/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Rules/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Units/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Units/index.js",
+      "wwwroot/view-resources/Areas/Oms/Units/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Units/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/WareHouses/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/WareHouses/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/WarehouseTypes/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/WarehouseTypes/index.js",
+      "wwwroot/view-resources/Areas/Oms/WarehouseTypes/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/WarehouseTypes/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/ExportRequests/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/ExportRequests/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/ImportRequests/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/ImportRequests/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Inventory/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Inventory/index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/PurchasesRequests/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/PurchasesRequests/index.js",
+      "wwwroot/view-resources/Areas/Oms/PurchasesRequests/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/PurchasesRequests/_EditModal.js",
+      "wwwroot/view-resources/Areas/Oms/PurchasesRequests/ViewDetail.js",
+      "wwwroot/view-resources/Areas/Oms/PurchasesRequests/DetailSynthesise.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/PurchasesRequests/DetailSynthesise.min.js",
+    "inputFiles": [
+
+      "wwwroot/view-resources/Areas/Oms/PurchasesRequests/DetailSynthesise.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Subsidiaries/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Subsidiaries/index.js",
+      "wwwroot/view-resources/Areas/Oms/Subsidiaries/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Subsidiaries/_EditModal.js",
+      "wwwroot/view-resources/Areas/Oms/Subsidiaries/ViewDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/PurchaseAssignments/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/PurchaseAssignments/index.js",
+      "wwwroot/view-resources/Areas/Oms/PurchaseAssignments/DetailAssignmentjs.js",
+      "wwwroot/view-resources/Areas/Oms/PurchaseAssignments/ViewPurchaseAssignment.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Experts/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Experts/index.js",
+      "wwwroot/view-resources/Areas/Oms/Experts/ViewDetail.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/Contracts/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/Contracts/index.js",
+      "wwwroot/view-resources/Areas/Oms/Contracts/_CreateModal.js",
+      "wwwroot/view-resources/Areas/Oms/Contracts/_CreateModalReject.js"
+    ]
+  },
+
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/MyWork/index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/MyWork/index.js",
+      "wwwroot/view-resources/Areas/Oms/MyWork/_EditModal.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Areas/Oms/MyWork/Purchase.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Areas/Oms/MyWork/_EditQuantityModal.js",
+      "wwwroot/view-resources/Areas/Oms/MyWork/Purchase.js",
+      "wwwroot/view-resources/Areas/Oms/MyWork/Sendmail.js"
+    ]
+  }
+ 
+
+
+]

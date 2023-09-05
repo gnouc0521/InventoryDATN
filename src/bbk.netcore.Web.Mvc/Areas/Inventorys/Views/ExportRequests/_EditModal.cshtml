@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+@using bbk.netcore.Web.Areas.Inventorys.Models.ExportRequests
+@model  ExportRequestModel
+<div class="modal-content" id="ExportRequestsEditModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Cập nhật thông tin phiếu xuất kho </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="FrmEdit" role="form" class="needs-validation" novalidate="">
+            <input value="@Model.exportRequests.Id" name="Id" id="Id"  hidden />
+            <input value="@Model.exportRequests.SupplierId" id="SupplierId_hidden" hidden />
+            <input value="@Model.exportRequests.WarehouseDestinationId" id="WarehouseDestinationId_hidden" hidden />
+            <div class="form-group row required">
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Tên người nhận hàng"))<span class="text-danger">*</span></label>
+                    <input type="text" name="ReceiverName" class="form-control" id="ReceiverName" value="@Model.exportRequests.ReceiverName" required minlength="">
+                    <div class="invalid-feedback">
+                        Vui lòng nhập tên hàng hóa.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("SDT người nhận"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Phone" class="form-control" id="phone" value="@Model.exportRequests.Phone" required minlength="">
+                    <div class="invalid-feedback">
+                        Vui lòng nhập giá nhập hàng hóa.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Địa chỉ (Bộ phận)"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Address" class="form-control" id="address" value="@Model.exportRequests.Address" minlength="">
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Kho xuất"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="WarehouseDestinationId" name="WarehouseDestinationId" asp-items="@Model.GetWarehouse()" required>
+                        <option value="" selected disabled>Chọn Kho xuất</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng nhập chiều rộng hàng hóa.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Ngày cần"))<span class="text-danger">*</span></label>
+                    <input type="text" name="RequestDate" value="@Model.exportRequests.RequestDate.ToShortDateString()" class="form-control date-picker" required minlength="">
+                    <div class="invalid-feedback">
+                        Vui lòng nhập ngày cần
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Người tạo phiếu"))<span class="text-danger">*</span></label>
+                    <input type="text" name="" class="form-control" value="@Model.CreatedByName" required minlength="" disabled>
+                </div>
+
+
+
+                <div class="col-md-12">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Lý do xuất kho"))<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                        <input type="text" name="Remark" value="@Model.exportRequests.Remark" class="form-control" required minlength="">
+                        <div class="invalid-feedback">
+                            Vui lòng nhập lý do xuất kho
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Thông tin hàng hóa"))</label>
+                    <table id="ExportRequestModal" class="table  table-hover table-striped w-100">
+                        <thead class="bg-primary-600">
+                            <tr>
+                                <th>STT</th>
+                                <th>HÀNG HOÁ</th>
+                                <th>GÍA NHẬP</th>
+                                <th>SL HỆ THỐNG</th>
+                                <th>SỐ LƯỢNG XUẤT</th>
+                                <th>ĐƠN VỊ TÍNH</th>
+                             @*   <th>KHỐI </th>
+                                <th>TẦNG </th>
+                                <th>KHAY</th>
+                                <th>Vị trí</th>*@
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </form>
+        <div class="col-md-12 text-center">
+            <button id="addRow" name="addRow" class="btn btn-sm btn-primary ml-auto">
+                <span class="fal fa-plus-square"></span>
+                @(new FixedLocalizableString("Thêm mới hàng hóa"))
+            </button>
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancelAndHuy.cshtml")
+
+

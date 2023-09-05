@@ -1,0 +1,52 @@
+﻿@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.mdl.OMS.Application.Works.Dto
+@using bbk.netcore.mdl.OMS.Core;
+@using bbk.netcore.mdl.PersonalProfile.Core
+@using static bbk.netcore.mdl.OMS.Core.Enums.WorkEnum
+@model WorkCreateDto
+@{
+    Layout = null;
+}
+<div class="modal-content" id="CustomerCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" method="post" action="@Url.Action("UploadDocument","Quote",new {area = OMSCoreConsts.AreaName} )" enctype="multipart/form-data" role="form" class="form-validation needs-validation" novalidate>
+            <input type="hidden" name="Id" asp-for="@Model.Id" />
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Tên nhà cung cấp"))<span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" name="SupplierName" class="form-control" required minlength="">
+                </div>
+            </div>
+          
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Email nhà cung cấp"))<span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" name="SupplierEmail" class="form-control" required minlength="">
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Tiêu đề Email"))<span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <input type="text" name="Title" class="form-control" required minlength="">
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Tải lên file báo giá"))<span class="text-danger">*</span></label>
+                <div class="col-md-9">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input file-upload-field" id="file" name="file" required multiple>
+                        <label class="custom-file-label" for="customFile">Chọn tài liệu</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancelAndHuy.cshtml")

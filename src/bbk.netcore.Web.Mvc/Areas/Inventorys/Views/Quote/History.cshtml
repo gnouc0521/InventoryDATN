@@ -1,0 +1,114 @@
+﻿@using Abp.Localization
+
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+    @section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Quote/History.js" charset="UTF-8" asp-append-version="true"></script>
+
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Quote/History.js" charset="UTF-8" asp-append-version="true"></script>
+
+    </environment>
+}
+    <div class="row">
+        <ol class="breadcrumb breadcrumb-seperator-3">
+            <li class="breadcrumb-item ">
+
+                <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Compare", "Quote", "PersonalProfile")">So sánh giá</a>
+            </li>
+            <li class="breadcrumb-item active">Lịch sử báo giá</li>
+        </ol>
+        <div class="col-xl-12 mb-4 mt-2">
+            <div class="form-row align-items-center">
+                <div class="">
+                    <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Compare", "Quote", "PersonalProfile")">
+                        <i class="fal fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="d-flex flex-column ml-3">
+                    <h4 class="font-weight-bold">Lịch sử báo giá</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mb-2">
+            <div class="row justify-content-end pr-3">
+                <input type="text" class="col-2 form-control" id="SearchTerm" placeholder="Nhập tên hoặc mã sản phẩm"/>
+                <select class="form-control col-1" id="Quy">
+                    <option selected hidden value="">--Quý---</option>
+                    <option value="1">Quý 1</option>
+                    <option value="2">Quý 2</option>
+                    <option value="3">Quý 3</option>
+                    <option value="4">Quý 4</option>
+                </select>
+                <select class="form-control col-1 mr-2" id="Year">
+                    <option selected hidden value="">Năm</option>
+                   
+                </select>
+                <button type="button" id="Search" class="btn btn-primary">Lọc<i class="fa fa-filter"></i></button>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        <span class="fw-300">
+                            <i class="fal fa-info-circle" style="color: #f19a5b;"></i>
+                            Thông tin lịch sử báo giá
+                        </span>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                        <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                        @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>*@
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                
+                            </div>
+                            <div class="col-12">
+                                
+                                <table id="QuoteSynTable" class="table table-bordered table-striped w-100">
+                                    <thead class="bg-primary-600">
+                                        <tr>
+                                            <th class="col-start">STT</th>
+                                            <th class="col-start">Hàng hóa</th>
+                                            <th class="col-start">Nhà cung cấp</th>
+                                            <th colspan="100" class="text-center">Thời gian báo giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

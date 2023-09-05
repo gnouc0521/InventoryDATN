@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<VersionPrefix>1.0.0.0</VersionPrefix>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+		<AssemblyName>bbk.netcore.Web.Core</AssemblyName>
+		<PackageId>bbk.netcore.Web.Core</PackageId>
+		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+		<GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+		<GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+		<OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+		<RootNamespace>bbk.netcore</RootNamespace>
+		<LangVersion>7.2</LangVersion>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Abp.AutoMapper" Version="5.13.0" />
+		<PackageReference Include="Abp.ZeroCore.IdentityServer4" Version="5.13.0" />
+		<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
+		<PackageReference Include="MailKit" Version="3.4.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.4" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.10" />
+		<PackageReference Include="MimeKit" Version="3.4.3" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
+		<PackageReference Include="Abp.AspNetCore" Version="5.13.0" />
+		<PackageReference Include="Abp.ZeroCore" Version="5.13.0" />
+		<PackageReference Include="Abp.AspNetCore.SignalR" Version="5.13.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\dbs\bbk.netcore.EntityFrameworkCore\bbk.netcore.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\modules\OMS\OMS.Application\OMS.Application.csproj" />
+		<ProjectReference Include="..\..\modules\PersonalProfile\PersonalProfile.Application\PersonalProfile.Application.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="bbk.netcore.Application">
+			<HintPath>..\..\runlibs\bbk.netcore.Application.dll</HintPath>
+			<Private>true</Private>
+		</Reference>
+		<Reference Include="bbk.netcore.Core">
+			<HintPath>..\..\runlibs\bbk.netcore.Core.dll</HintPath>
+			<Private>true</Private>
+		</Reference>
+	</ItemGroup>
+</Project>

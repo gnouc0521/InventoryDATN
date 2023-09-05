@@ -1,0 +1,141 @@
+﻿@using bbk.netcore.Web.Areas.App.Views.Shared.Components.TopBarUserArea
+<header class="page-header" id="banner_header" role="banner" style="
+        background-repeat: no-repeat;
+        color: #006b2d !important; 
+        background-size: 100%;
+        background-color: #fff !important;
+        border-bottom: 3px solid #e3e3e3;">
+    <!-- we need this logo when user switches to nav-function-top -->
+    <partial name="_Logo" />
+
+    <!-- DOC: nav menu layout change shortcut -->
+    <div class="hidden-md-down dropdown-icon-menu position-relative" @*style="background-color: #f8f9fa;"*@>
+        <a href="#" class="header-btn btn js-waves-off" data-action="toggle" data-class="nav-function-hidden" title="Hide Navigation">
+            @*<i class="ni ni-menu"></i>*@
+            <i class="fal fa-columns" style="color: #f19a5b;"></i>
+        </a>
+        @*<ul>
+            <li>
+                <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-minify" title="Minify Navigation">
+                    <i class="ni ni-minify-nav"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="btn js-waves-off" data-action="toggle" data-class="nav-function-fixed" title="Lock Navigation">
+                    <i class="ni ni-lock-nav"></i>
+                </a>
+            </li>
+        </ul>*@
+    </div>
+
+    <a href="#" class="pl-2 pr-2 h-100 d-flex border-top-0 border-bottom-0" style="border: 3px solid #e3e3e3;">
+        <div class="d-flex flex-column justify-content-center">
+            <span class="text-secondary font-weight-bold">Về chúng tôi</span>
+            <div class="d-flex align-items-center mt-2">
+                <div class="d-flex align-items-center">
+                    <img src="~/img/Logo_bbk.png" class="h-auto" style="width: 2rem;"/>
+                    <p class="text-uppercase text-dark font-weight-bold mb-0 ml-2">Bbk Solution</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex flex-column justify-content-center ml-2">
+            <i class="fal fa-angle-up font-weight-bold" style="color:#f19a5b;"></i>
+            <i class="fal fa-angle-down font-weight-bold" style="color:#f19a5b;"></i>
+        </div>
+        
+    </a>
+
+    <!-- DOC: mobile button appears during mobile width -->
+    @*<div class="hidden-lg-up">
+            <a href="#" class="header-btn btn press-scale-down" data-action="toggle" data-class="mobile-nav-on">
+                <i class="ni ni-menu"></i>
+            </a>
+        </div>*@
+
+    <div class="search ml-5">
+            <form class="app-forms hidden-xs-down d-flex align-items-center" role="search" action="search-results.html" autocomplete="off">
+                <i class="fal fa-search font-weight-bold" style="color: #f19a5b"></i>
+                @*<input type="text" id="search-field" placeholder="Search for anything" class="form-control ml-2" tabindex="1">*@
+                <a href="@Url.Action("SearchItem", "Items", "Inventorys")" id="search-field" class="form-control d-flex align-items-center ml-2">Search for anything</a>
+                
+                <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none" data-action="toggle" data-class="mobile-search-on">
+                    <i class="fal fa-times"></i>
+                </a>
+            </form>
+        </div>
+
+    <div class="ml-auto d-flex">
+
+        <!-- activate app search icon (mobile) -->
+       @* <div class="hidden-sm-up">
+                <a href="#" class="header-icon" data-action="toggle" data-class="mobile-search-on" data-focus="search-field" title="Search">
+                    <i class="fal fa-search"></i>
+                </a>
+            </div>*@
+
+        <!-- app settings -->
+        @*<div class="hidden-md-down">
+                <a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-settings">
+                    <i class="fal fa-cog"></i>
+                </a>
+            </div>*@
+
+        <!-- app shortcuts -->
+        @*<div>
+                <a href="#" class="header-icon" data-toggle="dropdown" title="My Apps">
+                    <i class="fal fa-cube"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated w-auto h-auto">
+                    <partial name="_DropdownApp" />
+                </div>
+            </div>*@
+
+        <!-- app message -->
+        @*<a href="#" class="header-icon" data-toggle="modal" data-target=".js-modal-messenger">
+                <i class="fal fa-globe"></i>
+                <span class="badge badge-icon">!</span>
+            </a>*@
+
+        <!-- app notification -->
+        <div class="d-flex">
+                <a href="#" class="header-icon" data-toggle="dropdown" title="You got 11 notifications">
+                    <i class="fal fa-bell text-primary-ct"></i>
+                    <span class="badge badge-icon">11</span>
+                </a>
+                @*<a href="@Url.Action("Index", "QRCode", "PersonalProfile")" class="header-icon" title="You got qrCode" id="btn-qrCode">
+                    <i class="fal fa-qrcode text-primary-ct"></i>
+                </a>*@
+                <a href="#" class="header-icon not-view" title="You got qrCode" id="btn-qrCode">
+                    <i class="fal fa-qrcode text-primary-ct"></i>
+                </a>
+                <div id="qrcode-view">
+
+                </div>
+                @*<div style="width: 100vw" id="reader" class="qr-content"></div>*@
+
+                <div class="dropdown-menu dropdown-menu-animated dropdown-xl">
+                    @*<partial name="_DropdownNotification" />*@
+                </div>
+            </div>
+
+        <!-- app user menu -->
+        @*<div>
+                <a href="#" data-toggle="dropdown" title="drlantern&commat;gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                    <img src="~/img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                    <partial name="_DropdownMenu" />
+                </div>
+            </div>*@
+        @await Component.InvokeAsync(typeof(TopBarUserAreaViewComponent))
+        <div>
+            @*<a href="#" data-toggle="dropdown" title="drlantern&commat;gotbootstrap.com" class="header-icon d-flex align-items-center justify-content-center ml-2">
+                    <span class="ml-1 mr-1 text-truncate text-truncate-header hidden-xs-down">Me</span>
+                    <i class="ni ni-chevron-down hidden-xs-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                    <partial name="_DropdownMenu" />
+                </div>*@
+        </div>
+    </div>
+</header>

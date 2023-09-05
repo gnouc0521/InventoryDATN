@@ -1,0 +1,125 @@
+﻿@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.mdl.OMS.Application.Suppliers.Dto
+@using bbk.netcore.mdl.PersonalProfile.Core
+@model SupplierListDto
+@{
+    Layout = null;
+}
+<div class="modal-content" id="ProducerCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" method="post" role="form" class="form-validation needs-validation" novalidate>
+            <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label>@(new FixedLocalizableString("Tên NCC"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Name" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                 <div class="form-group col-md-4 required">
+                    <label>@(new FixedLocalizableString("Khu vực"))<span class="text-danger">*</span></label>
+                <select class="form-control" id="selectProvinceOfBirth" name="Area" required>
+                    <option value="" selected disabled class="title-address" style="font-size:12px;">Chọn Tỉnh/TP</option>
+                        @foreach (var item in Model.provinces.Addresses)
+                        {
+                            <option value="@item.Id" data-select-id="@item.Name" data-id="@item.Id">@item.Name</option>
+                        }
+                </select>
+                <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                </div>
+            </div>
+                <div class="form-group col-md-4 required">
+                    <label>@(new FixedLocalizableString("Địa chỉ"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Adress" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+
+             <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Số điện thoại"))<span class="text-danger">*</span></label>
+                    <div class="d-flex">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">+84</span>
+                        </div>
+                        <input id="PhoneNumber" type="text" name="PhoneNumber" class="form-control" pattern=".{9,}" title="Ký tự nhập ít nhất là 9." maxlength="9" required />
+                    </div>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Sai định dạng!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Email"))<span class="text-danger">*</span></label>
+                    <input type="email" name="Email" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Fax"))</label>
+                    <input type="number" name="Fax" class="form-control"  minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Mã số thuế"))<span class="text-danger">*</span></label>
+                    <input type="text" name="TaxCode" class="form-control" required  minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Website"))</label>
+                    <input type="text" name="Website" class="form-control"  minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Tên ngân hàng"))<span class="text-danger">*</span></label>
+                    <input type="text" name="Bank" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("STK"))<span class="text-danger">*</span></label>
+                    <input type="text" name="STK" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+                <div class="form-group col-md-4 required">
+                    <label class="">@(new FixedLocalizableString("Tên người đại diện"))<span class="text-danger">*</span></label>
+                    <input type="text" name="NameRepresentative" class="form-control" required minlength="">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Không được để trống trường này!"))
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 required">
+                    <label class="">@(new FixedLocalizableString("Mô tả"))</label>
+                    <textarea id="Remark" name="Remark" class="form-control" ></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancelAndHuy.cshtml")

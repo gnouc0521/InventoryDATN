@@ -1,0 +1,166 @@
+﻿@using Abp.Localization
+@using bbk.netcore.Web.Areas.Inventorys.Models.WorkGroups
+
+@model IndexViewWorkGroupModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+        <link rel="stylesheet" href="/Common/Styles/jstree.css" asp-append-version="true" />
+        <link href="~/libs/select2/css/select2.min.css" rel="stylesheet" />
+        <link href="~/view-resources/Areas/Oms/WorkGroups/workgroup.css" rel="stylesheet" asp-append-version="true"/>
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link rel="stylesheet" href="/_cdn/jstree.min.css" asp-append-version="true" />
+    </environment>
+}
+    @section Scripts{
+    <environment names="Development">
+
+        <script src="~/_cdn/jstree.min.js" asp-append-version="true"></script>
+
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/libs/select2/js/select2.full.min.js" asp-append-version="true"></script>
+        <script src="~/_cdn/jstree.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/WorkGroups/index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/WorkGroups/index.js" asp-append-version="true"></script>
+    </environment>
+}
+    <div class="row">
+        <div class="col-xl-12">
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        <span class="fw-300"><i>Quản lý Nhóm công việc</i></span>
+                    </h2>
+                    <div class="panel-toolbar">
+                        <button id="CreateNewButtonxx" name="CreateNewButton" class="btn btn-sm btn-toolbar-full btn-primary">
+                            <span class="fal fa-plus-square"></span>
+                            @(new FixedLocalizableString("Thêm mới Nhóm công việc"))
+                        </button>
+                        <button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>
+                    </div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <!-- Select start -->
+                        @*<select class="select2-placeholder form-control" id="list-workgroup" asp-items="@Model.GetSelectListItemWorkGroup()">
+                            <option value="" selected disabled>Chọn Nhóm công việc</option>
+                            <option value="">Tất cả</option>
+                        </select>*@
+                        <!-- Select end -->
+                        @*<div class="col-12">
+                            <div class="col-6">
+                                <div id="jstree_demo_div"></div>
+                  
+                                <div id="event_result"></div>
+                            </div>
+                        </div>*@
+                        
+                        <!-- datatable start -->
+                        
+                        <!-- datatable end -->
+                        <div id="tree_workGroup">
+
+                        </div>
+                       @* <div class="accordion" id="js_demo_accordion-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="javascript:void(0);" class="card-title" data-toggle="collapse" data-target="#js_demo_accordion-4a" aria-expanded="false">
+                                        Email marketing
+                                        <span class="ml-auto">
+                                            <span class="collapsed-reveal">
+                                                <i class="fal fa-minus-circle text-danger fs-xl"></i>
+                                            </span>
+                                            <span class="collapsed-hidden">
+                                                <i class="fal fa-plus-circle text-success fs-xl"></i>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div id="js_demo_accordion-4a" class="collapse" data-parent="#js_demo_accordion-4">
+                                    <div class="accordion" id="con1">
+                                        
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <a href="javascript:void(0);" class="card-title" data-toggle="collapse" data-target="#js_demo_accordio-asss" aria-expanded="false">
+                                                        Email 1
+                                                        <span class="ml-auto">
+                                                        <span class="collapsed-reveal">
+                                                            <i class="fal fa-minus-circle text-danger fs-xl"></i>
+                                                        </span>
+                                                        <span class="collapsed-hidden">
+                                                            <i class="fal fa-plus-circle text-success fs-xl"></i>
+                                                        </span>
+                                                    </span>
+                                                    </a>
+                                                    
+                                                </div>
+                                                <div id="js_demo_accordio-asss" class="collapse" data-parent="#con1">
+                                                    <div class="card-body">
+                                                        <p>ngfdwfghthnfgbdvscascdshtukfngbdcsaxsgth</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#js_demo_accordion-4b" aria-expanded="false">
+                                        Online compaign
+                                        <span class="ml-auto">
+                                            <span class="collapsed-reveal">
+                                                <i class="fal fa-minus-circle text-danger fs-xl"></i>
+                                            </span>
+                                            <span class="collapsed-hidden">
+                                                <i class="fal fa-plus-circle text-success fs-xl"></i>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div id="js_demo_accordion-4b" class="collapse" data-parent="#js_demo_accordion-4">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    <a href="javascript:void(0);" class="card-title collapsed" data-toggle="collapse" data-target="#js_demo_accordion-4c" aria-expanded="false">
+                                        Electronic Data Management
+                                        <span class="ml-auto">
+                                            <span class="collapsed-reveal">
+                                                <i class="fal fa-minus-circle text-danger fs-xl"></i>
+                                            </span>
+                                            <span class="collapsed-hidden">
+                                                <i class="fal fa-plus-circle text-success fs-xl"></i>
+                                            </span>
+                                        </span>
+                                    </a>
+                                </div>
+                                <div id="js_demo_accordion-4c" class="collapse" data-parent="#js_demo_accordion-4">
+                                    <div class="card-body">
+                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                </div>
+                  
+            </div>
+        </div>
+    </div>

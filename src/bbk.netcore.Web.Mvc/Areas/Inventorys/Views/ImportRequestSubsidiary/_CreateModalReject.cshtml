@@ -1,0 +1,33 @@
+﻿@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.mdl.PersonalProfile.Core
+@{
+    Layout = null;
+}
+
+<div class="modal-content" id="CreateRejectModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Từ chối </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div style="padding: 1.25rem;">
+        <form name="FrmCreateReject" method="post" role="form" class="form-validation needs-validation" novalidate>
+            <input id="Id" name="Id" hidden value="@ViewBag.Id" />
+            <div class="form-group row required">
+                <label class="col-form-label pl-3">@(new FixedLocalizableString("Lý do từ chối"))<span class="text-danger">*</span></label>
+                <div class="col-md-12">
+                    <textarea id="Comment" name="Comment" class="form-control" required></textarea>
+					<div class="invalid-feedback" style="font-size: 0.8rem;">
+						@(new FixedLocalizableString("Vui lòng nhập Lý do!"))
+					</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+
+

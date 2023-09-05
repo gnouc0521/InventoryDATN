@@ -1,0 +1,88 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.Web.Areas.Inventorys.Models.WareHouseItem
+@using bbk.netcore.mdl.OMS.Application.WarehouseItems.Dto
+@model WarehouseItemUnitModel
+
+
+    <div class="modal-header">
+        <h5 class="modal-title">Tạo mới từ <span class="font-weight-bold">@Model.warehouseItem.Name</span> </h5><button type="button" class="close" data-dismiss="modal"
+                                                          aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+        <input type="text" hidden value="@Model.warehouseItem.Id" id="IdItem" />
+        <input type="text" hidden value="@Model.warehouseItem.WarehouseId" id="WarehouseId" />
+        <input type="number" hidden value="@Model.warehouseItem.WarehouseLevel" id="WareLevel" />
+        <div class="row">
+                <div class="form-group col-3 required">
+                    <label class="col-md-6 col-form-label">@(new FixedLocalizableString("Nhập tên"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        <input type="text" name="Name" class="form-control" required minlength="">
+                    </div>
+                </div>
+                @*<div class="form-group col-3 required">
+                    <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Mã"))</label>
+                    <div class="col-md-12">
+                        <input type="text" name="Code" class="form-control" required minlength="">
+                    </div>
+                </div>*@
+                 <div class="form-group col-3 required">
+                    <label class="col-md-12 col-form-label">@(new FixedLocalizableString("Chọn ngành hàng"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        <select asp-items="@Model.GetCategory()" value="" class="form-control" id="selectColor" name="CategoryCode" required>
+                             <option value="" disabled selected hidden>Chọn ngành hàng</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-3 required">
+                    <label class="col-md-8 col-form-label">@(new FixedLocalizableString("Đơn vị"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        @*<input type="number" name="Lenght" class="form-control" required minlength="">*@
+                        <select asp-items="@Model.GetUnitList()" value="" class="form-control" id="selectColor" name="UnitId" required>
+                             <option value="" disabled selected hidden>Chọn loại đơn vị</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-3 required">
+                    <label class="col-md-8 col-form-label">@(new FixedLocalizableString("Số lượng tối đa"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        <input type="number" name="UnitMax" class="form-control" required minlength="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-3 required">
+                    <label class="col-md-8 col-form-label">@(new FixedLocalizableString("Chiều dài(m)"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        <input type="number" name="Lenght" class="form-control" required minlength="">
+                    </div>
+                </div>
+                <div class="form-group col-3 required">
+                    <label class="col-md-8 col-form-label">@(new FixedLocalizableString("Chiều rộng (m)"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        <input type="number" name="Width" class="form-control" required minlength="">
+                    </div>
+                </div>
+                <div class="form-group col-3 required">
+                    <label class="col-md-8 col-form-label">@(new FixedLocalizableString("Chiều cao(m)"))<span class="text-danger">*</span></label>
+                    <div class="col-md-12">
+                        <input type="number" name="Height" class="form-control" required minlength="">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label class="col-md-8 col-form-label">@(new FixedLocalizableString("Mô tả"))</label>
+                    <div class="col-md-12">
+                        <textarea class="form-control" id="Description"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel.cshtml")

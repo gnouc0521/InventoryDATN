@@ -1,0 +1,164 @@
+﻿@using Abp.Authorization.Users
+@model bbk.netcore.Web.Models.Account.LoginFormViewModel
+@{
+    ViewBag.Title = L("LogIn");
+}
+<link href="~/view-resources/Views/TCCBLogin/page-login.css" rel="stylesheet" asp-append-version="true" />
+@section scripts
+    {
+    <environment names="Development">
+
+        <script src="~/view-resources/Views/TCCBLogin/Login.js" asp-append-version="true"></script>
+
+    </environment>
+
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/TCCBLogin/Login.min.js" asp-append-version="true"></script>
+    </environment>
+}
+
+
+<div class="d-lg-flex half">
+
+    <div class="contents order-2 order-md-1">
+
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-7">
+                    <img src="~/img/Logo_Text.png" alt="BBK" aria-roledescription="logo" class="tccblogo">
+                    <form id="LoginForm" asp-action="Login" method="post">
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <input type="hidden" name="returnUrlHash" />
+                        <div class="form-group first">
+                            <label class="form-label" for="username">Tài khoản</label>
+                            <input type="text" name="usernameOrEmailAddress" class="form-control" value="" placeholder="@L("UserNameOrEmail")" required autofocus maxlength="@AbpUserBase.MaxEmailAddressLength">
+                        </div>
+                        <div class="form-group last mb-3">
+                            <label class="form-label" for="password">Mật khẩu</label>
+                            <input type="password" class="form-control" name="Password" autocomplete="password" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength" />
+                        </div>
+
+                        <div class="d-flex mb-5 align-items-center">
+                            <label class="control control--checkbox mb-0">
+                                <span class="caption">Remember me</span>
+                                <input type="checkbox" checked="checked" />
+                                <div class="control__indicator"></div>
+                            </label>
+                     @*       <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>*@
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block btn-lg">Đăng nhập</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg order-1 order-md-2">
+        <img src="~/img/bg_1.jpg" class="img-fluid" style="height: 100vh;" />
+    </div>
+</div>
+
+
+
+
+@*<div class="page-wrapper">
+    <div class="page-inner bg-brand-gradient">
+        <div class="page-content-wrapper bg-transparent m-0">
+            <div class="height-10 w-100 shadow-lg px-4 bg-brand-gradient">
+                <div class="d-flex align-items-center container p-0">
+                    <div class="page-logo width-mobile-auto m-0 align-items-center justify-content-center p-0 bg-transparent bg-img-none shadow-0 height-9">
+                        <a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+                            <img src="~/img/logo.svg" alt="BBK" aria-roledescription="logo" class="tccblogo">
+                            <span class="page-logo-text mr-1">
+                                BBK SOLUTION
+                            </span>
+                        </a>
+                    </div>
+                    <a asp-action="Register" class="btn-link text-white ml-auto">
+                      Tạo mới tài khoaản
+                    </a>
+                </div>
+            </div>
+            <div class="flex-1" style="background: url(img/svg/pattern-1.svg) no-repeat center bottom fixed; background-size: cover;">
+                <div class="container py-4 py-lg-5 my-lg-5 px-4 px-sm-0">
+                    <div class="row">
+                        <div class="col col-md-6 col-lg-7 hidden-sm-down">
+                            <h2 class="fs-xxl fw-500 mt-4 text-white">
+                                The simplest UI toolkit for developers &amp; programmers
+                                <small class="h3 fw-300 mt-3 mb-5 text-white opacity-60">
+                                    Presenting you with the next level of innovative UX design and engineering. The most modular toolkit available with over 600+ layout permutations. Experience the simplicity of SmartAdmin, everywhere you go!
+                                </small>
+                            </h2>
+                            <a href="#" class="fs-lg fw-500 text-white opacity-70">Learn more &gt;&gt;</a>
+                            <div class="d-sm-flex flex-column align-items-center justify-content-center d-md-block">
+                                <div class="px-0 py-1 mt-5 text-white fs-nano opacity-50">
+                                    Find us on social media
+                                </div>
+                                <div class="d-flex flex-row opacity-70">
+                                    <a href="#" class="mr-2 fs-xxl text-white">
+                                        <i class="fab fa-facebook-square"></i>
+                                    </a>
+                                    <a href="#" class="mr-2 fs-xxl text-white">
+                                        <i class="fab fa-twitter-square"></i>
+                                    </a>
+                                    <a href="#" class="mr-2 fs-xxl text-white">
+                                        <i class="fab fa-google-plus-square"></i>
+                                    </a>
+                                    <a href="#" class="mr-2 fs-xxl text-white">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 ml-auto">
+                            <h1 class="text-white fw-300 mb-3 d-sm-block d-md-none">
+                                Secure login
+                            </h1>
+                            <div class="card p-4 rounded-plus bg-faded">
+                                <form id="LoginForm" asp-action="Login" method="post">
+                                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                    <input type="hidden" name="returnUrlHash" />
+                                    <div class="form-group">
+                                        <label class="form-label" for="username">Tài khoản</label>
+                                        <input type="text" name="usernameOrEmailAddress" class="form-control" value="" placeholder="@L("UserNameOrEmail")" required autofocus maxlength="@AbpUserBase.MaxEmailAddressLength">
+                                        <span class="help-block">
+                                            Tài khoản đăng nhập của bạn
+                                        </span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="password">Mật khẩu</label>
+                                        <input type="password" class="form-control" name="Password" autocomplete="password" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength" />
+                                        <span class="help-block">
+                                            Mật khẩu của bạn
+                                        </span>
+                                    </div>
+                                    <div class="form-group text-left">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="RememberMe">
+                                            <label class="custom-control-label" for="rememberme"> Nhớ mật khẩu</label>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-lg-6 pl-lg-1 my-2">
+                                            <button type="submit" class="btn btn-info btn-block btn-lg">Đăng nhập</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-absolute pos-bottom pos-left pos-right p-3 text-center text-white">
+                        2023 © BBK SOLUTION by&nbsp;<a href='https://bbksolution.com/' class='text-white opacity-40 fw-500' title='bbksolution.com' target='_blank'>bbksolution.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+

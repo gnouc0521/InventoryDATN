@@ -1,0 +1,105 @@
+﻿@using bbk.netcore.Web.Areas.Inventorys.Models.Dashboard
+@using bbk.netcore.mdl.PersonalProfile.Core
+@using bbk.netcore.mdl.PersonalProfile.Core.Enums
+
+@section Header
+    {
+    <link href="~/libs/chart.js/dist/Chart.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/view-resources/Areas/Oms/Dashboard/index.css" rel="stylesheet" asp-append-version="true" />
+}
+@section Scripts
+    {
+
+    <environment names="Development">
+        <script src="~/libs/chart.js/dist/Chart.js"></script>
+        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"></script>
+        <script src="~/view-resources/Areas/Oms/Dashboard/CVKho.js"></script>
+        <script src="/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/chartjs/dist/Chart.js"></script>
+        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"></script>
+        <script src="/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/Dashboard/CVKho.js"></script>
+        <script src="~/_cdn/_bundles/js/pps.dashboard.min.js" rel="stylesheet" asp-append-version="true"></script>
+    </environment>
+}
+
+<div class="container">
+    <input type="text" hidden value="@ViewBag.userId" id="UserId" />
+    <input type="text" hidden value="@ViewBag.name" id="nameRole" />
+    <div class="row">
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="" class="color-sum_word">@Model.Tongcongviec</span>
+                        <small class="m-0 pt-1 l-h-n">Tổng công việc</small>
+                    </h3>
+                </div>
+                <i class="fal fa-chart-bar color-sum_word"></i>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="" class="color-process_word">@Model.Congviecxuly</span>
+                        <small class="m-0 pt-1 l-h-n">Chờ xử lý</small>
+                    </h3>
+                </div>
+                <i class="fal fa-chart-line color-process_word"></i>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="" class="color-success_word">@Model.Congviechoanthanh</span>
+                        <small class="m-0 pt-1 l-h-n">Đã hoàn thảnh</small>
+                    </h3>
+                </div>
+
+                <i class="fal fa-chart-pie color-success_word"></i>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div id="FluctiationSalaryIncrease" style="cursor:pointer" class="p-3 bg-white rounded mb-g shadow-2 d-flex align-items-end justify-content-between">
+                <div class="">
+                    <h3 class="display-5 d-block l-h-n m-0 fw-400">
+                        <span id="" class="color-expired_word">@Model.Congviecquahan</span>
+                        <small class="m-0 pt-1 l-h-n">Quá hạn</small>
+                    </h3>
+                </div>
+
+                <i class="fal fa-bell color-expired_word"></i>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Biểu đồ hình tròn -->
+    <div class="row justify-content-center" ">
+        <div class="col-md-6">
+            <div class="p-3 bg-white rounded mb-g shadow-2 h-400">
+                <div class="d-flex justify-content-between">
+                    <h3>Phiếu nhập</h3>
+                    <div class="dropdown d-inline-block" id="chart-dag">
+                        <a href="#" class="btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0" data-toggle="dropdown" aria-expanded="true" title="More options">
+                            <i class="fal fa-ellipsis-v"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item dataDagSearch" data-objid="1" href="javascript:void(0); "><i class="fal fa-history mr-1"></i> 1 tháng trước </a>
+                            <a class="dropdown-item dataDagSearch" data-objid="3" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 3 tháng trước </a>
+                            <a class="dropdown-item dataDagSearch" data-objid="10" href="javascript:void(0);"><i class="fal fa-history mr-1"></i> 1 năm trước </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <canvas id="deliveredChart" width="500" height="200"></canvas>
+                    <div id="legendDelivered" class="mt-4 legend-center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

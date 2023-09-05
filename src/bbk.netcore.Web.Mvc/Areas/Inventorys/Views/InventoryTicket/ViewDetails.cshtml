@@ -1,0 +1,123 @@
+﻿@using Abp.Localization
+@using bbk.netcore.Web.Areas.Inventorys.Models.InventoryTicket
+@model InventoryTicketViewModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+@section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/InventoryTickets/ViewDetail.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/InventoryTickets/ViewDetail.js" asp-append-version="true"></script>
+    </environment>
+}
+<div class="row">
+    <input value="@Model.Id" name="Id" id="Id" hidden />
+    <ol class="breadcrumb breadcrumb-seperator-3">
+        <li class="breadcrumb-item ">
+
+            <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="@Url.Action("Index", "InventoryTicket", "PersonalProfile")">Kho hàng</a>
+        </li>
+        <li class="breadcrumb-item active"> Chi tiết phiếu kiểm kho @Model.Code</li>
+    </ol>
+    <div class="col-xl-12 mb-4 mt-2">
+        <div class="form-row align-items-center">
+            <div class="">
+                <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("Index", "InventoryTicket", "PersonalProfile")">
+                    <i class="fal fa-arrow-left"></i>
+                </a>
+            </div>
+            <div class="d-flex flex-column ml-3">
+                <h4 class="font-weight-bold">Chi tiết phiếu kiểm kho </h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div id="panel-1" class="panel">
+            <div class="panel-hdr">
+                <h2>
+                    <i class="fal fa-info-circle" style="color: #f19a5b;"></i>
+                    Thông tin
+                </h2>
+                <div class="panel-toolbar">
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-collapse" data-toggle="tooltip" data-offset="0,10" data-original-title="Collapse"></button>
+                    <button class="btn btn-panel waves-effect waves-themed" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"></button>
+                    @*<button class="btn btn-panel bg-transparent fs-xl w-auto h-auto rounded-0" data-action="panel-fullscreen" data-toggle="tooltip" data-offset="0,10" data-original-title="Fullscreen"><i class="fal fa-expand"></i></button>*@
+                </div>
+            </div>
+            <div class="panel-container show">
+                <div class="panel-content">
+                    <div class="row mt-2">
+                        <div class="col-12">
+                            <div class="infor-warehouse">
+                                <p class="mb-2"><span class="font-weight-bold">Mã phiếu: </span>@Model.Code  </p>
+                                <p class="mb-2"><span class="font-weight-bold">Kho kiểm kê: </span>@Model.NameWareHouse </p>
+                                <p class="mb-2"><span class="font-weight-bold">Thời gian kiểm kê: </span> Từ ngày @Model.StartDate.ToString("dd/MM/yyyy") đến ngày @Model.EndDate.ToString("dd/MM/yyyy") </p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày chốt kiểm kê: </span>@Model.CompleteTime.ToString("dd/MM/yyyy")</p>
+                                <p class="mb-2"><span class="font-weight-bold">Ghi chú: </span></p>
+                                <table id="InvenTicketTable" class="table table-bordered table-hover table-striped w-100">
+                                    <thead class="bg-primary-600">
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>HÀNG HOÁ</th>
+                                            <th>ĐƠN VỊ TÍNH</th>
+                                            <th>SL HỆ THỐNG</th>
+                                            <th>SL THỰC TẾ</th>
+                                            <th>SL CHÊNH LỆCH</th>
+                                           @* <th>HẠN SỬ DỤNG</th>
+                                            <th>ĐƠN GIÁ</th>*@
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th></th>
+                                            <th>Cộng</th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                           @* <th></th>
+                                            <th></th>*@
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <p class="mb-2"><span class="font-weight-bold">Người tạo phiếu: </span> @Model.CreatedBy</p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày tạo phiếu: </span>@Model.CreationTime.ToString("dd/MM/yyyy") </p>
+                                <p class="mb-2"><span class="font-weight-bold">Người chỉnh sửa: </span>@Model.LastModifierUserId </p>
+                                <p class="mb-2"><span class="font-weight-bold">Ngày chỉnh sửa: </span>@Model.LastModificationTime.GetValueOrDefault().ToString("dd/MM/yyyy")</p>
+
+
+                                <button id="btnPrint" name="btnPrint" class="btn btn-toolbar-full btn-success ">
+                                    <span class="fal fa-print"></span>
+                                    @(new FixedLocalizableString("Tạo Phiếu Kiểm Kê"))
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

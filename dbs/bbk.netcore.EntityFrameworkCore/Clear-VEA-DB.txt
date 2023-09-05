@@ -1,0 +1,9 @@
+﻿/* Example lần lượt*/
+TRUNCATE TABLE nguoiyeu-nhanvien;
+TRUNCATE TABLE nhanvien;
+
+/* Xóa bảng theo relation ships của ông nào đấy thì ghi vào đây */
+
+TRUNCATE TABLE bbk.AppCommendations
+TRUNCATE TABLE bbk.AppStaffPlainnings
+TRUNCATE TABLE bbk.AppWorkingProcesses

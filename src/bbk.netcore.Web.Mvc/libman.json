@@ -1,0 +1,764 @@
+{
+  "version": "1.0",
+  "defaultProvider": "jsdelivr",
+  "libraries": [
+    {
+      "library": "aos@2.3.4",
+      "destination": "wwwroot/libs/aos/",
+      "files": [
+        "dist/aos.css",
+        "dist/aos.js",
+        "dist/aos.min.css",
+        "dist/aos.min.js"
+      ]
+    },
+    {
+      "library": "waypoints@4.0.0",
+      "destination": "wwwroot/libs/waypoints/",
+      "files": [
+        "lib/jquery.waypoints.js",
+        "lib/jquery.waypoints.min.js",
+        "lib/noframework.waypoints.js",
+        "lib/noframework.waypoints.min.js",
+        "lib/waypoints.debug.js",
+        "lib/waypoints.debug.min.js",
+        "lib/zepto.waypoints.js",
+        "lib/zepto.waypoints.min.js",
+        "lib/shortcuts/infinite.js",
+        "lib/shortcuts/infinite.min.js",
+        "lib/shortcuts/inview.js",
+        "lib/shortcuts/inview.min.js",
+        "lib/shortcuts/sticky.js",
+        "lib/shortcuts/sticky.min.js"
+      ]
+    },
+    {
+      "library": "apexcharts@3.22.0",
+      "destination": "wwwroot/libs/apexcharts/",
+      "files": [
+        "dist/apexcharts.min.js"
+      ]
+    },
+    {
+      "library": "theia-sticky-sidebar@1.7.0",
+      "destination": "wwwroot/libs/theia-sticky-sidebar/",
+      "files": [
+        "dist/ResizeSensor.js",
+        "dist/ResizeSensor.min.js",
+        "dist/theia-sticky-sidebar.js",
+        "dist/theia-sticky-sidebar.min.js",
+        "dist/maps/ResizeSensor.js.map",
+        "dist/maps/ResizeSensor.min.js.map",
+        "dist/maps/theia-sticky-sidebar.js.map",
+        "dist/maps/theia-sticky-sidebar.min.js.map"
+      ]
+    },
+    {
+      "library": "owl.carousel@2.3.4",
+      "destination": "wwwroot/libs/owl.carousel/",
+      "files": [
+        "dist/LICENSE",
+        "dist/owl.carousel.js",
+        "dist/owl.carousel.min.js",
+        "dist/README.md",
+        "dist/assets/ajax-loader.gif",
+        "dist/assets/owl.carousel.css",
+        "dist/assets/owl.carousel.min.css",
+        "dist/assets/owl.theme.default.css",
+        "dist/assets/owl.theme.default.min.css",
+        "dist/assets/owl.theme.green.css",
+        "dist/assets/owl.theme.green.min.css",
+        "dist/assets/owl.video.play.png"
+      ]
+    },
+    {
+      "library": "counterup@1.0.0",
+      "destination": "wwwroot/libs/counterup/",
+      "files": [
+        "jquery.counterup.min.js",
+        "jquery.counterup.js"
+      ]
+    },
+    {
+      "library": "slick-carousel@1.8.0",
+      "destination": "wwwroot/libs/slick-carousel/",
+      "files": [
+        "slick/ajax-loader.gif",
+        "slick/config.rb",
+        "slick/slick-theme.css",
+        "slick/slick-theme.less",
+        "slick/slick-theme.min.css",
+        "slick/slick-theme.scss",
+        "slick/slick.css",
+        "slick/slick.js",
+        "slick/slick.less",
+        "slick/slick.min.css",
+        "slick/slick.min.js",
+        "slick/slick.scss",
+        "slick/fonts/slick.eot",
+        "slick/fonts/slick.svg",
+        "slick/fonts/slick.ttf",
+        "slick/fonts/slick.woff"
+      ]
+    },
+    {
+      "library": "jquery-throttle-debounce@1.0.0",
+      "destination": "wwwroot/libs/jquery-throttle-debounce/",
+      "files": [
+        "jquery.ba-throttle-debounce.min.js",
+        "jquery.ba-throttle-debounce.js"
+      ]
+    },
+    {
+      "library": "dropzone@6.0.0-beta.2",
+      "destination": "wwwroot/libs/dropzone/",
+      "files": [
+        "dist/basic.css",
+        "dist/basic.css.map",
+        "dist/basic.min.css",
+        "dist/dropzone-min.js",
+        "dist/dropzone-min.js.map",
+        "dist/dropzone-min.min.js",
+        "dist/dropzone.css",
+        "dist/dropzone.css.map",
+        "dist/dropzone.js",
+        "dist/dropzone.js.map",
+        "dist/dropzone.min.css",
+        "dist/dropzone.min.js",
+        "dist/dropzone.mjs",
+        "dist/dropzone.mjs.map"
+      ]
+    },
+    {
+      "library": "admin-lte@3.0.2",
+      "destination": "wwwroot/libs/admin-lte/",
+      "files": [
+        "dist/css/alt/adminlte.components.css",
+        "dist/css/alt/adminlte.components.css.map",
+        "dist/css/alt/adminlte.components.min.css",
+        "dist/css/alt/adminlte.components.min.css.map",
+        "dist/css/alt/adminlte.core.css",
+        "dist/css/alt/adminlte.core.css.map",
+        "dist/css/alt/adminlte.core.min.css",
+        "dist/css/alt/adminlte.core.min.css.map",
+        "dist/css/alt/adminlte.extra-components.css",
+        "dist/css/alt/adminlte.extra-components.css.map",
+        "dist/css/alt/adminlte.extra-components.min.css",
+        "dist/css/alt/adminlte.extra-components.min.css.map",
+        "dist/css/alt/adminlte.pages.css",
+        "dist/css/alt/adminlte.pages.css.map",
+        "dist/css/alt/adminlte.pages.min.css",
+        "dist/css/alt/adminlte.pages.min.css.map",
+        "dist/css/alt/adminlte.plugins.css",
+        "dist/css/alt/adminlte.plugins.css.map",
+        "dist/css/alt/adminlte.plugins.min.css",
+        "dist/css/alt/adminlte.plugins.min.css.map",
+        "dist/css/adminlte.css",
+        "dist/css/adminlte.css.map",
+        "dist/css/adminlte.min.css",
+        "dist/css/adminlte.min.css.map",
+        "dist/img/AdminLTELogo.png",
+        "dist/img/avatar.png",
+        "dist/img/avatar04.png",
+        "dist/img/avatar2.png",
+        "dist/img/avatar3.png",
+        "dist/img/avatar5.png",
+        "dist/img/boxed-bg.jpg",
+        "dist/img/boxed-bg.png",
+        "dist/img/default-150x150.png",
+        "dist/img/icons.png",
+        "dist/img/photo1.png",
+        "dist/img/photo2.png",
+        "dist/img/photo3.jpg",
+        "dist/img/photo4.jpg",
+        "dist/img/prod-1.jpg",
+        "dist/img/prod-2.jpg",
+        "dist/img/prod-3.jpg",
+        "dist/img/prod-4.jpg",
+        "dist/img/prod-5.jpg",
+        "dist/img/user1-128x128.jpg",
+        "dist/img/user2-160x160.jpg",
+        "dist/img/user3-128x128.jpg",
+        "dist/img/user4-128x128.jpg",
+        "dist/img/user5-128x128.jpg",
+        "dist/img/user6-128x128.jpg",
+        "dist/img/user7-128x128.jpg",
+        "dist/img/user8-128x128.jpg",
+        "dist/img/credit/american-express.png",
+        "dist/img/credit/cirrus.png",
+        "dist/img/credit/mastercard.png",
+        "dist/img/credit/mestro.png",
+        "dist/img/credit/paypal.png",
+        "dist/img/credit/paypal2.png",
+        "dist/img/credit/visa.png",
+        "dist/js/pages/dashboard.js",
+        "dist/js/pages/dashboard.min.js",
+        "dist/js/pages/dashboard2.js",
+        "dist/js/pages/dashboard2.min.js",
+        "dist/js/pages/dashboard3.js",
+        "dist/js/pages/dashboard3.min.js",
+        "dist/js/adminlte.js",
+        "dist/js/adminlte.js.map",
+        "dist/js/adminlte.min.js",
+        "dist/js/adminlte.min.js.map",
+        "dist/js/demo.js",
+        "dist/js/demo.min.js"
+      ]
+    },
+    {
+      "library": "@fortawesome/fontawesome-free@5.11.2",
+      "destination": "wwwroot/libs/font-awesome/"
+    },
+    {
+      "library": "icheck-bootstrap@3.0.1",
+      "destination": "wwwroot/libs/icheck-bootstrap/",
+      "files": [
+        "icheck-bootstrap.min.css",
+        "icheck-bootstrap.css"
+      ]
+    },
+    {
+      "library": "datatables.net@1.10.20",
+      "destination": "wwwroot/libs/datatables/",
+      "files": [
+        "js/jquery.dataTables.js",
+        "js/jquery.dataTables.min.js"
+      ]
+    },
+    {
+      "library": "datatables.net-bs4@1.10.20",
+      "destination": "wwwroot/libs/datatables/",
+      "files": [
+        "css/dataTables.bootstrap4.css",
+        "css/dataTables.bootstrap4.min.css",
+        "js/dataTables.bootstrap4.js",
+        "js/dataTables.bootstrap4.min.js"
+      ]
+    },
+    {
+      "library": "datatables.net-responsive@2.2.3",
+      "destination": "wwwroot/libs/datatables/",
+      "files": [
+        "js/dataTables.responsive.js",
+        "js/dataTables.responsive.min.js"
+      ]
+    },
+    {
+      "library": "datatables.net-responsive-bs4@2.2.3",
+      "destination": "wwwroot/libs/datatables/",
+      "files": [
+        "css/responsive.bootstrap4.css",
+        "css/responsive.bootstrap4.min.css",
+        "js/responsive.bootstrap4.js",
+        "js/responsive.bootstrap4.min.js"
+      ]
+    },
+    {
+      "library": "datatables.net-buttons@1.6.1",
+      "destination": "wwwroot/libs/datatables/",
+      "files": [
+        "js/dataTables.buttons.min.js",
+        "js/dataTables.buttons.js"
+      ]
+    },
+    {
+      "library": "datatables.net-buttons-bs4@1.6.1",
+      "destination": "wwwroot/libs/datatables/",
+      "files": [
+        "css/buttons.bootstrap4.css",
+        "css/buttons.bootstrap4.min.css",
+        "js/buttons.bootstrap4.js",
+        "js/buttons.bootstrap4.min.js"
+      ]
+    },
+    {
+      "library": "chart.js@2.9.3",
+      "destination": "wwwroot/libs/chart.js/",
+      "files": [
+        "dist/Chart.js",
+        "dist/Chart.css"
+      ]
+    },
+    {
+      "library": "push.js@1.0.9",
+      "destination": "wwwroot/libs/push.js/"
+    },
+    {
+      "library": "jquery-ui@1.13.2",
+      "destination": "wwwroot/libs/jqueryui/"
+    },
+    {
+      "library": "jstree@3.3.11",
+      "destination": "wwwroot/libs/jstree/"
+    },
+    {
+      "library": "ion-rangeslider@2.3.1",
+      "destination": "wwwroot/libs/ion-rangeslider/",
+      "files": [
+        "js/ion.rangeSlider.js",
+        "js/ion.rangeSlider.min.js",
+        "css/ion.rangeSlider.css",
+        "css/ion.rangeSlider.min.css"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "js-url@2.3.0",
+      "destination": "wwwroot/libs/js-url/",
+      "files": [
+        "url.min.js",
+        "url.js",
+        "url-tld.min.js"
+      ]
+    },
+    {
+      "library": "select2@4.1.0-rc.0",
+      "destination": "wwwroot/libs/select2/",
+      "files": [
+        "dist/css/select2.css",
+        "dist/css/select2.min.css",
+        "dist/js/select2.full.js",
+        "dist/js/select2.full.min.js",
+        "dist/js/select2.js",
+        "dist/js/select2.min.js",
+        "dist/js/i18n/af.js",
+        "dist/js/i18n/af.min.js",
+        "dist/js/i18n/ar.js",
+        "dist/js/i18n/ar.min.js",
+        "dist/js/i18n/az.js",
+        "dist/js/i18n/az.min.js",
+        "dist/js/i18n/bg.js",
+        "dist/js/i18n/bg.min.js",
+        "dist/js/i18n/bn.js",
+        "dist/js/i18n/bn.min.js",
+        "dist/js/i18n/bs.js",
+        "dist/js/i18n/bs.min.js",
+        "dist/js/i18n/build.txt",
+        "dist/js/i18n/ca.js",
+        "dist/js/i18n/ca.min.js",
+        "dist/js/i18n/cs.js",
+        "dist/js/i18n/cs.min.js",
+        "dist/js/i18n/da.js",
+        "dist/js/i18n/da.min.js",
+        "dist/js/i18n/de.js",
+        "dist/js/i18n/de.min.js",
+        "dist/js/i18n/dsb.js",
+        "dist/js/i18n/dsb.min.js",
+        "dist/js/i18n/el.js",
+        "dist/js/i18n/el.min.js",
+        "dist/js/i18n/en.js",
+        "dist/js/i18n/en.min.js",
+        "dist/js/i18n/eo.js",
+        "dist/js/i18n/eo.min.js",
+        "dist/js/i18n/es.js",
+        "dist/js/i18n/es.min.js",
+        "dist/js/i18n/et.js",
+        "dist/js/i18n/et.min.js",
+        "dist/js/i18n/eu.js",
+        "dist/js/i18n/eu.min.js",
+        "dist/js/i18n/fa.js",
+        "dist/js/i18n/fa.min.js",
+        "dist/js/i18n/fi.js",
+        "dist/js/i18n/fi.min.js",
+        "dist/js/i18n/fr.js",
+        "dist/js/i18n/fr.min.js",
+        "dist/js/i18n/gl.js",
+        "dist/js/i18n/gl.min.js",
+        "dist/js/i18n/he.js",
+        "dist/js/i18n/he.min.js",
+        "dist/js/i18n/hi.js",
+        "dist/js/i18n/hi.min.js",
+        "dist/js/i18n/hr.js",
+        "dist/js/i18n/hr.min.js",
+        "dist/js/i18n/hsb.js",
+        "dist/js/i18n/hsb.min.js",
+        "dist/js/i18n/hu.js",
+        "dist/js/i18n/hu.min.js",
+        "dist/js/i18n/hy.js",
+        "dist/js/i18n/hy.min.js",
+        "dist/js/i18n/id.js",
+        "dist/js/i18n/id.min.js",
+        "dist/js/i18n/is.js",
+        "dist/js/i18n/is.min.js",
+        "dist/js/i18n/it.js",
+        "dist/js/i18n/it.min.js",
+        "dist/js/i18n/ja.js",
+        "dist/js/i18n/ja.min.js",
+        "dist/js/i18n/ka.js",
+        "dist/js/i18n/ka.min.js",
+        "dist/js/i18n/km.js",
+        "dist/js/i18n/km.min.js",
+        "dist/js/i18n/ko.js",
+        "dist/js/i18n/ko.min.js",
+        "dist/js/i18n/lt.js",
+        "dist/js/i18n/lt.min.js",
+        "dist/js/i18n/lv.js",
+        "dist/js/i18n/lv.min.js",
+        "dist/js/i18n/mk.js",
+        "dist/js/i18n/mk.min.js",
+        "dist/js/i18n/ms.js",
+        "dist/js/i18n/ms.min.js",
+        "dist/js/i18n/nb.js",
+        "dist/js/i18n/nb.min.js",
+        "dist/js/i18n/ne.js",
+        "dist/js/i18n/ne.min.js",
+        "dist/js/i18n/nl.js",
+        "dist/js/i18n/nl.min.js",
+        "dist/js/i18n/pa.js",
+        "dist/js/i18n/pa.min.js",
+        "dist/js/i18n/pl.js",
+        "dist/js/i18n/pl.min.js",
+        "dist/js/i18n/ps.js",
+        "dist/js/i18n/ps.min.js",
+        "dist/js/i18n/pt-BR.js",
+        "dist/js/i18n/pt-BR.min.js",
+        "dist/js/i18n/pt.js",
+        "dist/js/i18n/pt.min.js",
+        "dist/js/i18n/ro.js",
+        "dist/js/i18n/ro.min.js",
+        "dist/js/i18n/ru.js",
+        "dist/js/i18n/ru.min.js",
+        "dist/js/i18n/sk.js",
+        "dist/js/i18n/sk.min.js",
+        "dist/js/i18n/sl.js",
+        "dist/js/i18n/sl.min.js",
+        "dist/js/i18n/sq.js",
+        "dist/js/i18n/sq.min.js",
+        "dist/js/i18n/sr-Cyrl.js",
+        "dist/js/i18n/sr-Cyrl.min.js",
+        "dist/js/i18n/sr.js",
+        "dist/js/i18n/sr.min.js",
+        "dist/js/i18n/sv.js",
+        "dist/js/i18n/sv.min.js",
+        "dist/js/i18n/te.js",
+        "dist/js/i18n/te.min.js",
+        "dist/js/i18n/th.js",
+        "dist/js/i18n/th.min.js",
+        "dist/js/i18n/tk.js",
+        "dist/js/i18n/tk.min.js",
+        "dist/js/i18n/tr.js",
+        "dist/js/i18n/tr.min.js",
+        "dist/js/i18n/uk.js",
+        "dist/js/i18n/uk.min.js",
+        "dist/js/i18n/vi.js",
+        "dist/js/i18n/vi.min.js",
+        "dist/js/i18n/zh-CN.js",
+        "dist/js/i18n/zh-CN.min.js",
+        "dist/js/i18n/zh-TW.js",
+        "dist/js/i18n/zh-TW.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "moment@2.24.0",
+      "destination": "wwwroot/libs/moment/",
+      "files": [
+        "moment.js",
+        "min/moment.min.js",
+        "min/moment-with-locales.min.js",
+        "min/moment-with-locales.js"
+      ]
+    },
+    {
+      "library": "jquery-form@4.3.0",
+      "destination": "wwwroot/libs/jquery.form/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "spin.js@4.1.1",
+      "destination": "wwwroot/libs/spin/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "animate.css@4.1.1",
+      "destination": "wwwroot/libs/animate.css/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "lodash.js@4.17.21",
+      "destination": "wwwroot/libs/lodash.js/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "toastr.js@2.1.4",
+      "destination": "wwwroot/libs/toastr/"
+    },
+    {
+      "library": "summernote@0.8.20",
+      "destination": "wwwroot/libs/summernote/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "eonasdan-bootstrap-datetimepicker@4.17.49",
+      "destination": "wwwroot/libs/bootstrap-datetimepicker/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "wwwroot/libs/bootstrap-datepicker/"
+    },
+    {
+      "library": "jquery-blockui@2.7.0",
+      "destination": "wwwroot/libs/block-ui/",
+      "files": [
+        "jquery.blockUI.js",
+        "jquery.blockUI.min.js"
+      ]
+    },
+    {
+      "library": "sweetalert@2.1.2",
+      "destination": "wwwroot/libs/sweetalert/",
+      "files": [
+        "dist/sweetalert.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap-tagsinput@0.7.1",
+      "destination": "wwwroot/libs/bootstrap-tagsinput/",
+      "files": [
+        "dist/bootstrap-tagsinput.css",
+        "dist/bootstrap-tagsinput.js"
+      ]
+    },
+    {
+      "library": "paginationjs@2.1.5",
+      "destination": "wwwroot/libs-ext/paginationjs/"
+    },
+    {
+      "library": "jquery-validation@1.19.1",
+      "destination": "wwwroot/libs/jquery-validation/",
+      "files": [
+        "dist/localization/messages_ar.js",
+        "dist/localization/messages_ar.min.js",
+        "dist/localization/messages_az.js",
+        "dist/localization/messages_az.min.js",
+        "dist/localization/messages_bg.js",
+        "dist/localization/messages_bg.min.js",
+        "dist/localization/messages_bn_BD.js",
+        "dist/localization/messages_bn_BD.min.js",
+        "dist/localization/messages_ca.js",
+        "dist/localization/messages_ca.min.js",
+        "dist/localization/messages_cs.js",
+        "dist/localization/messages_cs.min.js",
+        "dist/localization/messages_da.js",
+        "dist/localization/messages_da.min.js",
+        "dist/localization/messages_de.js",
+        "dist/localization/messages_de.min.js",
+        "dist/localization/messages_el.js",
+        "dist/localization/messages_el.min.js",
+        "dist/localization/messages_es.js",
+        "dist/localization/messages_es.min.js",
+        "dist/localization/messages_es_AR.js",
+        "dist/localization/messages_es_AR.min.js",
+        "dist/localization/messages_es_PE.js",
+        "dist/localization/messages_es_PE.min.js",
+        "dist/localization/messages_et.js",
+        "dist/localization/messages_et.min.js",
+        "dist/localization/messages_eu.js",
+        "dist/localization/messages_eu.min.js",
+        "dist/localization/messages_fa.js",
+        "dist/localization/messages_fa.min.js",
+        "dist/localization/messages_fi.js",
+        "dist/localization/messages_fi.min.js",
+        "dist/localization/messages_fr.js",
+        "dist/localization/messages_fr.min.js",
+        "dist/localization/messages_ge.js",
+        "dist/localization/messages_ge.min.js",
+        "dist/localization/messages_gl.js",
+        "dist/localization/messages_gl.min.js",
+        "dist/localization/messages_he.js",
+        "dist/localization/messages_he.min.js",
+        "dist/localization/messages_hr.js",
+        "dist/localization/messages_hr.min.js",
+        "dist/localization/messages_hu.js",
+        "dist/localization/messages_hu.min.js",
+        "dist/localization/messages_hy_AM.js",
+        "dist/localization/messages_hy_AM.min.js",
+        "dist/localization/messages_id.js",
+        "dist/localization/messages_id.min.js",
+        "dist/localization/messages_is.js",
+        "dist/localization/messages_is.min.js",
+        "dist/localization/messages_it.js",
+        "dist/localization/messages_it.min.js",
+        "dist/localization/messages_ja.js",
+        "dist/localization/messages_ja.min.js",
+        "dist/localization/messages_ka.js",
+        "dist/localization/messages_ka.min.js",
+        "dist/localization/messages_kk.js",
+        "dist/localization/messages_kk.min.js",
+        "dist/localization/messages_ko.js",
+        "dist/localization/messages_ko.min.js",
+        "dist/localization/messages_lt.js",
+        "dist/localization/messages_lt.min.js",
+        "dist/localization/messages_lv.js",
+        "dist/localization/messages_lv.min.js",
+        "dist/localization/messages_mk.js",
+        "dist/localization/messages_mk.min.js",
+        "dist/localization/messages_my.js",
+        "dist/localization/messages_my.min.js",
+        "dist/localization/messages_nl.js",
+        "dist/localization/messages_nl.min.js",
+        "dist/localization/messages_no.js",
+        "dist/localization/messages_no.min.js",
+        "dist/localization/messages_pl.js",
+        "dist/localization/messages_pl.min.js",
+        "dist/localization/messages_pt_BR.js",
+        "dist/localization/messages_pt_BR.min.js",
+        "dist/localization/messages_pt_PT.js",
+        "dist/localization/messages_pt_PT.min.js",
+        "dist/localization/messages_ro.js",
+        "dist/localization/messages_ro.min.js",
+        "dist/localization/messages_ru.js",
+        "dist/localization/messages_ru.min.js",
+        "dist/localization/messages_sd.js",
+        "dist/localization/messages_sd.min.js",
+        "dist/localization/messages_si.js",
+        "dist/localization/messages_si.min.js",
+        "dist/localization/messages_sk.js",
+        "dist/localization/messages_sk.min.js",
+        "dist/localization/messages_sl.js",
+        "dist/localization/messages_sl.min.js",
+        "dist/localization/messages_sr.js",
+        "dist/localization/messages_sr.min.js",
+        "dist/localization/messages_sr_lat.js",
+        "dist/localization/messages_sr_lat.min.js",
+        "dist/localization/messages_sv.js",
+        "dist/localization/messages_sv.min.js",
+        "dist/localization/messages_th.js",
+        "dist/localization/messages_th.min.js",
+        "dist/localization/messages_tj.js",
+        "dist/localization/messages_tj.min.js",
+        "dist/localization/messages_tr.js",
+        "dist/localization/messages_tr.min.js",
+        "dist/localization/messages_uk.js",
+        "dist/localization/messages_uk.min.js",
+        "dist/localization/messages_ur.js",
+        "dist/localization/messages_ur.min.js",
+        "dist/localization/messages_vi.js",
+        "dist/localization/messages_vi.min.js",
+        "dist/localization/messages_zh.js",
+        "dist/localization/messages_zh.min.js",
+        "dist/localization/messages_zh_TW.js",
+        "dist/localization/messages_zh_TW.min.js",
+        "dist/localization/methods_de.js",
+        "dist/localization/methods_de.min.js",
+        "dist/localization/methods_es_CL.js",
+        "dist/localization/methods_es_CL.min.js",
+        "dist/localization/methods_fi.js",
+        "dist/localization/methods_fi.min.js",
+        "dist/localization/methods_it.js",
+        "dist/localization/methods_it.min.js",
+        "dist/localization/methods_nl.js",
+        "dist/localization/methods_nl.min.js",
+        "dist/localization/methods_pt.js",
+        "dist/localization/methods_pt.min.js",
+        "dist/additional-methods.js",
+        "dist/additional-methods.min.js",
+        "dist/jquery.validate.js",
+        "dist/jquery.validate.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap@5.1.3",
+      "destination": "wwwroot/libs/bootstrap/",
+      "files": [
+        "dist/css/bootstrap-grid.css",
+        "dist/css/bootstrap-grid.css.map",
+        "dist/css/bootstrap-grid.min.css",
+        "dist/css/bootstrap-grid.min.css.map",
+        "dist/css/bootstrap-grid.rtl.css",
+        "dist/css/bootstrap-grid.rtl.css.map",
+        "dist/css/bootstrap-grid.rtl.min.css",
+        "dist/css/bootstrap-grid.rtl.min.css.map",
+        "dist/css/bootstrap-reboot.css",
+        "dist/css/bootstrap-reboot.css.map",
+        "dist/css/bootstrap-reboot.min.css",
+        "dist/css/bootstrap-reboot.min.css.map",
+        "dist/css/bootstrap-reboot.rtl.css",
+        "dist/css/bootstrap-reboot.rtl.css.map",
+        "dist/css/bootstrap-reboot.rtl.min.css",
+        "dist/css/bootstrap-reboot.rtl.min.css.map",
+        "dist/css/bootstrap-utilities.css",
+        "dist/css/bootstrap-utilities.css.map",
+        "dist/css/bootstrap-utilities.min.css",
+        "dist/css/bootstrap-utilities.min.css.map",
+        "dist/css/bootstrap-utilities.rtl.css",
+        "dist/css/bootstrap-utilities.rtl.css.map",
+        "dist/css/bootstrap-utilities.rtl.min.css",
+        "dist/css/bootstrap-utilities.rtl.min.css.map",
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap.css.map",
+        "dist/css/bootstrap.min.css",
+        "dist/css/bootstrap.min.css.map",
+        "dist/css/bootstrap.rtl.css",
+        "dist/css/bootstrap.rtl.css.map",
+        "dist/css/bootstrap.rtl.min.css",
+        "dist/css/bootstrap.rtl.min.css.map",
+        "dist/js/bootstrap.bundle.js",
+        "dist/js/bootstrap.bundle.js.map",
+        "dist/js/bootstrap.bundle.min.js",
+        "dist/js/bootstrap.bundle.min.js.map",
+        "dist/js/bootstrap.esm.js",
+        "dist/js/bootstrap.esm.js.map",
+        "dist/js/bootstrap.esm.min.js",
+        "dist/js/bootstrap.esm.min.js.map",
+        "dist/js/bootstrap.js",
+        "dist/js/bootstrap.js.map",
+        "dist/js/bootstrap.min.js",
+        "dist/js/bootstrap.min.js.map"
+      ]
+    },
+    {
+      "library": "jquery@3.6.1",
+      "destination": "wwwroot/libs/jquery/",
+      "files": [
+        "dist/jquery.js",
+        "dist/jquery.min.js",
+        "dist/jquery.min.map",
+        "dist/jquery.slim.js",
+        "dist/jquery.slim.min.js",
+        "dist/jquery.slim.min.map"
+      ]
+    },
+    {
+      "library": "abp-web-resources@5.6.0",
+      "destination": "wwwroot/libs/abp-web-resources/"
+    },
+    {
+      "library": "bootstrap-star-rating@4.1.2",
+      "destination": "wwwroot/libs/bootstrap-star-rating/"
+    },
+    {
+      "library": "@excellalabs/jquery-validate-v1.11.0@1.0.0",
+      "destination": "wwwroot/libs/jquery-validate/"
+    },
+    {
+      "library": "html5-qrcode@2.3.4",
+      "destination": "wwwroot/libs-ext/html5-qrcode/"
+    },
+    {
+      "library": "dsmorse-gridster@0.8.0",
+      "destination": "wwwroot/libs-ext/dsmorse-gridster/"
+    },
+    {
+      "library": "jsbarcode@3.11.5",
+      "destination": "wwwroot/libs-ext/jsbarcode/"
+    },
+    {
+      "library": "bootstrap-colorpicker@3.4.0",
+      "destination": "wwwroot/libs-ext/bootstrap-colorpicker/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "konva@8.4.2",
+      "destination": "wwwroot/libs-ext/konva/",
+      "files": [
+        "konva.js",
+        "konva.min.js",
+        "LICENSE",
+        "package.json",
+        "README.md"
+      ]
+    }
+  ]
+}

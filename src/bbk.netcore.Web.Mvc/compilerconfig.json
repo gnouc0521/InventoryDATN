@@ -1,0 +1,18 @@
+﻿[
+  {
+    "outputFile": "wwwroot/view-resources/Views/Account/_Layout.css",
+    "inputFile": "wwwroot/view-resources/Views/Account/_Layout.scss"
+  },
+  {
+    "outputFile": "wwwroot/view-resources/Views/Shared/_Layout.css",
+    "inputFile": "wwwroot/view-resources/Views/Shared/_Layout.scss"
+  },
+  {
+    "outputFile": "wwwroot/css/style.css",
+    "inputFile": "wwwroot/scss/style.scss"
+  },
+  {
+    "outputFile": "wwwroot/Common/Styles/jstree.css",
+    "inputFile": "wwwroot/Common/Styles/jstree.less"
+  }
+]

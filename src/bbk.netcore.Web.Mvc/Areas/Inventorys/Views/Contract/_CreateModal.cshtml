@@ -1,0 +1,173 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@using bbk.netcore.mdl.OMS.Application.PurchasesSynthesises.Dto
+
+@model QuotesSynthesisListDto
+<div class="modal-content" id="ContractsCreateModal">
+    <div class="modal-header">
+        <h4 class="modal-title">Tạo hợp đồng</h4><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <input type="text" hidden value="@Model.Id" id="QuotesSynId"/>
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <div class="form-group mb-6">
+                <h5>Nhà cung cấp</h5>
+                
+                    @*@for(var i = 0; i < Model.supplierList.Count; i++)
+                    {
+                        <div class="col-2">
+                            <button type="button" class="btn btn-primary btn-supper" data-btn="@Model.supplierList[i].SupplierNameId">@Model.supplierList[i].SupplierName</button>
+                        </div>
+                    }  *@
+                    <select class="form-control" id="Select_sup">
+                        <option value="" disabled selected=""> Chọn Nhà cung cấp </option>
+                        @for(var i = 0; i < Model.supplierList.Count; i++)
+                        {
+                            <option value="@Model.supplierList[i].SupplierNameId">@Model.supplierList[i].SupplierName</option>
+                        }
+                    </select>
+                
+            </div>
+           <div class="form-group">
+               <h5>Thông tin hợp đồng</h5>
+               <div class="row">
+                   <div class="col-12 border">
+                       <div class="row pt-5" style="height: 500px; overflow-y: scroll;">
+                           <div class="col-12 text-center">
+                               <h4>CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</h4>
+                               <P><i>Độc lập - Tự do - Hạnh phúc</i></P>
+                           </div>
+                           <div class="col-12 text-center mt-3">
+                               <h4 class="font-weight-bold">HỢP ĐỒNG MUA BÁN HÀNG</h4>
+                               <p class="font-weight-bold">Số: <span class="valueMonth"></span>/<span class="valueYear"></span>/HĐMB</p>
+                           </div>
+                           <div class="col-12">
+                               <p><i>- Căn cứ Bộ luật Dân sự số 91/2015/QH13 ngày 24/11/2015 và các văn bản pháp luật liên quan;</i></p>
+                               <p><i>- Căn cứ Luật Thương mại số 36/2005/QH11 ngày 14/06/2005 và các văn bản pháp luật liên quan;</i></p>
+                               <p><i>- Căn cứ vào nhu cầu và khả năng của các bên;</i></p>
+                               <p>Hôm nay, ngày <span class="valueDate"></span>, tháng <span class="valueMonth"> </span>, năm <span class="valueYear"></span></p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">BÊN BÁN ("BÊN A"):  <span id="NameSup" class="text-uppercase"></span></p>
+                               <p><span class="font-weight-bold ">ĐỊA CHỈ:</span> <span id="AddressSeller"></span></p>
+                               <p><span class="font-weight-bold ">MÃ SỐ THUẾ:</span> <span id="CodeSeller"></span></p>
+                               <p><span class="font-weight-bold ">ĐIỆN THOẠI:</span> <span id="PhoneSeller"></span> <span class="ml-5 font-weight-bold">FAX:</span> <span id="FaxSeller"></span></p>
+                               <div class="mb-2">
+                                   <span class="font-weight-bold ">ĐẠI DIỆN:</span> <div id="RepresentA" class="d-inline-block"></div>
+                                   <span class="ml-5 font-weight-bold">CHỨC VỤ</span> <div id="PositionA" class="d-inline-block"></div>
+                                </div>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">BÊN MUA ("BÊN B"):  CÔNG TY CPTM VIỆT SUPPLY</p>
+                               <p><span class="font-weight-bold ">ĐỊA CHỈ:</span> <span>VP tầng 3 - khách sạn Vissai - 848 Trần Hưng Đạo, phường Tân Thành - TP Ninh Bình.</span></p>
+                               <p><span class="font-weight-bold ">MÃ SỐ THUẾ:</span> <span>2700914387</span></p>
+                               <p><span class="font-weight-bold ">ĐIỆN THOẠI:</span> 02293.896.999 <span class="ml-5 font-weight-bold">FAX:</span></p>
+                               <div class="mb-2">
+                                   <span class="font-weight-bold ">ĐẠI DIỆN:</span> <div id="RepresentB" class="d-inline-block"></div>
+                                   <span class="font-weight-bold ml-5">CHỨC VỤ</span> <div id="PositionB" class="d-inline-block"></div>
+                               </div>
+
+                               <p>Trên cơ sở thoả thuận, hai bên thống nhất ký kết hợp đồng mua bán hàng hoá với các điều khoản sau đây:</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 1: TÊN HÀNG - SỐ LƯỢNG - CHẤT LƯỢNG - GIÁ TRỊ HỢP ĐỒNG </p>
+                               <p>Đơn vị tính: Việt Nam đồng</p>
+                               <div id="TableItemContent">
+
+                               </div>
+                               
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 2: THANH TOÁN</p>
+                               <p>1. Bên Mua phải thanh toán cho Bên Bán số tiền ghi tại Điều 1 của Hợp đồng vào ngày</p>
+                               <p>2. Bên Mua thanh toaán cho Bên Bán theo hình thức chuyển khoản vào tài khoản của Bên Bán chi tiết như sau:</p>
+                               <div class="mb-2">Tên ngân hàng: <div id="BankName" class="d-inline-block"></div></div>
+                               <div class="mb-2">Số tài khoản: <div id="STK" class="d-inline-block"></div></div>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 3. THỜI GIAN, ĐỊA ĐIỂM VÀ PHƯƠNG THỨC GIAO HÀNG</p>
+
+                               <div class="mb-2">1. Việc bàn giao hợp đồng cho Bên Mua được thực hiện vào ngày <div id="sellerDate" class="d-inline-block"></div></div>
+                               <p>2. Địa điểm giao nhận hàng tại Trụ sở của Bên Mua: VP tầng 3 - khách sạn Vissai - 848 Trần Hưng Đạo, phường Tân Thành - TP Ninh Bình.</p>
+                               <p>3. Phương tiện vận chuyển và chi phí vận chuyển do Bên Bán chịu. Chi phí bốc xếp mỗi bên chịu một đầu.</p>
+                               <div class="mb-2">4. Quy định lịch giao nhận hàng hoá mà Bên Mua không đến nhận hàng thì phải chịu chi phí lưu kho bãi là  <div id="Price" class="d-inline-block"></div> đồng/ngày. Nếu phương tiện vận chuyển Bên Mua đến mà Bên Bán không có hàng giao thì Bên Bán phải chịu chi phí thực tế cho việc điều động phương tiện.</div>
+                               <p>5. Khi nhận hàng, Bên Mua có trách nhiệm kiểm nhận phẩm chất, quy cách hàng hoá tại chỗ. Nếu phát hiện hàng thiếu hoặc không đúng tiêu chuẩn chất lượng v.v... thì lập biên bản tại chỗ, yêu cầu Bên Bán xác nhận. Hàng đã ra khỏi kho Bên Bán không chịu trách nhiệm (trừ loại hàng có quy định thời hạn bảo hành).</p>
+                               <p>6. Trường hợp giao nhận hàng theo nguyên đai, nguyên kiện, nếu Bên Mua sau khi chở về nhập kho mới hiện có vi phạm thì phải lập biên bản gọi cơ quan kiểm tra trung gian đến xác nhận và phải gửi đến Bên Bán trong hạn 10 ngày tính từ khi lập biên bản. Sau 15 ngày nếu Bên Bán đã nhận được biên bản mà không có ý kiến gì thì coi như đã chịu trách nhiệm bồi thường lô hàng đó.</p>
+                               <p>7. Mỗi lô hàng khi giao nhận phải có xác nhận chất lượng bằng phiếu hoặc biên bản kiểm nghiệm; khi đến nhận hàng, nguồi nhận phải có đủ:</p>
+                               <p>- Giấy giới thiệu của cơ quan Bên Mua;</p>
+                               <p>- Phiếu xuất kho của cơ quan Bên Bán;</p>
+                               <p>- Giấy chứng minh nhân dân.</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 4. TRÁCH NHIỆM CỦA CÁC BÊN</p>
+
+                               <p>1. Bên Bán không chịu trách nhiệm về bất kỳ khiếm khuyết nào của hàng hoá nếu vào thời điểm giao kết hợp đồng bên mua đã biết hoặc phải biết về những khiếm khuyết đó;</p>
+                               <p>2. Trừ trường hợp quy định tại khoản 1 Điều này, trong thời hạn khiếu nại theo quy định của Luật thương mại 2005, bên bán phải chịu trách nhiệm về bất kỳ khiếm khuyết nào của hàng hoá đã có trước thời điểm chuyển rủi ro cho bên mua, kể cả trường hợp khiếm khuyết đó được phát hiện sau thời điểm chuyển rủi ro;</p>
+                               <p>3. Bên bán phải chịu trách nhiệm về khiếm khuyết của hàng hóa phát sinh sau thời điểm chuyển rủi ro nếu khiếm khuyết đó do bên bán vi phạm hợp đồng.</p>
+                               <p>4. Bên mua có trách nhiệm thanh toán và nhận hàng theo đúng thời gian đã thỏa thuận.</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 5: BẢO HÀNH VÀ HƯỚNG DẪN SỬ DỤNG HÀNG HÓA</p>
+                               
+                               <div class="mb-2">1. Bên Bán có trách nhiệm bảo hành chất lượng và giá trị sử dụng loại hàng trên cho bên mua trong thời gian là <div id="MouthNumber" class="d-inline-block"></div> tháng.</div>
+                               <p>2. Bên Bán phải cung cấp đủ mỗi đơn vị hàng hóa một giấy hướng dẫn sử dụng (nếu cần).</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 6: NGƯNG THANH TOÁN TIỀN MUA HÀNG</p>
+
+                               <p>Việc ngừng thanh toán tiền mua hàng được quy định như sau:</p>
+                               <p>1. Bên B có bằng chứng về việc bên A lừa dối thì có quyền tạm ngừng việc thanh toán;</p>
+                               <p>2. Bên B có bằng chứng về việc hàng hóa đang là đối tượng bị tranh chấp thì có quyền tạm ngừng thanh toán cho đến khi việc tranh chấp đã được giải quyết;</p>
+                               <p>3. Bên B có bằng chứng về việc bên A đã giao hàng không phù hợp với hợp đồng thì có quyền tạm ngừng thanh toán cho đến khi bên A đã khắc phục sự không phù hợp đó;</p>
+                               <p>4. Trường hợp tạm ngừng thanh toán theo quy định tại khoản 2 và khoản 3 Điều này mà bằng chứng do bên B đưa ra không xác thực, gây thiệt hại cho bên A thì bên B phải bồi thường thiệt hại đó và chịu các chế tài khác theo quy định của pháp luật.</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 7: ĐIỀU KHOẢN PHẠT VI PHẠM HỢP ĐỒNG</p>
+
+                               <div class="mb-2">1. Hai bên cam kết thực hiện nghiêm túc các điều khoản đã thỏa thuận trên, không được đơn phương thay đổi hoặc hủy bỏ hợp đồng, bên nào không thực hiện hoặc đơn phương đình chỉ thực hiện hợp đồng mà không có lý do chính đáng thì sẽ bị phạt tới <div id="Indemnify" class="d-inline-block"></div>% giá trị của hợp đồng bị vi phạm.</div>
+                               <p>2. Bên nào vi phạm các điều khoản trên đây sẽ phải chịu trách nhiệm vật chất theo quy định của các văn bản pháp luật có hiệu lực hiện hành về phạt vi phạm chất lượng, số lượng, thời gian, địa điểm, thanh toán, bảo hành v.v… mức phạt cụ thể do hai bên thỏa thuận dựa trên khung phạt Nhà nước đã quy định trong các văn bản pháp luật về loại hợp đồng này.</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 8: BẤT KHẢ KHÁNG VÀ GIẢI QUYẾT TRANH CHẤP</p>
+
+                               <p>1. Bất khả kháng nghĩa là các sự kiện xảy ra một cách khách quan, không thể lường trước được và không thể khắc phục được mặc dù đã áp dụng mọi biện pháp cần thiết trong khả năng cho phép, một trong các Bên vẫn không có khả năng thực hiện được nghĩa vụ của mình theo Hợp đồng này; gồm nhưng không giới hạn ở: thiên tai, hỏa hoạn, lũ lụt, chiến tranh, can thiệp của chính quyền bằng vũ trang, cản trở giao thông vận tải và các sự kiện khác tương tự.</p>
+                               <p>2. Khi xảy ra sự kiện bất khả kháng, bên gặp phải bất khả kháng phải không chậm chễ, thông báo cho bên kia tình trạng thực tế, đề xuất phương án xử lý và nỗ lực giảm thiểu tổn thất, thiệt hại đến mức thấp nhất có thể.</p>
+                               <p>3. Trừ trường hợp bất khả kháng, hai bên phải thực hiện đầy đủ và đúng thời hạn các nội dung của hợp đồng này. Trong quá trình thực hiện hợp đồng, nếu có vướng mắc từ bất kỳ bên nào, hai bên sẽ cùng nhau giải quyết trên tinh thần hợp tác. Trong trường hợp không tự giải quyết được, hai bên thống nhất đưa ra giải quyết tại Tòa án có thẩm quyền. Phán quyết của tòa án là quyết định cuối cùng, có giá trị ràng buộc các bên. Bên thua phải chịu toàn bộ các chi phí giải quyết tranh chấp.</p>
+                           </div>
+                           <div class="col-12">
+                               <p class="font-weight-bold ">ĐIỀU 9: ĐIỀU KHOẢN CHUNG</p>
+
+                               <p>1. Việc thay đổi tên của Bên Mua trên hợp đồng và/hoặc trên hoá đơn sẽ không được chấp nhận.</p>
+                               <p>2. Hợp đồng này có giá trị thay thế mọi giao dịch, thỏa thuận trước đây của hai bên. Mọi sự bổ sung, sửa đổi hợp đồng này đều phải có sự đồng ý bằng văn bản của hai bên.</p>
+                               <p>3. Trừ các trường hợp được quy định ở trên, Hợp đồng này không thể bị hủy bỏ nếu không có thỏa thuận bằng văn bản của các bên. Trong trường hợp hủy hợp đồng, trách nhiệm liên quan tới phạt vi phạm và bồi thường thiệt hại được bảo lưu.</p>
+                               <p>4. Hợp đồng này được lập thành 02 (hai) bản, có giá trị như nhau. Mỗi bên giữ 01 (một) bản và có giá trị pháp lý như nhau.</p>
+                               <p>5. Hợp đồng này có hiệu lực kể từ ngày ký và được coi là đã thanh lý khi Bên B đã nhận đủ tiền và Bên A đã nhận hàng.</p>
+                           </div>
+                           <div class="col-12">
+                               <div class="row">
+                                   <div class="col-6 text-center">
+                                       <p class="font-weight-bold ">ĐẠI DIỆN BÊN A</p>
+                                       <p>Chức vụ</p>
+                                       <p>(Ký tên, đóng dấu)</p>
+                                   </div>
+                                   <div class="col-6 text-center">
+                                       <p class="font-weight-bold ">ĐẠI DIỆN BÊN B</p>
+                                       <p>Chức vụ</p>
+                                       <p>(Ký tên, đóng dấu)</p>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+

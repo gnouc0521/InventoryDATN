@@ -1,0 +1,67 @@
+﻿@using Abp.Localization
+@using Abp.MultiTenancy
+@using bbk.netcore.MultiTenancy
+@{
+    Layout = null;
+}
+@*<script src="~/view-resources/Areas/Oms/DayOffs/_CreateModal.js" asp-append-version="true"></script>*@
+@using static bbk.netcore.mdl.OMS.Core.Enums.DayOffEnum
+<div class="modal-content" id="DayOffCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Thêm mới </h5><button type="button" class="close" data-dismiss="modal"
+                                                      aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="frmCreate" role="form" class="needs-validation" novalidate="">
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Tên ngày lễ"))</label>
+                <div class="col-md-9">
+                    <input type="text" name="Title" class="form-control" required minlength="">
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Ngày bắt đầu nghỉ"))</label>
+                <div class="col-md-9 d-flex">
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="" required placeholder="@(new FixedLocalizableString("Nhập ngày"))" id="StartDate" name="StartDate">
+                    <div class="input-group-append">
+                        <span class="input-group-text fs-xl">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="IssuedDate">@(new FixedLocalizableString("Ngày kết thúc"))</label>
+                <div class="col-md-9 d-flex">
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="" required placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="EndDate" name="EndDate">
+                    <div class="input-group-append">
+                        <span class="input-group-text fs-xl">
+                            <i class="fal fa-calendar-alt"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            @*<div class="form-group row required">
+                <label class="col-md-3 col-form-label" for="IssuedDate">@(new FixedLocalizableString("Tổng số ngày nghỉ"))</label>
+                <div class="col-md-9">
+                    <input type="number" name="SumDayOff" id="SumDayOff" min="0" class="form-control" disabled required>
+                </div>
+            </div>*@
+            <div class="form-group row required">
+                <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Loại"))</label>
+                <div class="col-md-9">
+                    <select asp-items="Html.GetEnumSelectList<TypeDayOff>()" value="" class="form-control" id="selectColor" required>
+                         <option value="" disabled selected hidden>Chọn loại ngày nghỉ</option>
+                    </select>
+                </div>
+            </div>
+           
+        </form>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")
+
+

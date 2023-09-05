@@ -1,0 +1,22 @@
+﻿@*@using bbk.netcore.Web.Areas.App.Models.AuditLogs
+@model EntityHistoryModalViewModel
+@using bbk.netcore.Web.Areas.App.Models.Common.Modals
+@Html.Partial("~/Areas/App/Views/Common/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("ChangeLogs") + " : " + @L(Model.EntityTypeFullName) + "  (" + Model.EntityTypeDescription + ")"))
+
+<div class="modal-body">
+    <div class="row align-items-center">
+        <table class="entity-type-history-table display table table-striped table-bordered table-hover dt-responsive">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@L("Action")</th>
+                    <th>@L("UserName")</th>
+                    <th>@L("Time")</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@Html.Partial("~/Areas/App/Views/Common/Modals/_ModalFooterWithClose.cshtml")*@
+
