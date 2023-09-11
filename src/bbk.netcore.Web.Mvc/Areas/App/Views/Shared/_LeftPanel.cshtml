@@ -4,7 +4,7 @@
     <nav id="js-primary-nav" class="primary-nav" role="navigation">
         <partial name="_NavFilter" />
        @* <partial name="_NavInfoCard" />*@
-        <cache expires-after="@TimeSpan.FromSeconds(120)">
+        <cache expires-after="@TimeSpan.FromSeconds(1)">
             @*<partial name="_PageNavigation" model="@NavigationModel.Seed" />*@
             @await Component.InvokeAsync(typeof(AppNavigationViewComponent))
         </cache>

@@ -3,20 +3,14 @@ using Abp.AspNetCore.Mvc.Authorization;
 using Abp.Web.Models;
 using bbk.netcore.Authorization.Users;
 using bbk.netcore.Controllers;
-using bbk.netcore.mdl.OMS.Application.ImportRequestDetailSubidiarys;
 using bbk.netcore.mdl.OMS.Application.ImportRequests;
-using bbk.netcore.mdl.OMS.Application.ImportRequests.Dto;
-using bbk.netcore.mdl.OMS.Application.ImportRequestSubidiarys;
 using bbk.netcore.mdl.OMS.Application.Itemses;
 using bbk.netcore.mdl.OMS.Application.Quotes;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries;
 using bbk.netcore.mdl.OMS.Application.Suppliers;
-using bbk.netcore.mdl.OMS.Application.TransferDetails;
-using bbk.netcore.mdl.OMS.Application.Transfers;
 using bbk.netcore.mdl.OMS.Application.Units;
 using bbk.netcore.mdl.OMS.Application.WareHouses;
 using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
-using bbk.netcore.mdl.OMS.Core.Entities;
 using bbk.netcore.Web.Areas.Inventorys.Models.ImportRequest;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -27,7 +21,7 @@ using System.Threading.Tasks;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 {
-    [Area("Inventorys")]
+	[Area("Inventorys")]
     [AbpMvcAuthorize]
     public class ImportRequestController : netcoreControllerBase
     {
@@ -38,11 +32,11 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         private readonly UserManager _userManager;
         private readonly IUnitService _unitService;
         private readonly ISubsidiaryService _subsidiaryService;
-        private readonly ITransferAppService _iTransferAppService;
-        private readonly ITransferDetailAppService _iTransferDetailAppService;
-        private readonly IQuotesService _quotesService;
-        private readonly IImportRequestSubidiaryService _importRequestSubidiaryService;
-        private readonly IImportRequestDetailSubidiaryService _importRequestDetailSubidiaryService;
+       // private readonly ITransferAppService _iTransferAppService;
+       // private readonly ITransferDetailAppService _iTransferDetailAppService;
+        //private readonly IQuotesService _quotesService;
+       // private readonly IImportRequestSubidiaryService _importRequestSubidiaryService;
+        //private readonly IImportRequestDetailSubidiaryService _importRequestDetailSubidiaryService;
 
         public ImportRequestController(IImportRequestAppService importRequestAppService,
                                        ISupplierAppService supplierAppService,
@@ -50,12 +44,12 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
                                        IItemsService itemAppService,
                                        UserManager userManager,
                                        IUnitService unitService,
-                                        ISubsidiaryService subsidiaryService,
-                                        ITransferAppService iTransferAppService,
-                                        ITransferDetailAppService iTransferDetailAppService,
-                                        IQuotesService quotesService,
-                                        IImportRequestSubidiaryService importRequestSubidiaryService,
-                                        IImportRequestDetailSubidiaryService importRequestDetailSubidiaryService)
+                                        ISubsidiaryService subsidiaryService
+                                       // ITransferAppService iTransferAppService,
+                                       // ITransferDetailAppService iTransferDetailAppService,
+                                        /*IQuotesService quotesService*/)
+                                        //IImportRequestSubidiaryService importRequestSubidiaryService,
+                                        //IImportRequestDetailSubidiaryService importRequestDetailSubidiaryService)
         {
             _importRequestAppService = importRequestAppService;
             _supplierAppService = supplierAppService;
@@ -64,11 +58,11 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             _itemAppService = itemAppService;
             _unitService = unitService;
             _subsidiaryService = subsidiaryService;
-            _iTransferAppService = iTransferAppService;
-            _iTransferDetailAppService = iTransferDetailAppService;
-            _quotesService = quotesService;
-            _importRequestSubidiaryService = importRequestSubidiaryService;
-            _importRequestDetailSubidiaryService = importRequestDetailSubidiaryService;
+           // _iTransferAppService = iTransferAppService;
+            //_iTransferDetailAppService = iTransferDetailAppService;
+           // _quotesService = quotesService;
+            //_importRequestSubidiaryService = importRequestSubidiaryService;
+            //_importRequestDetailSubidiaryService = importRequestDetailSubidiaryService;
         }
 
 
@@ -77,20 +71,20 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         /// </summary>
         /// <returns></returns>
 
-        public async Task<IActionResult> ImportRequestTransfer()
-        {
-            GetWarehouseInput getWarehouseInput = new GetWarehouseInput();
-            var dto = await _wareHouseAppService.GetAll(getWarehouseInput);
-            List<SelectListItem> listItems = new List<SelectListItem>();
-            foreach (var role in _userManager.Users)
-                listItems.Add(new SelectListItem() { Value = role.Id.ToString(), Text = role.FullName });
-            ViewBag.Name = listItems;
-            IndexViewModel model = new IndexViewModel
-            {
-                WarehouseList = dto.Items.ToList()
-            };
-            return View(model);
-        }
+        //public async Task<IActionResult> ImportRequestTransfer()
+        //{
+        //    GetWarehouseInput getWarehouseInput = new GetWarehouseInput();
+        //    var dto = await _wareHouseAppService.GetAll(getWarehouseInput);
+        //    List<SelectListItem> listItems = new List<SelectListItem>();
+        //    foreach (var role in _userManager.Users)
+        //        listItems.Add(new SelectListItem() { Value = role.Id.ToString(), Text = role.FullName });
+        //    ViewBag.Name = listItems;
+        //    IndexViewModel model = new IndexViewModel
+        //    {
+        //        WarehouseList = dto.Items.ToList()
+        //    };
+        //    return View(model);
+        //}
 
 
         public async Task<IActionResult> ViewUpdateIMP()
@@ -109,59 +103,59 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         }
 
 
-        public async Task<IActionResult> CreateImportRequest(long Id)
-        {
-            var transferList = await _iTransferAppService.GetAsync(new EntityDto<long>(Id));
-            var transDferList = _iTransferDetailAppService.GetAllItem().Result.Items.FirstOrDefault(x => x.TransferId == transferList.Id);
-            var warehouseList = await _wareHouseAppService.GetWarehouseList();
-            var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-            ImportRequestViewModel model = new ImportRequestViewModel
-            {
-                WarehouseList = warehouseList,
-                CreatedBy = User.FullName,
-                TransferId = Id,
-                TransferNote = transferList.TransferNote,
-                TransferCode = transferList.TransferCode,
-                IdWarehouseExport = transferList.IdWarehouseExport,
-                Status2 = transferList.Status,
-                BrowsingTime = transferList.BrowsingTime,
-                IdWarehouseReceiving = transDferList.IdWarehouseReceiving,
+        //public async Task<IActionResult> CreateImportRequest(long Id)
+        //{
+        //    var transferList = await _iTransferAppService.GetAsync(new EntityDto<long>(Id));
+        //    var transDferList = _iTransferDetailAppService.GetAllItem().Result.Items.FirstOrDefault(x => x.TransferId == transferList.Id);
+        //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
+        //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
+        //    ImportRequestViewModel model = new ImportRequestViewModel
+        //    {
+        //        WarehouseList = warehouseList,
+        //        CreatedBy = User.FullName,
+        //        TransferId = Id,
+        //        TransferNote = transferList.TransferNote,
+        //        TransferCode = transferList.TransferCode,
+        //        IdWarehouseExport = transferList.IdWarehouseExport,
+        //        Status2 = transferList.Status,
+        //        BrowsingTime = transferList.BrowsingTime,
+        //        IdWarehouseReceiving = transDferList.IdWarehouseReceiving,
 
-            };
-            return PartialView("_CreateModal", model);
-        }
-
-
-        public async Task<IActionResult> EditImportRequestModal(int Id)
-        {
-            var dto = await _importRequestAppService.GetAsync(new EntityDto(Id));
-            var warehouseList = await _wareHouseAppService.GetWarehouseList();
-            var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-
-            //var transferList = await _iTransferAppService.GetAsync(new EntityDto<long>(dto.TransferId));
-
-            //var YCNKList = await _importRequestSubidiaryService.GetAsync(new EntityDto((int)dto.ImportRequestSubsidiaryId));
+        //    };
+        //    return PartialView("_CreateModal", model);
+        //}
 
 
-            ImportRequestViewModel model = new ImportRequestViewModel
-            {
-                WarehouseList = warehouseList,
-                CreatedBy = User.FullName,
-                Code = dto.Code,
-                WarehouseDestinationId = dto.WarehouseDestinationId,
-                RequestDate = dto.RequestDate,
-                impRequests = dto,
-                SubsidiaryId = dto.SubsidiaryId,
-               // ImportRequestSubsidiary = yy,
-                //TransferNote = transferList.TransferNote,
-                TransferId = dto.TransferId,
-                ShipperName = dto.ShipperName,
-                ShipperPhone = dto.ShipperPhone,
-                ImportRequestSubsidiaryId = dto.ImportRequestSubsidiaryId
-            };
+        //public async Task<IActionResult> EditImportRequestModal(int Id)
+        //{
+        //    var dto = await _importRequestAppService.GetAsync(new EntityDto(Id));
+        //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
+        //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
 
-            return PartialView("_EditModal", model);
-        }
+        //    //var transferList = await _iTransferAppService.GetAsync(new EntityDto<long>(dto.TransferId));
+
+        //    //var YCNKList = await _importRequestSubidiaryService.GetAsync(new EntityDto((int)dto.ImportRequestSubsidiaryId));
+
+
+        //    ImportRequestViewModel model = new ImportRequestViewModel
+        //    {
+        //        WarehouseList = warehouseList,
+        //        CreatedBy = User.FullName,
+        //        Code = dto.Code,
+        //        WarehouseDestinationId = dto.WarehouseDestinationId,
+        //        RequestDate = dto.RequestDate,
+        //        impRequests = dto,
+        //        SubsidiaryId = dto.SubsidiaryId,
+        //       // ImportRequestSubsidiary = yy,
+        //        //TransferNote = transferList.TransferNote,
+        //        TransferId = dto.TransferId,
+        //        ShipperName = dto.ShipperName,
+        //        ShipperPhone = dto.ShipperPhone,
+        //      //  ImportRequestSubsidiaryId = dto.ImportRequestSubsidiaryId
+        //    };
+
+        //    return PartialView("_EditModal", model);
+        //}
 
         public async Task<IActionResult> ViewDetails(int Id)
         {
@@ -312,22 +306,22 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         }
 
 
-        public async Task<IActionResult> CreateImportYCNK(long Id)
-        {
-            var YCNKList = await _importRequestSubidiaryService.GetAsync(new EntityDto(((int)Id)));
-            var YCNKdList = _importRequestDetailSubidiaryService.GetAllItem().Result.Items.FirstOrDefault(x => x.ImportRequestSubsidiaryId == YCNKList.Id);
-            var warehouseList = await _wareHouseAppService.GetWarehouseList();
-            var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-            var supplierList = await _supplierAppService.GetSupplierList();
-            ImportRequestViewModel model = new ImportRequestViewModel
-            {
-                WarehouseList = warehouseList,
-                CreatedBy = User.FullName,
-                ImportRequestSubsidiary = YCNKList,
-                Suppliers = supplierList,
-            };
-            return PartialView("_CreateImportYCNK", model);
-        }
+        //public async Task<IActionResult> CreateImportYCNK(long Id)
+        //{
+        //    var YCNKList = await _importRequestSubidiaryService.GetAsync(new EntityDto(((int)Id)));
+        //    var YCNKdList = _importRequestDetailSubidiaryService.GetAllItem().Result.Items.FirstOrDefault(x => x.ImportRequestSubsidiaryId == YCNKList.Id);
+        //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
+        //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
+        //    var supplierList = await _supplierAppService.GetSupplierList();
+        //    ImportRequestViewModel model = new ImportRequestViewModel
+        //    {
+        //        WarehouseList = warehouseList,
+        //        CreatedBy = User.FullName,
+        //        ImportRequestSubsidiary = YCNKList,
+        //        Suppliers = supplierList,
+        //    };
+        //    return PartialView("_CreateImportYCNK", model);
+        //}
 
 
         [HttpPost]
