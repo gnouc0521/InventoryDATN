@@ -14,65 +14,7 @@ namespace bbk.netcore.EntityFrameworkCore
 	public class netcoreDbContext : AbpZeroDbContext<Tenant, Role, User, netcoreDbContext>, IAbpPersistedGrantDbContext
 	{
 
-		/* CONVENSION: Define a DbSet for each entity of the application */
-		/* Các khai báo của dự án TCCB - VEA */
-		//#region Personal Profile - Staff
-		//public virtual DbSet<UploadFile> UploadFiles { get; set; }
-		//public virtual DbSet<ProfileStaff> PersonalProfiles { get; set; }
-
-		//public virtual DbSet<OrganizationUnitStaff> OrganizationUnitStaffs { get; set; }
-
-		//public virtual DbSet<Category> Categories { get; set; }
-
-		//public virtual DbSet<BonusInfomation> BonusInfomations { get; set; }
-
-		//#region Trainning Information
-		//public DbSet<TrainningInfo> TrainningInfos { get; set; }
-		//#endregion
-
-		//#region Working Process
-		//public DbSet<WorkingProcess> WorkingProcesses { get; set; }
-		//#endregion
-
-		//#region RelationShip
-		//public DbSet<RelationShip> RelationShips { get; set; }
-		//#endregion
-
-		//#region Salary Process
-		//public DbSet<SalaryProcess> SalaryProcesses { get; set; }
-		//#endregion    
-
-		//#region Commendation
-		//public DbSet<Commendation> Commendations { get; set; }
-		//#endregion
-
-		//#region Staff Plainning
-		//public DbSet<StaffPlainning> StaffPlainnings { get; set; }
-		//#endregion
-
-		//#region Go Abroad
-		//public DbSet<GoAbroad> GoAbroads { get; set; }
-		//#endregion
-
-		//#region Communist Party Process
-		//public DbSet<CommunistPartyProcess> CommunistPartyProcesses { get; set; }
-		//#endregion
-
-		//#region Document
-		//public DbSet<Document> Documents { get; set; }
-		//#endregion
-
-		//#region Property Declaration
-		//public DbSet<PropertyDeclaration> PropertyDeclarations { get; set; }
-		//#endregion
-
-		//#region Civil Servant + Salary Level
-		//public virtual DbSet<CivilServant> CivilServants { get; set; }
-		//public virtual DbSet<SalaryLevel> SalaryLevels { get; set; }
-		//#endregion
-		//public DbSet<RecruitmentInfomation> RecruitmentInfomations { get; set; }
-		//public DbSet<AssessedByYear> AssessedByYear { get; set; }
-		//#endregion
+	
 
 		#region OMS
 		public DbSet<Work> workItems { get; set; }
@@ -115,25 +57,7 @@ namespace bbk.netcore.EntityFrameworkCore
 		public DbSet<PurchasesSynthesise> purchasesSynthesises { get; set; }
 
 		public DbSet<Subsidiary> subsidiaries { get; set; }
-		//public DbSet<Quote> quotes { get; set; }
-		//public DbSet<QuoteRelationship> quoteRelationships { get; set; }
-		//public DbSet<QuoteSynthesise> quoteSynthesises { get; set; }
-
-		//public DbSet<PurchaseAssignment> purchaseAssignments { get; set; }
-
-		//public DbSet<Contract> contracts { get; set; }
-		//public DbSet<Order> orders { get; set; }
-
-		//public DbSet<SendMailSupplier> sendMailSuppliers { get; set; }
-		//public DbSet<Transfer> transfers { get; set; }
-		//public DbSet<TransferDetail> transferDetails { get; set; }
-		//public DbSet<OrderDetail> orderDetails { get; set; }
-		//public DbSet<QuoteRequest> quoteRequest { get; set; }
-
-		//public DbSet<UserWorkCount> UserWorkCounts { get; set; }
-		//public DbSet<ImportRequestSubsidiary> importRequestSubsidiaries { get; set; }
-
-		//public DbSet<ImportRequestSubsidiaryDetail> importRequestSubsidiaryDetails { get; set; }
+		
 
 		#endregion
 
