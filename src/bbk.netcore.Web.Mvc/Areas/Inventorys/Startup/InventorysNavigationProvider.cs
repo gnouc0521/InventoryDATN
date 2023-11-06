@@ -87,29 +87,10 @@ namespace bbk.netcore.mdl.PersonalProfile.Web.Navigation
 							new MenuItemDefinition(
 									InventorysPageNames.InventoryStaff.PersonalProfileReports,
 									 new FixedLocalizableString("Phiếu nhập kho"),
-									url: "/Inventorys/ImportRequest/ImportRequestYCNK",
+									url: "/Inventorys/ImportRequest/ImportRequest",
 									icon: "fal fa-book",
 									requiresAuthentication: true,
 									permissionDependency: new SimplePermissionDependency(InventoryPermission.ImportRequest_CreateYCNK)
-							))
-
-								.AddItem(
-							new MenuItemDefinition(
-									InventorysPageNames.InventoryStaff.PersonalProfileReports,
-									 new FixedLocalizableString("Nhập kho"),
-									url: "/Inventorys/ImportRequest/ViewUpdateIMP",
-									icon: "fal fa-book",
-									requiresAuthentication: true,
-									permissionDependency: new SimplePermissionDependency(InventoryPermission.ImportRequestEdit)
-							))
-								.AddItem(
-							new MenuItemDefinition(
-									InventorysPageNames.InventoryStaff.PersonalProfileReports,
-									 new FixedLocalizableString("Xuất Kho"),
-									url: "/Inventorys/ExportRequests/UpdateExport",
-									icon: "fal fa-code",
-									requiresAuthentication: true,
-									permissionDependency: new SimplePermissionDependency(InventoryPermission.ExportRequests_Update)
 							))
 							 .AddItem(
 							new MenuItemDefinition(
@@ -150,16 +131,16 @@ namespace bbk.netcore.mdl.PersonalProfile.Web.Navigation
 									permissionDependency: new SimplePermissionDependency(InventoryPermission.Stock)
 							)))
 						//////////////////////////////////////////////////////////////////////////////////////////////
-					 .AddItem(
-							new MenuItemDefinition(
-									InventorysPageNames.InventoryStaff.PersonalProfileDocuments,
-									 new FixedLocalizableString("Yêu cầu xuất kho"),
-									url: "/Inventorys/exportRequests/ExportRequirement",
-									icon: "fal fa-shopping-bag",
-									requiresAuthentication: true,
-									 permissionDependency: new SimplePermissionDependency(InventoryPermission.ExportRequests_Requirement)
-							)
-					)
+					 //.AddItem(
+						//	new MenuItemDefinition(
+						//			InventorysPageNames.InventoryStaff.PersonalProfileDocuments,
+						//			 new FixedLocalizableString("Yêu cầu xuất kho"),
+						//			url: "/Inventorys/exportRequests/ExportRequirement",
+						//			icon: "fal fa-shopping-bag",
+						//			requiresAuthentication: true,
+						//			 permissionDependency: new SimplePermissionDependency(InventoryPermission.ExportRequests_Requirement)
+						//	)
+					//)
 					 .AddItem(
 							new MenuItemDefinition(
 									InventorysPageNames.InventoryStaff.PersonalProfileReports,
@@ -188,15 +169,15 @@ namespace bbk.netcore.mdl.PersonalProfile.Web.Navigation
 									requiresAuthentication: true,
 									permissionDependency: new SimplePermissionDependency(InventoryPermission.Subsidiary)
 							))
-						 .AddItem(
-							new MenuItemDefinition(
-									InventorysPageNames.InventoryStaff.PersonalProfileReports,
-									 new FixedLocalizableString("Yêu cầu nhập kho"),
-									url: "/Inventorys/ImportRequestSubsidiary",
-									icon: "fal fa-book",
-									requiresAuthentication: true,
-									permissionDependency: new SimplePermissionDependency(InventoryPermission.YCNK_aLL)
-							))
+						 //.AddItem(
+							//new MenuItemDefinition(
+							//		InventorysPageNames.InventoryStaff.PersonalProfileReports,
+							//		 new FixedLocalizableString("Yêu cầu nhập kho"),
+							//		url: "/Inventorys/ImportRequestSubsidiary",
+							//		icon: "fal fa-book",
+							//		requiresAuthentication: true,
+							//		permissionDependency: new SimplePermissionDependency(InventoryPermission.YCNK_aLL)
+							//))
 
 				
 
@@ -229,91 +210,6 @@ namespace bbk.netcore.mdl.PersonalProfile.Web.Navigation
 									requiresAuthentication: true,
 									permissionDependency: new SimplePermissionDependency(InventoryPermission.Items)
 							));
-			//.AddItem(
-			// new MenuItemDefinition(
-			//     InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//      new FixedLocalizableString("Yêu cầu điều chuyển"),
-			//     url: "/Inventorys/Transfer",
-			//     icon: "fal fa-random",
-			//     requiresAuthentication: true,
-			//     permissionDependency: new SimplePermissionDependency(InventoryPermission.Transfer_Create)
-			// ))
-
-			//.AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Tổng hợp YCMH"),
-			//    url: "/Inventorys/PurchasesRequest",
-			//    icon: "fal fa-shopping-cart",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.PurchasesRequest)
-			//))
-			//  .AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Duyệt yêu cầu điều chuyển"),
-			//    url: "/Inventorys/Transfer/TransferManagement",
-			//    icon: "fal fa-sort",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.TransferManagement)
-			//))
-			//.AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Phân công mua hàng"),
-			//    url: "/Inventorys/PurchaseAssignment",
-			//    icon: "fal fa-edit",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.PurchaseAssignment)
-			//))
-			//.AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Chuyên viên"),
-			//    url: "/Inventorys/Expert",
-			//    icon: "fal fa-user",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.Expert)
-			//))
-
-
-			//.AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Báo giá"),
-			//    url: "/Inventorys/Quote/Compare",
-			//    icon: "fal fa-repeat-alt",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.Quote_Create)
-			//))
-
-			// .AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Lấy báo giá NCC"),
-			//    url: "/Inventorys/MyWork",
-			//    icon: "fal fa-bullseye",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.MyWork)
-			//))
-			//   .AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Tạo Hợp đồng"),
-			//    url: "/Inventorys/Contract",
-			//    icon: "fal fa-repeat-alt",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.Contract_Create)
-			//))
-			//   .AddItem(
-			//new MenuItemDefinition(
-			//    InventorysPageNames.InventoryStaff.PersonalProfileReports,
-			//     new FixedLocalizableString("Phê duyệt Hợp đồng"),
-			//    url: "/Inventorys/Contract/ApproveContract",
-			//    icon: "fal fa-repeat-alt",
-			//    requiresAuthentication: true,
-			//    permissionDependency: new SimplePermissionDependency(InventoryPermission.Contract_Edit)
-			//));
 		}
 
 		private static ILocalizableString L(string name)
