@@ -31,7 +31,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         private readonly UserManager _userManager;
         private readonly IExportRequests _exportRequests;
         private readonly IExportRequestDetails _exportRequestDetails;
-        private readonly ITransferAppService _transferAppService;
+        //private readonly ITransferAppService _transferAppService;
         private readonly ISubsidiaryService _subsidiaryService;
         private readonly RoleManager _role;
         private readonly IRepository<UserRole, long> _userrole;
@@ -42,7 +42,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
              UserManager userManager,
              IExportRequests exportRequests,
              IExportRequestDetails exportRequestDetails,
-             ITransferAppService transferAppService,
+            // ITransferAppService transferAppService,
              ISubsidiaryService subsidiaryService,
                 RoleManager role,
                 IRepository<UserRole, long> userrole
@@ -54,7 +54,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             _itemAppService = itemsService;
             _exportRequests = exportRequests;
             _exportRequestDetails = exportRequestDetails;   
-            _transferAppService = transferAppService;
+           // _transferAppService = transferAppService;
             _subsidiaryService = subsidiaryService; 
             _role = role;
             _userrole = userrole;
@@ -172,26 +172,26 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             return View("UpdateExport");
         }
 
-        public async Task<PartialViewResult> CreateExport(long id)
-        {
-            GetWarehouseInput getWarehouseInput = new GetWarehouseInput();
-            var dto = await _wareHouseAppService.GetAll(getWarehouseInput);
-            var supplierList = await _supplierAppService.GetSupplierList();
-            var warehouseList = await _wareHouseAppService.GetWarehouseList();
-            var itemList = await _itemAppService.GetItemList();
-            var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-            ViewBag.username = User.FullName;
-            var tran = await _transferAppService.GetAsync(new EntityDto<long>(id));
-            ExportRequestModel ExportRequestModel = new ExportRequestModel
-            {
-                ItemsListDtos = itemList,
-                SuppliersList = supplierList,
-                WarehouseList = dto.Items.ToList(),
-                transferListDto = tran,
+        //public async Task<PartialViewResult> CreateExport(long id)
+        //{
+        //    GetWarehouseInput getWarehouseInput = new GetWarehouseInput();
+        //    var dto = await _wareHouseAppService.GetAll(getWarehouseInput);
+        //    var supplierList = await _supplierAppService.GetSupplierList();
+        //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
+        //    var itemList = await _itemAppService.GetItemList();
+        //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
+        //    ViewBag.username = User.FullName;
+        //   // var tran = await _transferAppService.GetAsync(new EntityDto<long>(id));
+        //    ExportRequestModel ExportRequestModel = new ExportRequestModel
+        //    {
+        //        ItemsListDtos = itemList,
+        //        SuppliersList = supplierList,
+        //        WarehouseList = dto.Items.ToList(),
+        //        //transferListDto = tran,
                 
-            };
-            return PartialView("_CreateExport", ExportRequestModel);
-        }
+        //    };
+        //    return PartialView("_CreateExport", ExportRequestModel);
+        //}
           public async Task<PartialViewResult> UpdateExportModal(long id)
         {
             var supplierList = await _supplierAppService.GetSupplierList();

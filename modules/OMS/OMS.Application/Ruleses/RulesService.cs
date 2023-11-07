@@ -66,6 +66,7 @@ namespace bbk.netcore.mdl.OMS.Application.Ruleses
             {
                 var query = _rulesrepository
                       .GetAll()
+
                       .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), u => input.SearchTerm.ToLower().Contains(u.ItemKey.ToLower())).ToList();
                 var rulesCount = query.Count();
                 var rulesListDto = ObjectMapper.Map<List<RulesListDto>>(query);
@@ -137,6 +138,10 @@ namespace bbk.netcore.mdl.OMS.Application.Ruleses
         public async Task<RulesListDto> GetAsync(EntityDto itemId)
         {
             var item = _rulesrepository.Get(itemId.Id);
+      if(item == null)
+      {
+        return null;
+      }
             RulesListDto newItem = ObjectMapper.Map<RulesListDto>(item);
             return newItem;
         }

@@ -132,7 +132,7 @@
                 className: "text-center",
                 render: function (data, type, row, meta) {
                     return `
-                            <a class='doceditfunc'  data-objid='` + row.id + `' href='javascript:void(0);'> Sửa </a>`;
+                            <a class='btn btn-warning text-white doceditfunc'  data-objid='` + row.id + `' href='javascript:void(0);'> Sửa </a>`;
                 }
             },
 
