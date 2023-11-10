@@ -1,19 +1,27 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
+using Abp.UI;
 using Abp.Web.Models;
 using bbk.netcore.Authorization.Users;
 using bbk.netcore.Controllers;
 using bbk.netcore.mdl.OMS.Application.ImportRequests;
+using bbk.netcore.mdl.OMS.Application.ImportRequests.Dto;
 using bbk.netcore.mdl.OMS.Application.Itemses;
+using bbk.netcore.mdl.OMS.Application.Itemses.Dto;
+using bbk.netcore.mdl.OMS.Application.Producers.Dto;
 using bbk.netcore.mdl.OMS.Application.Quotes;
+using bbk.netcore.mdl.OMS.Application.Ruleses.Dto;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries;
 using bbk.netcore.mdl.OMS.Application.Suppliers;
 using bbk.netcore.mdl.OMS.Application.Units;
 using bbk.netcore.mdl.OMS.Application.WareHouses;
 using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
 using bbk.netcore.Web.Areas.Inventorys.Models.ImportRequest;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -350,5 +358,52 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             memory.Position = 0;
             return memory;
         }
+
+    public async Task<ImportRequestViewModel> ImportExcel(IFormFile file)
+    {
+      try
+      {
+        List<ImportRequestListDto> importRequestListDtos = new List<ImportRequestListDto>();
+        ImportRequestViewModel importRequestViewModel = new ImportRequestViewModel();
+        using (var stream = new MemoryStream())
+        {
+
+          await file.CopyToAsync(stream);
+          using (var package = new ExcelPackage(stream))
+          {
+            ExcelWorksheet workSheet = package.Workbook.Worksheets.First();
+
+            // get number of rows and columns in the sheet
+            int rows = workSheet.Dimension.Rows; // 20
+            int columns = workSheet.Dimension.Columns; // 7
+            string name = "Người vận chuyển : ";
+            string phone = "SDT người vận chuyển:";
+            string inventory = "Kho nhập:";
+            importRequestViewModel.ShipperName = (workSheet.Cells[2, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
+            importRequestViewModel.ShipperPhone = (workSheet.Cells[3, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
+            if (workSheet != null)
+            {
+              for (int i = 5; i < rows + 4; i++)
+              {
+                importRequestListDtos.Add(new ImportRequestListDto
+                {
+
+                });
+              }
+
+            }
+            importRequestViewModel.ListImpRequests = importRequestListDtos;
+
+          }
+        }
+        return importRequestViewModel;
+      }
+      catch (Exception ex)
+      {
+
+        throw new UserFriendlyException(ex.Message);
+      }
+
     }
+  }
 }

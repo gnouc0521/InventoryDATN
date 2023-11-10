@@ -26,5 +26,6 @@ namespace bbk.netcore.mdl.OMS.Core.Entities
         public long BlockId { get; set; }
         public long FloorId { get; set; }
         public long ShelfId { get; set; }
+        public virtual ExportRequest ExportRequest {  get; set; }  
     }
 }

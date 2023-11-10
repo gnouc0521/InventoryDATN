@@ -32,6 +32,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Models.ImportRequest
         public ImportResquestEnum.ImportResquestStatus ImportStatus { get; set; }
         public string ShipperName { get; set; }
         public ImportRequestListDto impRequests { get; set; }
+        public List<ImportRequestListDto> ListImpRequests { get; set; }
 
         public ImportRequestSubListDto ImportRequestSubsidiary { get; set; }
         public string ShipperPhone { get; set; }
