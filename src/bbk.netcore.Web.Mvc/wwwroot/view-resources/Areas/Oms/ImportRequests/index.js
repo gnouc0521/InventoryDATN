@@ -20,13 +20,6 @@
         modalType: 'modal-xl'
     });
 
-    var _ViewDetails = new app.ModalManager({
-        viewUrl: abp.appPath + 'Inventorys/ImportRequest/ViewDetails',
-        scriptUrl: abp.appPath + 'view-resources/Areas/Oms/ImportRequests/ViewDetail.js',
-        modalClass: 'ViewModal',
-        modalType: 'modal-xl'
-    });
-
     $('.date-picker').datepicker({
         rtl: false,
         format: "dd/mm/yyyy",

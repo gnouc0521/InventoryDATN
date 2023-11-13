@@ -213,9 +213,30 @@
         xl2json.parseExcel(files[0]);
       }
 
+
       var AddItemImport = {
         buttonUpload: $('#UploadFileImport'),
         buttonDownLoad: $('#UploadFileImport'),
+        ItemTable: $("#ItemTable"),
+        ShipperNameInput: $("#ShipperName"),
+        ShipperPhoneInput: $("#ShipperPhone"),
+        WarehouseDestination: $("#WarehouseDestinationId"),
+        Remark: $("#Remark"),
+
+        LoadData: function (data) {
+          //region set val input
+          this.ShipperNameInput.val(data.shipperName);
+          this.ShipperPhoneInput.val(data.shipperPhone);
+          this.WarehouseDestination.val(data.warehouseDestination);
+          this.Remark.val(data.remark);
+          //endregion
+
+          //region set val in table
+          var datatable = this.ItemTable.DataTable();
+          //endregion
+
+        },
+
         loadExcel: function () {
           let formData = new FormData();
           formData.append("file", fodata);
@@ -228,13 +249,20 @@
             data: formData,
             dataType: "json",
             success: (function (response) {
+              setTimeout(() => {
+                AddItemImport.LoadData(response)
+              }, "1000");
             })
           }).done(function () {
             abp.notify.info('Cập nhật file báo giá thành công!');
-          //  getDocs();
+            //  getDocs();
           })
         },
-
+        delete_row: function () {
+          $('.delete_row').click(function () {
+            $(this).parents('tr').remove();
+          })
+        },
         onClickHandler: function (ev) {
           var el = window._protected_reference = document.createElement("INPUT");
           el.type = "file";
@@ -277,7 +305,6 @@
         },
         init: function () {
           this.buttonUpload.on("click", function () {
-            debugger
             AddItemImport.onClickHandler()
           })
         },

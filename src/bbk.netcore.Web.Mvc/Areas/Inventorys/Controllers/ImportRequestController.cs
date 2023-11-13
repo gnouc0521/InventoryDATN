@@ -21,6 +21,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OfficeOpenXml;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,12 +42,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         private readonly UserManager _userManager;
         private readonly IUnitService _unitService;
         private readonly ISubsidiaryService _subsidiaryService;
-       // private readonly ITransferAppService _iTransferAppService;
-       // private readonly ITransferDetailAppService _iTransferDetailAppService;
-        //private readonly IQuotesService _quotesService;
-       // private readonly IImportRequestSubidiaryService _importRequestSubidiaryService;
-        //private readonly IImportRequestDetailSubidiaryService _importRequestDetailSubidiaryService;
-
         public ImportRequestController(IImportRequestAppService importRequestAppService,
                                        ISupplierAppService supplierAppService,
                                        IWareHouseAppService wareHouseAppService,
@@ -53,11 +49,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
                                        UserManager userManager,
                                        IUnitService unitService,
                                         ISubsidiaryService subsidiaryService
-                                       // ITransferAppService iTransferAppService,
-                                       // ITransferDetailAppService iTransferDetailAppService,
-                                        /*IQuotesService quotesService*/)
-                                        //IImportRequestSubidiaryService importRequestSubidiaryService,
-                                        //IImportRequestDetailSubidiaryService importRequestDetailSubidiaryService)
+                                      )
         {
             _importRequestAppService = importRequestAppService;
             _supplierAppService = supplierAppService;
@@ -66,11 +58,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             _itemAppService = itemAppService;
             _unitService = unitService;
             _subsidiaryService = subsidiaryService;
-           // _iTransferAppService = iTransferAppService;
-            //_iTransferDetailAppService = iTransferDetailAppService;
-           // _quotesService = quotesService;
-            //_importRequestSubidiaryService = importRequestSubidiaryService;
-            //_importRequestDetailSubidiaryService = importRequestDetailSubidiaryService;
         }
 
 
@@ -78,21 +65,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         /// xuất nhập kho điều chuyển
         /// </summary>
         /// <returns></returns>
-
-        //public async Task<IActionResult> ImportRequestTransfer()
-        //{
-        //    GetWarehouseInput getWarehouseInput = new GetWarehouseInput();
-        //    var dto = await _wareHouseAppService.GetAll(getWarehouseInput);
-        //    List<SelectListItem> listItems = new List<SelectListItem>();
-        //    foreach (var role in _userManager.Users)
-        //        listItems.Add(new SelectListItem() { Value = role.Id.ToString(), Text = role.FullName });
-        //    ViewBag.Name = listItems;
-        //    IndexViewModel model = new IndexViewModel
-        //    {
-        //        WarehouseList = dto.Items.ToList()
-        //    };
-        //    return View(model);
-        //}
 
 
         public async Task<IActionResult> ViewUpdateIMP()
@@ -379,9 +351,9 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             string name = "Người vận chuyển : ";
             string phone = "SDT người vận chuyển:";
             string inventory = "Kho nhập:";
-            importRequestViewModel.ShipperName = (workSheet.Cells[2, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
-            importRequestViewModel.ShipperPhone = (workSheet.Cells[3, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
-            importRequestViewModel.NameWareHouse = (workSheet.Cells[4, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
+            importRequestViewModel.ShipperName = (workSheet.Cells[2, 1].Value ?? string.Empty).ToString().Replace("Người vận chuyển : "," ").Trim();
+            importRequestViewModel.ShipperPhone = (workSheet.Cells[3, 1].Value ?? string.Empty).ToString().Replace("SDT người vận chuyển:"," ").Trim();
+            importRequestViewModel.NameWareHouse = (workSheet.Cells[4, 1].Value ?? string.Empty).ToString().Replace(inventory,"").Trim();
             if (workSheet != null)
             {
               for (int i = 5; i < rows + 4; i++)
