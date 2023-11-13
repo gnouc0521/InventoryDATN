@@ -381,6 +381,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             string inventory = "Kho nhập:";
             importRequestViewModel.ShipperName = (workSheet.Cells[2, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
             importRequestViewModel.ShipperPhone = (workSheet.Cells[3, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
+            importRequestViewModel.NameWareHouse = (workSheet.Cells[4, 1].Value ?? string.Empty).ToString();                                         // loop through the worksheet rows and columns
             if (workSheet != null)
             {
               for (int i = 5; i < rows + 4; i++)
@@ -390,10 +391,8 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 
                 });
               }
-
             }
             importRequestViewModel.ListImpRequests = importRequestListDtos;
-
           }
         }
         return importRequestViewModel;

@@ -79,62 +79,6 @@ namespace bbk.netcore.Authorization
             Rule.CreateChildPermission(InventoryPermission.Rules_Create, L("Thêm quy cách"));
             Rule.CreateChildPermission(InventoryPermission.Rules_Edit, L("Sửa quy cách"));
             Rule.CreateChildPermission(InventoryPermission.Rules_Delete, L("Xóa quy cách"));
-
-            var stock = context.CreatePermission(InventoryPermission.Stock, L("Quản lý tồn kho"));
-
-            var PurchasesRequest = context.CreatePermission(InventoryPermission.PurchasesRequest, L("Yêu cầu mua hàng"));
-            PurchasesRequest.CreateChildPermission(InventoryPermission.PurchasesRequest_Create, L("Thêm "));
-            PurchasesRequest.CreateChildPermission(InventoryPermission.PurchasesRequest_Edit, L("Sửa"));
-            PurchasesRequest.CreateChildPermission(InventoryPermission.PurchasesRequest_Delete, L("Xóa"));
-            PurchasesRequest.CreateChildPermission(InventoryPermission.PurchasesRequest_send, L("Gửi YCMH"));
-            PurchasesRequest.CreateChildPermission(InventoryPermission.PurchasesRequest_Confirm, L("Duyệt YCMH"));
-            PurchasesRequest.CreateChildPermission(InventoryPermission.PurchasesRequest_feedback, L("Lý do từ chối"));
-
-
-            var Subsidiary = context.CreatePermission(InventoryPermission.Subsidiary, L("Đơn vị yêu cầu"));
-            Subsidiary.CreateChildPermission(InventoryPermission.Subsidiary_Create, L("Thêm "));
-            Subsidiary.CreateChildPermission(InventoryPermission.Subsidiary_Edit, L("Sửa"));
-            Subsidiary.CreateChildPermission(InventoryPermission.Subsidiary_Delete, L("Xóa"));
-
-
-            var Expert = context.CreatePermission(InventoryPermission.Expert, L("Quản lý Chuyên viên"));
-            Expert.CreateChildPermission(InventoryPermission.Expert_Create, L("Thêm "));
-            Expert.CreateChildPermission(InventoryPermission.Expert_Edit, L("Sửa"));
-            Expert.CreateChildPermission(InventoryPermission.Expert_Delete, L("Xóa"));
-
-            var PurchaseAssignment = context.CreatePermission(InventoryPermission.PurchaseAssignment, L("Phân công mua hàng"));
-            PurchaseAssignment.CreateChildPermission(InventoryPermission.PurchaseAssignment_Assign, L("Thêm chuyên viên "));
-
-
-            var MyWork = context.CreatePermission(InventoryPermission.MyWork, L("Nhiệm vụ của tôi"));
-
-
-            var Transfer = context.CreatePermission(InventoryPermission.Transfer, L("Điều chuyển"));
-            Transfer.CreateChildPermission(InventoryPermission.Transfer_Create, L("Tạo phiếu điều chuyển"));
-
-            Transfer.CreateChildPermission(InventoryPermission.TransferManagement, L("Quản lý điều chuyển"));
-
-            var Contract = context.CreatePermission(InventoryPermission.Contract, L("Hợp đồng"));
-            Contract.CreateChildPermission(InventoryPermission.Contract_Create, L("Thêm "));
-            Contract.CreateChildPermission(InventoryPermission.Contract_Edit, L("Phê duyệt"));
-
-            var ComfirmOrder = context.CreatePermission(InventoryPermission.Order_comfirm, L("Xác nhận đơn hàng từ NCC"));
-
-            var ycnk = context.CreatePermission(InventoryPermission.YCNK_aLL, L("Yêu cầu phiếu nhập"));
-            ycnk.CreateChildPermission(InventoryPermission.YCNK_Create, L("Tạo mới"));
-            ycnk.CreateChildPermission(InventoryPermission.YCNK, L("Xác nhận YCNK"));
-            ycnk.CreateChildPermission(InventoryPermission.YCNK_send, L("Gửi Phê duyệt YCPN"));
-            ycnk.CreateChildPermission(InventoryPermission.YCNK_feedback, L("feedback YCPN"));
-
-            var Order = context.CreatePermission(InventoryPermission.Order, L("Đơn đặt hàng"));
-            Order.CreateChildPermission(InventoryPermission.Order_Create, L("Tạo đơn đặt hàng"));
-
-            var quote = context.CreatePermission(InventoryPermission.Quote, L("Trình báo giá"));
-            quote.CreateChildPermission(InventoryPermission.Quote_Create, L("Thêm"));
-            quote.CreateChildPermission(InventoryPermission.Quote_Edit, L("Phê duyệt báo giá"));
-            quote.CreateChildPermission(InventoryPermission.Quote_Feedback, L("Phản hồi"));
-            quote.CreateChildPermission(InventoryPermission.Quote_Update, L("Cập nhật trình báo giá"));
-
         }
 
         private static ILocalizableString L(string name)
