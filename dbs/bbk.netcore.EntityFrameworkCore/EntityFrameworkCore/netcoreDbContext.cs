@@ -14,19 +14,6 @@ namespace bbk.netcore.EntityFrameworkCore
 	public class netcoreDbContext : AbpZeroDbContext<Tenant, Role, User, netcoreDbContext>, IAbpPersistedGrantDbContext
 	{
 
-	
-
-		#region OMS
-		public DbSet<Work> workItems { get; set; }
-		public DbSet<DayOff> dayOffs { get; set; }
-		public DbSet<WorkGroup> workGroups { get; set; }
-		public DbSet<ProfileWork> profileWorks { get; set; }
-		public DbSet<ScheduleWork> scheduleWorks { get; set; }
-		public DbSet<UserWork> userWorks { get; set; }
-		public DbSet<UploadFileCV> uploadFileCVs { get; set; }
-
-		#endregion
-
 		#region Inventory
 		public DbSet<Warehouse> warehouses { get; set; }
 		public DbSet<Producer> producers { get; set; }
@@ -48,13 +35,7 @@ namespace bbk.netcore.EntityFrameworkCore
 		public DbSet<InventoryTicket> inventoryTicket { get; set; }
 
 		public DbSet<InventoryTicketDetail> inventoryTicketDetail { get; set; }
-		public DbSet<Expert> expert { get; set; }
-		public DbSet<Assignment> assignments { get; set; }
 
-		public DbSet<PurchasesRequest> purchasesRequest { get; set; }
-
-		public DbSet<PurchasesRequestDetail> purchasesRequestDetail { get; set; }
-		public DbSet<PurchasesSynthesise> purchasesSynthesises { get; set; }
 
 		public DbSet<Subsidiary> subsidiaries { get; set; }
 		
