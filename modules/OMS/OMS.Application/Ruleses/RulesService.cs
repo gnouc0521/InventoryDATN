@@ -4,17 +4,15 @@ using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.UI;
 using bbk.netcore.mdl.OMS.Application.Ruleses.Dto;
-using bbk.netcore.mdl.OMS.Application.Units.Dto;
 using bbk.netcore.mdl.OMS.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace bbk.netcore.mdl.OMS.Application.Ruleses
 {
-    public class RulesService : ApplicationService, IRulesService
+  public class RulesService : ApplicationService, IRulesService
     {
         private readonly IRepository<Rules> _rulesrepository;
 
