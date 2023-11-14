@@ -153,8 +153,7 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 var query = _exportRequestsRepository.GetAll()
                                                      .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), x => x.Code.ToLower().Contains(input.SearchTerm.ToLower()))
                                                       .WhereIf(!string.IsNullOrEmpty(input.RequestDate), u => u.RequestDate == DateTime.Parse(input.RequestDate))
-                                                      .WhereIf(input.Status.HasValue, u => u.Status > input.Status)
-                                                      .WhereIf(input.ExportStatus.HasValue, u => u.ExportStatus != input.ExportStatus)
+                                                      .WhereIf(input.Status.HasValue, u => u.Status == input.Status)
                                                      .WhereIf(input.WarehouseDestinationId != null, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
                                                      .ToList();
                 var queryware = _warehouseRepository.GetAll();
@@ -471,26 +470,6 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 path = path.Replace("{{TenNguoiNhan}}", name);
                 path = path.Replace("{{LinkFromEmail}}", passlinkEmail);
                 await _sendMailService.SendEmailCvAsync(email, "Xác nhận công việc :", path);
-                //GetUsersInput getUsersInput = new GetUsersInput();
-                //getUsersInput.MaxResultCount = 1000;
-                //var querya = _userAppService.GetUsers(getUsersInput).Result;
-                //List<UsersListDto> usersListDtos = new List<UsersListDto>((querya.TotalCount));
-                //for (int i = 0; i < querya.TotalCount; i++)
-                //{
-                //    if (querya.Items[i].Id == items.CreatorUserId)
-                //    {
-                //        UsersListDto usersListdata = new UsersListDto();
-                //        email = querya.Items[i].EmailAddress;
-                //        name = querya.Items[i].Name;
-                //        usersListdata.Email = email;
-                //        usersListdata.FullName = name;
-                //        usersListDtos.Add(usersListdata);
-                //        path = path.Replace("{{TenNguoiNhan}}", name);
-                //        path = path.Replace("{{LinkFromEmail}}", passlinkEmail);
-                //        await _sendMailService.SendEmailCvAsync(email, "Xác nhận công việc :", path);
-                //    }
-
-                //}
             }
 
             await _exportRequestsRepository.UpdateAsync(items);

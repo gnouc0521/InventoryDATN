@@ -6,12 +6,9 @@ using Abp.Web.Models;
 using bbk.netcore.Authorization.Roles;
 using bbk.netcore.Authorization.Users;
 using bbk.netcore.Controllers;
-using bbk.netcore.mdl.OMS.Application.Contracts;
 using bbk.netcore.mdl.OMS.Application.ImportRequestSubidiarys;
-using bbk.netcore.mdl.OMS.Application.Orders;
 using bbk.netcore.mdl.OMS.Application.Suppliers;
 using bbk.netcore.mdl.OMS.Application.WareHouses;
-using bbk.netcore.mdl.OMS.Core.Entities;
 using bbk.netcore.Web.Areas.Inventorys.Models.IMBSub;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -19,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 {
-    [Area("Inventorys")]
+  [Area("Inventorys")]
     [AbpMvcAuthorize]
     public class ImportRequestSubsidiaryController : netcoreControllerBase
     {
@@ -27,16 +24,12 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         private readonly UserManager _userManager;
         private readonly IWareHouseAppService _wareHouseAppService;
         private readonly ISupplierAppService _supplierAppService;
-        private readonly IOrderAppService _orderAppService;
-        private readonly IContractAppService _contractAppService;
         private readonly RoleManager _role;
         private readonly IRepository<UserRole, long> _userrole;
         public ImportRequestSubsidiaryController(IImportRequestSubidiaryService importRequestSubidiaryService,
                 UserManager userManager,
                 IWareHouseAppService wareHouseAppService,
                 ISupplierAppService supplierAppService,
-                IOrderAppService orderAppService,
-                IContractAppService contractAppService,
                 RoleManager role,
                 IRepository<UserRole, long> userrole)
         {
@@ -44,8 +37,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             _userManager = userManager;
             _wareHouseAppService = wareHouseAppService;
             _supplierAppService = supplierAppService;
-            _orderAppService = orderAppService;
-            _contractAppService = contractAppService;
             _role = role;
             _userrole = userrole;
         }
@@ -60,8 +51,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
             var warehouseList = await _wareHouseAppService.GetWarehouseList();
             var supplierList = await _supplierAppService.GetSupplierList();
-            var order = await _orderAppService.GetAsync(new EntityDto<long>(Id));
-            var contract = await _contractAppService.GetAsync(new EntityDto(((int)order.ContractId)));
 
             IndexViewModel model = new IndexViewModel
             {
@@ -69,8 +58,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
                 WarehouseList = warehouseList,
                 CreatedBy = User.FullName,
                 Suppliers = supplierList,
-                IdSupplier = contract.SupplierId,
-                OrderCode = order.OrderCode,
 
             };
             return PartialView("_CreateModal", model);

@@ -2,9 +2,6 @@
 using Abp.AspNetCore.Mvc.Authorization;
 using Abp.Web.Models;
 using bbk.netcore.Controllers;
-using bbk.netcore.mdl.OMS.Application.Producers.Dto;
-using bbk.netcore.mdl.OMS.Application.PurchasesRequests;
-using bbk.netcore.mdl.OMS.Application.PurchasesRequests.Dto;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries.Dto;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 {
-    [Area("Inventorys")]
+  [Area("Inventorys")]
     [AbpMvcAuthorize]
     public class SubsidiaryController : netcoreControllerBase
     {

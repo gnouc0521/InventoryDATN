@@ -2,18 +2,15 @@
 using bbk.netcore.mdl.OMS.Application.Itemses.Dto;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries.Dto;
 using bbk.netcore.mdl.OMS.Application.Suppliers.Dto;
-using bbk.netcore.mdl.OMS.Application.Transfers.Dto;
 using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
-using bbk.netcore.mdl.OMS.Core.Entities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Models.ExportRequests
 {
-    public class ExportRequestModel
+  public class ExportRequestModel
     {
         public WarehouseListDto warehouse { get; set; }
-        public TransferListDto transferListDto { get; set; }
         public SubsidiaryListDto subsidiaryDto{ get; set; }
         public string CreatedByName { get; set; }
         public ExportRequestsListDto exportRequests { get; set; }

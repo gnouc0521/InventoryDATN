@@ -1,8 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
-using bbk.netcore.mdl.OMS.Application.PurchasesRequests.Dto;
-using bbk.netcore.mdl.OMS.Application.PurchasesSynthesises.Dto;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries.Dto;
-using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
 using bbk.netcore.mdl.OMS.Core.Enums;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -10,7 +7,7 @@ using System.Collections.Generic;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Models.PurchsesRequest
 {
-    public class PurchsesRequestViewModel :FullAuditedEntity
+  public class PurchsesRequestViewModel :FullAuditedEntity
     {
         public string SubsidiaryCompany { get; set; }
 
@@ -28,9 +25,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Models.PurchsesRequest
         public string DistrictId { get; set; }
         public string WardsId { get; set; }
 
-        public PurchasesRequestListDto purchasesRequest { get; set; }
         public SubsidiaryListDto subsidiaryList { get; set; }
-        public PurchasesSynthesisListDto purchasesSynthesis { get; set; }
         public PurchasesRequestEnum.MyworkStatus RequestStatus { get; set; }
 
         public List<SubsidiaryListDto> subsidiaryListDto { get; set; }

@@ -7,11 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="OrdersDetail\Export\NewFolder\**" />
 	  <Compile Remove="Q\**" />
-	  <EmbeddedResource Remove="OrdersDetail\Export\NewFolder\**" />
 	  <EmbeddedResource Remove="Q\**" />
-	  <None Remove="OrdersDetail\Export\NewFolder\**" />
 	  <None Remove="Q\**" />
 	</ItemGroup>
 	<ItemGroup>

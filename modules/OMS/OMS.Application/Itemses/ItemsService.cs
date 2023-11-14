@@ -3,24 +3,18 @@ using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using Abp.UI;
-using AutoMapper;
 using bbk.netcore.mdl.OMS.Application.Itemses.Dto;
-using bbk.netcore.mdl.OMS.Application.Ruleses.Dto;
-using bbk.netcore.mdl.OMS.Application.Units.Dto;
-using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
-using bbk.netcore.mdl.OMS.Application.Works.Dto;
 using bbk.netcore.mdl.OMS.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 
 namespace bbk.netcore.mdl.OMS.Application.Itemses
 {
-    public class ItemsService : ApplicationService, IItemsService
+  public class ItemsService : ApplicationService, IItemsService
     {
         private readonly IRepository<Items, long> _Itemsrepository;
         private readonly IRepository<Inventory, long> _inventoryrepository;

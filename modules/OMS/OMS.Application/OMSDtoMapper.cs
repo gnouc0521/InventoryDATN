@@ -1,20 +1,8 @@
-using Abp.Application.Editions;
-using Abp.Application.Features;
-using Abp.Auditing;
-using Abp.Authorization;
-using Abp.Authorization.Users;
-using Abp.EntityHistory;
-using Abp.Localization;
-using Abp.Notifications;
-using Abp.Organizations;
-using Abp.UI.Inputs;
 using AutoMapper;
-using bbk.netcore.mdl.OMS.Application.Works.Dto;
-using bbk.netcore.mdl.OMS.Core.Entities;
 
 namespace bbk.netcore.mdl.OMS.Application
 {
-    internal static class OMSDtoMapper
+  internal static class OMSDtoMapper
     {
         private static volatile bool _mappedBefore;
         private static readonly object SyncObj = new object();

@@ -1,15 +1,11 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequestDetails.Dto;
-using bbk.netcore.mdl.OMS.Application.Producers.Dto;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace bbk.netcore.mdl.OMS.Application.ImportRequestDetails
 {
-    public interface IImportRequestDetailAppService : IApplicationService
+  public interface IImportRequestDetailAppService : IApplicationService
     {
         Task<PagedResultDto<ImportRequestDetailListDto>> GetAll(GetImportRequestDetailInput input);
         Task<long> Create(ImportRequestDetailCreateDto input);

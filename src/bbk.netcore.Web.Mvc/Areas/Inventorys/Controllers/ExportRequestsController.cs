@@ -11,9 +11,7 @@ using bbk.netcore.mdl.OMS.Application.ExportRequests;
 using bbk.netcore.mdl.OMS.Application.Itemses;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries;
 using bbk.netcore.mdl.OMS.Application.Suppliers;
-using bbk.netcore.mdl.OMS.Application.Transfers;
 using bbk.netcore.mdl.OMS.Application.WareHouses;
-using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
 using bbk.netcore.Web.Areas.Inventorys.Models.ExportRequests;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -21,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 {
-    [Area("Inventorys")]
+  [Area("Inventorys")]
     [AbpMvcAuthorize]
     public class ExportRequestsController : netcoreControllerBase
     {
@@ -31,7 +29,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
         private readonly UserManager _userManager;
         private readonly IExportRequests _exportRequests;
         private readonly IExportRequestDetails _exportRequestDetails;
-        //private readonly ITransferAppService _transferAppService;
         private readonly ISubsidiaryService _subsidiaryService;
         private readonly RoleManager _role;
         private readonly IRepository<UserRole, long> _userrole;
@@ -42,7 +39,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
              UserManager userManager,
              IExportRequests exportRequests,
              IExportRequestDetails exportRequestDetails,
-            // ITransferAppService transferAppService,
              ISubsidiaryService subsidiaryService,
                 RoleManager role,
                 IRepository<UserRole, long> userrole
@@ -54,7 +50,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             _itemAppService = itemsService;
             _exportRequests = exportRequests;
             _exportRequestDetails = exportRequestDetails;   
-           // _transferAppService = transferAppService;
             _subsidiaryService = subsidiaryService; 
             _role = role;
             _userrole = userrole;
@@ -111,14 +106,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             var supplierList =  _supplierAppService.GetSupplierList().Result.Where(x=>x.Id == dto.SupplierId).ToList();
             var warehouseList = _wareHouseAppService.GetWarehouseList().Result.Where(x => x.Id == dto.WarehouseDestinationId).FirstOrDefault();
 
-            //string rolename = "Trưởng phòng mua hàng";
-            //var roles = _role.Roles.FirstOrDefault(x => x.DisplayName == rolename);
-            //var userrole = _userrole.FirstOrDefault(x => x.RoleId == roles.Id);
-            //var user = _userManager.Users.FirstOrDefault(x => x.Id == userrole.UserId);
-            //string email = user.EmailAddress;
-            //string name = user.Name;
-            //ViewBag.email = email;
-            //ViewBag.name = name;
 
 
             var UserCreate = _userManager.Users.Where(x => x.Id == dto.CreatorUserId).FirstOrDefault();

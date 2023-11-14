@@ -1,26 +1,15 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
-using Abp.Domain.Repositories;
 using Abp.Web.Models;
 using bbk.netcore.Controllers;
 using bbk.netcore.mdl.OMS.Application.Producers;
 using bbk.netcore.mdl.OMS.Application.Producers.Dto;
-using bbk.netcore.mdl.OMS.Application.ProfileWorks;
-using bbk.netcore.mdl.OMS.Application.WorkGroups;
-using bbk.netcore.mdl.OMS.Application.Works;
-using bbk.netcore.mdl.OMS.Application.Works.Dto;
-using bbk.netcore.mdl.OMS.Application.WorkUsers;
-using bbk.netcore.mdl.OMS.Core.Entities;
-using bbk.netcore.Storage.FileSystem;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 {
-    [Area("Inventorys")]
+  [Area("Inventorys")]
     [AbpMvcAuthorize]
     public class ProducerController : netcoreControllerBase
     {
