@@ -22,24 +22,17 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
     {
         private readonly IRepository<ImportRequest> _importRequest;
         private readonly IRepository<ImportRequestDetail> _importRequestdetail;
-     //   private readonly IRepository<Transfer,long> _transfer;
-      //  private readonly IRepository<ImportRequestSubsidiary> _importRequestSubsidiary;
         private readonly IRepository<Warehouse> _wareHouse;
         private readonly IRepository<User, long> _user;
         public ImportRequestAppService(
           IRepository<ImportRequest> importRequest, 
           IRepository<ImportRequestDetail> importRequestdetail, 
-          //  IRepository<Transfer, long> transfer, 
             IRepository<Warehouse> wareHouse, 
-          //  IRepository<ImportRequestSubsidiary> 
-          //importRequestSubsidiary,
             IRepository<User, long> user)
         {
             _importRequest = importRequest;
             _importRequestdetail = importRequestdetail;
-           // _transfer = transfer;
             _wareHouse = wareHouse;
-           // _importRequestSubsidiary = importRequestSubsidiary;
             _user = user;
         }
 
@@ -49,15 +42,12 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
             {
                 if(input.Status == 1)
                 {
-                    //var tranfer = _transfer.GetAll();
-                   // var importS = _importRequestSubsidiary.GetAll();
                     var query = _importRequest
                           .GetAll().Where(x => x.ImportStatus != ImportResquestEnum.ImportResquestStatus.Draft && x.ImportStatus != ImportResquestEnum.ImportResquestStatus.Approve)
                           .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), u => u.Code.Contains(input.SearchTerm))
                           .WhereIf(!string.IsNullOrEmpty(input.ResquestDate), u => u.RequestDate == DateTime.ParseExact(input.ResquestDate, "MM/dd/yyyy", CultureInfo.InvariantCulture))
                           .WhereIf(input.WarehouseDestinationId != 0, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
                           .WhereIf(input.CreatorById != 0, x => x.CreatorUserId == input.CreatorById)
-                          //.WhereIf(input.Status != 100, x => x.Status == input.Status)
                           .OrderBy(x => x.Id);
 
 
@@ -65,10 +55,6 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
                     var user = _user.GetAll().ToList();
                     var results = (from imp in query
                                    join u in user on imp.CreatorUserId equals u.Id
-                                  //join tr in tranfer on imp.TransferId equals tr.Id into t
-                                  // from tr in t.DefaultIfEmpty()
-                                   //join ims in importS on imp.ImportRequestSubsidiaryId equals ims.Id into z
-                                 //  from ims in z.DefaultIfEmpty()
                                    join wh in warehoue on imp.WarehouseDestinationId equals wh.Id
                                    select new ImportRequestListDto
                                    {
@@ -81,8 +67,6 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
                                        WarehouseDestinationId = imp.WarehouseDestinationId,
                                        TransferId = imp.TransferId,
                                        ImportRequestSubsidiaryId = imp.ImportRequestSubsidiaryId,
-                                     //  TranferCode = tr?.TransferCode,
-                                      // YcnkCode = ims?.Code,
 
                                    }).OrderByDescending(x => x.Id);
 
@@ -93,24 +77,17 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
                 }
                 else
                 {
-                  //  var tranfer = _transfer.GetAll();
-                   // var importS = _importRequestSubsidiary.GetAll();
                     var query = _importRequest
                           .GetAll()
                           .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), u => u.Code.Contains(input.SearchTerm))
                           .WhereIf(!string.IsNullOrEmpty(input.ResquestDate), u => u.RequestDate == DateTime.ParseExact(input.ResquestDate, "MM/dd/yyyy", CultureInfo.InvariantCulture))
                           .WhereIf(input.WarehouseDestinationId != 0, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
                           .WhereIf(input.CreatorById != 0, x => x.CreatorUserId == input.CreatorById)
-                          //.WhereIf(input.Status != 100, x => x.Status == input.Status)
                           .OrderBy(x => x.Id);
                     var warehoue = _wareHouse.GetAll();
                     var user = _user.GetAll().ToList();
                     var results = (from imp in query
                                    join u in user on imp.CreatorUserId equals u.Id
-                                  // join tr in tranfer on imp.TransferId equals tr.Id into t
-                                  // from tr in t.DefaultIfEmpty()
-                                  // join ims in importS on imp.ImportRequestSubsidiaryId equals ims.Id into z
-                                   //from ims in z.DefaultIfEmpty()
                                    join wh in warehoue on imp.WarehouseDestinationId equals wh.Id
                                    select new ImportRequestListDto
                                    {

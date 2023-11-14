@@ -4,6 +4,7 @@ using Abp.UI;
 using Abp.Web.Models;
 using bbk.netcore.Authorization.Users;
 using bbk.netcore.Controllers;
+using bbk.netcore.mdl.OMS.Application.ImportRequestDetails.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequests;
 using bbk.netcore.mdl.OMS.Application.ImportRequests.Dto;
 using bbk.netcore.mdl.OMS.Application.Itemses;
@@ -335,7 +336,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
     {
       try
       {
-        List<ImportRequestListDto> importRequestListDtos = new List<ImportRequestListDto>();
+        List<ImportRequestDetailListDto> ImportRequestDetailListDto = new List<ImportRequestDetailListDto>();
         ImportRequestViewModel importRequestViewModel = new ImportRequestViewModel();
         using (var stream = new MemoryStream())
         {
@@ -356,15 +357,17 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
             importRequestViewModel.NameWareHouse = (workSheet.Cells[4, 1].Value ?? string.Empty).ToString().Replace(inventory,"").Trim();
             if (workSheet != null)
             {
-              for (int i = 5; i < rows + 4; i++)
+              for (int i = 10; i < rows + 9; i++)
               {
-                importRequestListDtos.Add(new ImportRequestListDto
+                ImportRequestDetailListDto.Add(new ImportRequestDetailListDto
                 {
+                  CodeItem = (workSheet.Cells[i, 2].Value ?? string.Empty).ToString(),
+                  UnitName = (workSheet.Cells[i, 6].Value ?? string.Empty).ToString()
 
                 });
               }
             }
-            importRequestViewModel.ListImpRequests = importRequestListDtos;
+            importRequestViewModel.ImportRequestDetailListDto = ImportRequestDetailListDto;
           }
         }
         return importRequestViewModel;

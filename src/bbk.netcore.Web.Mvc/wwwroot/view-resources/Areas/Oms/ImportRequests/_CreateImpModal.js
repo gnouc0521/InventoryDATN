@@ -232,7 +232,7 @@
           //endregion
 
           //region set val in table
-          var datatable = this.ItemTable.DataTable();
+          //var datatable = this.ItemTable.DataTable();
           //endregion
 
         },

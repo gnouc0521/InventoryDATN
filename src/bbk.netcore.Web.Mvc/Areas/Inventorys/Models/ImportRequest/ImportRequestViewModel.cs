@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using bbk.netcore.mdl.OMS.Application.ExportRequests.Dto;
+using bbk.netcore.mdl.OMS.Application.ImportRequestDetails.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequests.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequestSubidiarys.Dto;
 using bbk.netcore.mdl.OMS.Application.Itemses.Dto;
@@ -33,6 +34,7 @@ namespace bbk.netcore.Web.Areas.Inventorys.Models.ImportRequest
         public string ShipperName { get; set; }
         public ImportRequestListDto impRequests { get; set; }
         public List<ImportRequestListDto> ListImpRequests { get; set; }
+        public List<ImportRequestDetailListDto> ImportRequestDetailListDto { get; set; }
 
         public ImportRequestSubListDto ImportRequestSubsidiary { get; set; }
         public string ShipperPhone { get; set; }
