@@ -9,19 +9,9 @@
     var _unitService = abp.services.app.unitService;
     var _modalManager;
     var _frmIMP = null;
-
-
-
     this.init = function (modalManager) {
       _modalManager = modalManager;
       _frmIMP = _modalManager.getModal().find('form[name=frmCreate]');
-
-      function delete_row() {
-        $('.delete_row').click(function () {
-          $(this).parents('tr').remove();
-        })
-      }
-
       function unit() {
         _unitService.getAll({}).done(function (results) {
           $.each(results.items, function (index, value) {
@@ -43,8 +33,6 @@
         })
       }
 
-
-
       function tbodytr(length) {
         var stt = length + 1
         return html = `<tr>
@@ -62,74 +50,73 @@
                                <th class="text-center"><a class="delete_row" href='javascript:void(0);'><i class="fal fa-trash-alt  align-bottom "></i></a> </th>
                             </tr>`;
       }
+      //$('#addRow').click(function () {
+      //  _itemsServiceService.getItemImportList().done(function (result) {
+      //    var dataselectItems = $.map(result, function (obj) {
+      //      obj.id = obj.id;
+      //      obj.text = obj.itemCode + "/" + obj.name;
+      //      return obj;
+      //    });
 
-      $('#addRow').click(function () {
-        _itemsServiceService.getItemImportList().done(function (result) {
-          var dataselectItems = $.map(result, function (obj) {
-            obj.id = obj.id;
-            obj.text = obj.itemCode + "/" + obj.name;
-            return obj;
-          });
+      //    var length = $('#ItemTable tbody tr').length
+      //    $('#ItemTable tbody ').append(tbodytr(length))
+      //    delete_row()
+      //    unit()
 
-          var length = $('#ItemTable tbody tr').length
-          $('#ItemTable tbody ').append(tbodytr(length))
-          delete_row()
-          unit()
+      //    $("#ItemTable tbody .selectExport").change(function () {
+      //      var selVal = [];
+      //      $("#ItemTable tbody .selectExport").each(function () {
+      //        selVal.push(this.value);
+      //      });
+      //      var abc = $(this).parents('th').find('select')// .find("option")
+      //      $(abc).find("option").removeAttr("disabled").filter(function () {
+      //        var a = $(this).parent("select").val();
+      //        return (($.inArray(this.value, selVal) > -1) && (this.value != a))
+      //      }).attr("disabled", "disabled");
 
-          $("#ItemTable tbody .selectExport").change(function () {
-            var selVal = [];
-            $("#ItemTable tbody .selectExport").each(function () {
-              selVal.push(this.value);
-            });
-            var abc = $(this).parents('th').find('select')// .find("option")
-            $(abc).find("option").removeAttr("disabled").filter(function () {
-              var a = $(this).parent("select").val();
-              return (($.inArray(this.value, selVal) > -1) && (this.value != a))
-            }).attr("disabled", "disabled");
+      //    });
 
-          });
+      //    $(".selectExport").eq(0).trigger('change');
 
-          $(".selectExport").eq(0).trigger('change');
-
-          $('.selectExport').select2({
-            width: "100%",
-            dropdownParent: $('#ItemsCreateModal'),
-            placeholder: 'Chọn hàng hóa',
-            data: dataselectItems,
-          }).on('select2:select', function (e) {
-          }).trigger('change');
-
+      //    $('.selectExport').select2({
+      //      width: "100%",
+      //      dropdownParent: $('#ItemsCreateModal'),
+      //      placeholder: 'Chọn hàng hóa',
+      //      data: dataselectItems,
+      //    }).on('select2:select', function (e) {
+      //    }).trigger('change');
 
 
 
-          $('.date-picker').datepicker({
-            rtl: false,
-            format: 'dd/mm/yyyy',
-            orientation: "left",
-            autoclose: true,
-            language: abp.localization.currentLanguage.name,
 
-          });
+      //    $('.date-picker').datepicker({
+      //      rtl: false,
+      //      format: 'dd/mm/yyyy',
+      //      orientation: "left",
+      //      autoclose: true,
+      //      language: abp.localization.currentLanguage.name,
 
-          $("#MFG").datepicker({
-            todayBtn: 1,
-            autoclose: true,
-          }).on('changeDate', function (selected) {
-            var minDate = new Date(selected.date.valueOf());
-            $('#ExpireDate').datepicker('setStartDate', minDate);
+      //    });
 
-          });
+      //    $("#MFG").datepicker({
+      //      todayBtn: 1,
+      //      autoclose: true,
+      //    }).on('changeDate', function (selected) {
+      //      var minDate = new Date(selected.date.valueOf());
+      //      $('#ExpireDate').datepicker('setStartDate', minDate);
 
-          $("#ExpireDate").datepicker()
-            .on('changeDate', function (selected) {
-              var maxDate = new Date(selected.date.valueOf());
-              $('#MFG').datepicker('setEndDate', maxDate);
-            });
+      //    });
+
+      //    $("#ExpireDate").datepicker()
+      //      .on('changeDate', function (selected) {
+      //        var maxDate = new Date(selected.date.valueOf());
+      //        $('#MFG').datepicker('setEndDate', maxDate);
+      //      });
 
 
-        })
-        delete_row()
-      })
+      //  })
+      //  delete_row()
+      //})
       var ExcelToJSON = function () {
         this.parseExcel = function (file) {
           var reader = new FileReader();
@@ -206,13 +193,11 @@
           reader.readAsBinaryString(file);
         };
       };
-
       function handleFileSelect(evt) {
         var files = evt.target.files; // FileList object
         var xl2json = new ExcelToJSON();
         xl2json.parseExcel(files[0]);
       }
-
 
       var AddItemImport = {
         buttonUpload: $('#UploadFileImport'),
@@ -222,21 +207,142 @@
         ShipperPhoneInput: $("#ShipperPhone"),
         WarehouseDestination: $("#WarehouseDestinationId"),
         Remark: $("#Remark"),
+        ButtonAddRow: $('#addRow'),
 
-        LoadData: function (data) {
-          //region set val input
-          this.ShipperNameInput.val(data.shipperName);
-          this.ShipperPhoneInput.val(data.shipperPhone);
-          this.WarehouseDestination.val(data.warehouseDestination);
-          this.Remark.val(data.remark);
-          //endregion
+        AddRow: function () {
+          this.ButtonAddRow.click(function () {
+            _itemsServiceService.getItemImportList().done(function (result) {
+              var dataselectItems = $.map(result, function (obj) {
+                obj.id = obj.id;
+                obj.text = obj.itemCode + "/" + obj.name;
+                return obj;
+              });
 
-          //region set val in table
-          //var datatable = this.ItemTable.DataTable();
-          //endregion
+              var length = $('#ItemTable tbody tr').length
+              $('#ItemTable tbody ').append(tbodytr(length))
+              AddItemImport.delete_row()
+              unit()
 
+              $("#ItemTable tbody .selectExport").change(function () {
+                var selVal = [];
+                $("#ItemTable tbody .selectExport").each(function () {
+                  selVal.push(this.value);
+                });
+                var abc = $(this).parents('th').find('select')// .find("option")
+                $(abc).find("option").removeAttr("disabled").filter(function () {
+                  var a = $(this).parent("select").val();
+                  return (($.inArray(this.value, selVal) > -1) && (this.value != a))
+                }).attr("disabled", "disabled");
+
+              });
+
+              $(".selectExport").eq(0).trigger('change');
+
+              $('.selectExport').select2({
+                width: "100%",
+                dropdownParent: $('#ItemsCreateModal'),
+                placeholder: 'Chọn hàng hóa',
+                data: dataselectItems,
+              }).on('select2:select', function (e) {
+              }).trigger('change');
+
+
+
+
+              $('.date-picker').datepicker({
+                rtl: false,
+                format: 'dd/mm/yyyy',
+                orientation: "left",
+                autoclose: true,
+                language: abp.localization.currentLanguage.name,
+
+              });
+
+              $("#MFG").datepicker({
+                todayBtn: 1,
+                autoclose: true,
+              }).on('changeDate', function (selected) {
+                var minDate = new Date(selected.date.valueOf());
+                $('#ExpireDate').datepicker('setStartDate', minDate);
+
+              });
+
+              $("#ExpireDate").datepicker()
+                .on('changeDate', function (selected) {
+                  var maxDate = new Date(selected.date.valueOf());
+                  $('#MFG').datepicker('setEndDate', maxDate);
+                });
+
+
+            })
+            AddItemImport.delete_row();
+          })
         },
-
+        LoadData: function (datainput) {
+          //region set val input
+          this.ShipperNameInput.val(datainput.shipperName);
+          this.ShipperPhoneInput.val(datainput.shipperPhone);
+          this.WarehouseDestination.val(datainput.warehouseDestination);
+          this.Remark.val(datainput.remark);
+          //endregion
+          //region set val in table
+          var datatable = this.ItemTable.DataTable({
+            "data": datainput.importRequestDetailListDto,
+            columnDefs: [
+              {
+                targets: 0,
+                render: function (data, type, row, meta) {
+                  return ` <th class="text-center">` + row.codeItem + ` </th>`;
+                }
+              },
+              {
+                targets: 1,
+                render: function (data, type, row, meta) {
+                  return ` <th><select class="form-control selectExport ItemId" style="width:100%"  required>
+                                <option value="" selected=""> Chọn hàng hóa </option>
+                                </select></th>`;
+                }
+              },
+              {
+                targets: 2,
+                render: function (data, type, row, meta) {
+                  return `<th><input type="number" class="form-control ImportPrice" value="` + row.importPrice +`" required></th>`
+                }
+              },
+              {
+                targets: 3,
+                render: function (data, type, row, meta) {
+                  return `<th><input type="number"  class="form-control Quantity" value="` + row.quantity +`" required></th>`
+                }
+              },
+              {
+                targets: 4,
+                render: function (data, type, row, meta) {
+                  return ` <th class="text-center">` + row.unitName + ` </th>`;
+                }
+              },
+              {
+                targets: 5,
+                render: function (data, type, row, meta) {
+                  return ` <th class="text-center">` + row.expireDate + ` </th>`;
+                }
+              },
+              {
+                targets: 6,
+                render: function (data, type, row, meta) {
+                  return ` <th class="text-center">` + row.codeItem + ` </th>`;
+                }
+              },
+              {
+                targets: 7,
+                render: function (data, type, row, meta) {
+                  return ` <th class="text-center"><a class="delete_row" href='javascript: void (0);'><i class="fal fa-trash-alt  align-bottom "></i></a> </th>`;
+                }
+              }
+            ],
+          });
+          //endregion
+        },
         loadExcel: function () {
           let formData = new FormData();
           formData.append("file", fodata);
@@ -276,15 +382,12 @@
             // add first image, if available
             if (el.files.length) {
               // document.getElementById('out').src = URL.createObjectURL(el.files[0]);
-              console.log(el.files[0])
               var ext = el.files[0].name.split('.').pop().toLowerCase();
-              console.log(ext)
               if ($.inArray(ext, ['xlsx', 'xls']) == -1) {
                 // alert('File không hợp lệ \nVui lòng nhập lại file');
                 abp.message.error('Vui lòng chọn lại file ', 'File không hợp lệ');
               } else {
                 fodata = el.files[0];
-                console.log(fodata)
                 if (fodata != null) {
                   AddItemImport.loadExcel();
                 }
@@ -306,7 +409,8 @@
         init: function () {
           this.buttonUpload.on("click", function () {
             AddItemImport.onClickHandler()
-          })
+          });
+          AddItemImport.AddRow();
         },
 
       }
