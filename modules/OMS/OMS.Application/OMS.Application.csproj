@@ -36,4 +36,7 @@
 			<HintPath>..\..\..\runlibs\bbk.netcore.Core.dll</HintPath>
 		</Reference>
 	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="ImportRequests\ExportFile\Dto\" />
+	</ItemGroup>
 </Project>

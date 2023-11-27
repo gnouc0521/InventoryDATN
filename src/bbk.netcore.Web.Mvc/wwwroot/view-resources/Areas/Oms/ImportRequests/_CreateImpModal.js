@@ -33,6 +33,71 @@
         })
       }
 
+      function showDataselectItems() {
+        _itemsServiceService.getItemImportList().done(function (result) {
+          var dataselectItems = $.map(result, function (obj) {
+            obj.id = obj.id;
+            obj.text = obj.itemCode + "/" + obj.name;
+            return obj;
+          });
+
+          var length = $('#ItemTable tbody tr').length
+          AddItemImport.delete_row()
+          unit()
+
+          $("#ItemTable tbody .selectExport").change(function () {
+            var selVal = [];
+            $("#ItemTable tbody .selectExport").each(function () {
+              selVal.push(this.value);
+            });
+            var select = $(this).parents('th').find('select')// .find("option")
+            $(select).find("option").removeAttr("disabled").filter(function () {
+              var a = $(this).parent("select").val();
+              return (($.inArray(this.value, selVal) > -1) && (this.value != a))
+            }).attr("disabled", "disabled");
+
+          });
+
+          $(".selectExport").eq(0).trigger('change');
+
+          $('.selectExport').select2({
+            width: "100%",
+            dropdownParent: $('#ItemsCreateModal'),
+            placeholder: 'Chọn hàng hóa',
+            data: dataselectItems,
+          }).on('select2:select', function (e) {
+          }).trigger('change');
+
+
+
+
+          $('.date-picker').datepicker({
+            rtl: false,
+            format: 'dd/mm/yyyy',
+            orientation: "left",
+            autoclose: true,
+            language: abp.localization.currentLanguage.name,
+
+          });
+
+          $("#MFG").datepicker({
+            todayBtn: 1,
+            autoclose: true,
+          }).on('changeDate', function (selected) {
+            var minDate = new Date(selected.date.valueOf());
+            $('#ExpireDate').datepicker('setStartDate', minDate);
+
+          });
+
+          $("#ExpireDate").datepicker()
+            .on('changeDate', function (selected) {
+              var maxDate = new Date(selected.date.valueOf());
+              $('#MFG').datepicker('setEndDate', maxDate);
+            });
+
+
+        })
+      };
       function tbodytr(length) {
         var stt = length + 1
         return html = `<tr>
@@ -50,73 +115,6 @@
                                <th class="text-center"><a class="delete_row" href='javascript:void(0);'><i class="fal fa-trash-alt  align-bottom "></i></a> </th>
                             </tr>`;
       }
-      //$('#addRow').click(function () {
-      //  _itemsServiceService.getItemImportList().done(function (result) {
-      //    var dataselectItems = $.map(result, function (obj) {
-      //      obj.id = obj.id;
-      //      obj.text = obj.itemCode + "/" + obj.name;
-      //      return obj;
-      //    });
-
-      //    var length = $('#ItemTable tbody tr').length
-      //    $('#ItemTable tbody ').append(tbodytr(length))
-      //    delete_row()
-      //    unit()
-
-      //    $("#ItemTable tbody .selectExport").change(function () {
-      //      var selVal = [];
-      //      $("#ItemTable tbody .selectExport").each(function () {
-      //        selVal.push(this.value);
-      //      });
-      //      var abc = $(this).parents('th').find('select')// .find("option")
-      //      $(abc).find("option").removeAttr("disabled").filter(function () {
-      //        var a = $(this).parent("select").val();
-      //        return (($.inArray(this.value, selVal) > -1) && (this.value != a))
-      //      }).attr("disabled", "disabled");
-
-      //    });
-
-      //    $(".selectExport").eq(0).trigger('change');
-
-      //    $('.selectExport').select2({
-      //      width: "100%",
-      //      dropdownParent: $('#ItemsCreateModal'),
-      //      placeholder: 'Chọn hàng hóa',
-      //      data: dataselectItems,
-      //    }).on('select2:select', function (e) {
-      //    }).trigger('change');
-
-
-
-
-      //    $('.date-picker').datepicker({
-      //      rtl: false,
-      //      format: 'dd/mm/yyyy',
-      //      orientation: "left",
-      //      autoclose: true,
-      //      language: abp.localization.currentLanguage.name,
-
-      //    });
-
-      //    $("#MFG").datepicker({
-      //      todayBtn: 1,
-      //      autoclose: true,
-      //    }).on('changeDate', function (selected) {
-      //      var minDate = new Date(selected.date.valueOf());
-      //      $('#ExpireDate').datepicker('setStartDate', minDate);
-
-      //    });
-
-      //    $("#ExpireDate").datepicker()
-      //      .on('changeDate', function (selected) {
-      //        var maxDate = new Date(selected.date.valueOf());
-      //        $('#MFG').datepicker('setEndDate', maxDate);
-      //      });
-
-
-      //  })
-      //  delete_row()
-      //})
       var ExcelToJSON = function () {
         this.parseExcel = function (file) {
           var reader = new FileReader();
@@ -209,72 +207,76 @@
         Remark: $("#Remark"),
         ButtonAddRow: $('#addRow'),
 
+        showDataselectItems: function () {
+          _itemsServiceService.getItemImportList().done(function (result) {
+            var dataselectItems = $.map(result, function (obj) {
+              obj.id = obj.id;
+              obj.text = obj.itemCode + "/" + obj.name;
+              return obj;
+            });
+
+            var length = $('#ItemTable tbody tr').length
+            $('#ItemTable tbody ').append(tbodytr(length))
+            AddItemImport.delete_row()
+            unit()
+
+            $("#ItemTable tbody .selectExport").change(function () {
+              var selVal = [];
+              $("#ItemTable tbody .selectExport").each(function () {
+                selVal.push(this.value);
+              });
+              var select = $(this).parents('th').find('select')// .find("option")
+              $(select).find("option").removeAttr("disabled").filter(function () {
+                var a = $(this).parent("select").val();
+                return (($.inArray(this.value, selVal) > -1) && (this.value != a))
+              }).attr("disabled", "disabled");
+
+            });
+
+            $(".selectExport").eq(0).trigger('change');
+
+            $('.selectExport').select2({
+              width: "100%",
+              dropdownParent: $('#ItemsCreateModal'),
+              placeholder: 'Chọn hàng hóa',
+              data: dataselectItems,
+            }).on('select2:select', function (e) {
+            }).trigger('change');
+
+
+
+
+            $('.date-picker').datepicker({
+              rtl: false,
+              format: 'dd/mm/yyyy',
+              orientation: "left",
+              autoclose: true,
+              language: abp.localization.currentLanguage.name,
+
+            });
+
+            $("#MFG").datepicker({
+              todayBtn: 1,
+              autoclose: true,
+            }).on('changeDate', function (selected) {
+              var minDate = new Date(selected.date.valueOf());
+              $('#ExpireDate').datepicker('setStartDate', minDate);
+
+            });
+
+            $("#ExpireDate").datepicker()
+              .on('changeDate', function (selected) {
+                var maxDate = new Date(selected.date.valueOf());
+                $('#MFG').datepicker('setEndDate', maxDate);
+              });
+
+
+          })
+        },
         AddRow: function () {
           this.ButtonAddRow.click(function () {
-            _itemsServiceService.getItemImportList().done(function (result) {
-              var dataselectItems = $.map(result, function (obj) {
-                obj.id = obj.id;
-                obj.text = obj.itemCode + "/" + obj.name;
-                return obj;
-              });
-
-              var length = $('#ItemTable tbody tr').length
-              $('#ItemTable tbody ').append(tbodytr(length))
-              AddItemImport.delete_row()
-              unit()
-
-              $("#ItemTable tbody .selectExport").change(function () {
-                var selVal = [];
-                $("#ItemTable tbody .selectExport").each(function () {
-                  selVal.push(this.value);
-                });
-                var abc = $(this).parents('th').find('select')// .find("option")
-                $(abc).find("option").removeAttr("disabled").filter(function () {
-                  var a = $(this).parent("select").val();
-                  return (($.inArray(this.value, selVal) > -1) && (this.value != a))
-                }).attr("disabled", "disabled");
-
-              });
-
-              $(".selectExport").eq(0).trigger('change');
-
-              $('.selectExport').select2({
-                width: "100%",
-                dropdownParent: $('#ItemsCreateModal'),
-                placeholder: 'Chọn hàng hóa',
-                data: dataselectItems,
-              }).on('select2:select', function (e) {
-              }).trigger('change');
-
-
-
-
-              $('.date-picker').datepicker({
-                rtl: false,
-                format: 'dd/mm/yyyy',
-                orientation: "left",
-                autoclose: true,
-                language: abp.localization.currentLanguage.name,
-
-              });
-
-              $("#MFG").datepicker({
-                todayBtn: 1,
-                autoclose: true,
-              }).on('changeDate', function (selected) {
-                var minDate = new Date(selected.date.valueOf());
-                $('#ExpireDate').datepicker('setStartDate', minDate);
-
-              });
-
-              $("#ExpireDate").datepicker()
-                .on('changeDate', function (selected) {
-                  var maxDate = new Date(selected.date.valueOf());
-                  $('#MFG').datepicker('setEndDate', maxDate);
-                });
-
-
-            })
+            $('#ItemTable tbody ').append(tbodytr(length))
+            AddItemImport.showDataselectItems();
             AddItemImport.delete_row();
           })
         },
@@ -306,31 +308,35 @@
               {
                 targets: 2,
                 render: function (data, type, row, meta) {
-                  return `<th><input type="number" class="form-control ImportPrice" value="` + row.importPrice +`" required></th>`
+                  return `<th><input type="number" class="form-control ImportPrice" value="` + row.importPrice + `" required></th>`
                 }
               },
               {
                 targets: 3,
                 render: function (data, type, row, meta) {
-                  return `<th><input type="number"  class="form-control Quantity" value="` + row.quantity +`" required></th>`
+                  return `<th><input type="number"  class="form-control Quantity" value="` + row.quantity + `" required></th>`
                 }
               },
               {
                 targets: 4,
                 render: function (data, type, row, meta) {
+                  return `<th><select size="1" id="row-1-office" class="form-control selectUnit UnitId" name="UnitId"  required >
+                                <option value="" selected=""> Chọn đơn vị tính </option>
+                                </select></th>`
                   return ` <th class="text-center">` + row.unitName + ` </th>`;
                 }
               },
               {
                 targets: 5,
                 render: function (data, type, row, meta) {
-                  return ` <th class="text-center">` + row.expireDate + ` </th>`;
+                  return ` <th><input type="text" autocomplete="off" class="form-control date-picker MFG" value="" placeholder="Nhập ngày" id="MFG" name="MFG" required></th>
+                              `;
                 }
               },
               {
                 targets: 6,
                 render: function (data, type, row, meta) {
-                  return ` <th class="text-center">` + row.codeItem + ` </th>`;
+                  return `  <th><input type="text" autocomplete="off" class="form-control date-picker ExpireDate" value="" placeholder="Nhập ngày" id="ExpireDate" name="ExpireDate" required></th>`;
                 }
               },
               {
@@ -340,8 +346,16 @@
                 }
               }
             ],
+            "drawCallback": function () {
+              unit();
+              showDataselectItems()
+
+            }
           });
-          //endregion
+          var data = datatable.rows().data();
+          data.each(function (value, index) {
+            console.log(`For index ${index}, data value is ${value}`, value);
+          });
         },
         loadExcel: function () {
           let formData = new FormData();
@@ -360,7 +374,7 @@
               }, "1000");
             })
           }).done(function () {
-            abp.notify.info('Cập nhật file báo giá thành công!');
+            abp.notify.info('Cập nhật file thành công!');
             //  getDocs();
           })
         },

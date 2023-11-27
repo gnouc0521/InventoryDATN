@@ -75,62 +75,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
       };
       return View(model);
     }
-
-
-    //public async Task<IActionResult> CreateImportRequest(long Id)
-    //{
-    //    var transferList = await _iTransferAppService.GetAsync(new EntityDto<long>(Id));
-    //    var transDferList = _iTransferDetailAppService.GetAllItem().Result.Items.FirstOrDefault(x => x.TransferId == transferList.Id);
-    //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
-    //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-    //    ImportRequestViewModel model = new ImportRequestViewModel
-    //    {
-    //        WarehouseList = warehouseList,
-    //        CreatedBy = User.FullName,
-    //        TransferId = Id,
-    //        TransferNote = transferList.TransferNote,
-    //        TransferCode = transferList.TransferCode,
-    //        IdWarehouseExport = transferList.IdWarehouseExport,
-    //        Status2 = transferList.Status,
-    //        BrowsingTime = transferList.BrowsingTime,
-    //        IdWarehouseReceiving = transDferList.IdWarehouseReceiving,
-
-    //    };
-    //    return PartialView("_CreateModal", model);
-    //}
-
-
-    //public async Task<IActionResult> EditImportRequestModal(int Id)
-    //{
-    //    var dto = await _importRequestAppService.GetAsync(new EntityDto(Id));
-    //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
-    //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-
-    //    //var transferList = await _iTransferAppService.GetAsync(new EntityDto<long>(dto.TransferId));
-
-    //    //var YCNKList = await _importRequestSubidiaryService.GetAsync(new EntityDto((int)dto.ImportRequestSubsidiaryId));
-
-
-    //    ImportRequestViewModel model = new ImportRequestViewModel
-    //    {
-    //        WarehouseList = warehouseList,
-    //        CreatedBy = User.FullName,
-    //        Code = dto.Code,
-    //        WarehouseDestinationId = dto.WarehouseDestinationId,
-    //        RequestDate = dto.RequestDate,
-    //        impRequests = dto,
-    //        SubsidiaryId = dto.SubsidiaryId,
-    //       // ImportRequestSubsidiary = yy,
-    //        //TransferNote = transferList.TransferNote,
-    //        TransferId = dto.TransferId,
-    //        ShipperName = dto.ShipperName,
-    //        ShipperPhone = dto.ShipperPhone,
-    //      //  ImportRequestSubsidiaryId = dto.ImportRequestSubsidiaryId
-    //    };
-
-    //    return PartialView("_EditModal", model);
-    //}
-
     public async Task<IActionResult> ViewDetails(int Id)
     {
       var dto = await _importRequestAppService.GetAsync(new EntityDto(Id));
@@ -190,9 +134,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
       return PartialView("_CreateImp", model);
     }
 
-
-
-
     public async Task<IActionResult> EditImp(int Id)
     {
       var dto = await _importRequestAppService.GetAsync(new EntityDto(Id));
@@ -214,9 +155,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
 
       return PartialView("_EditImp", model);
     }
-
-
-
     public async Task<IActionResult> ViewUpdateDetails(int Id)
     {
       var dto = await _importRequestAppService.GetAsync(new EntityDto(Id));
@@ -257,8 +195,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
       return View("Print", model);
     }
 
-
-
     /// <summary>
     /// Nhap kho tu YCNK
     /// </summary>
@@ -278,25 +214,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
       };
       return View(model);
     }
-
-
-    //public async Task<IActionResult> CreateImportYCNK(long Id)
-    //{
-    //    var YCNKList = await _importRequestSubidiaryService.GetAsync(new EntityDto(((int)Id)));
-    //    var YCNKdList = _importRequestDetailSubidiaryService.GetAllItem().Result.Items.FirstOrDefault(x => x.ImportRequestSubsidiaryId == YCNKList.Id);
-    //    var warehouseList = await _wareHouseAppService.GetWarehouseList();
-    //    var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
-    //    var supplierList = await _supplierAppService.GetSupplierList();
-    //    ImportRequestViewModel model = new ImportRequestViewModel
-    //    {
-    //        WarehouseList = warehouseList,
-    //        CreatedBy = User.FullName,
-    //        ImportRequestSubsidiary = YCNKList,
-    //        Suppliers = supplierList,
-    //    };
-    //    return PartialView("_CreateImportYCNK", model);
-    //}
-
 
     [HttpPost]
     public async Task<JsonResult> OverView(int Id)
@@ -358,9 +275,9 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
                 {
                   CodeItem = (workSheet.Cells[i, 2].Value ?? string.Empty).ToString(),
                   UnitName = (workSheet.Cells[i, 6].Value ?? string.Empty).ToString(),
-                  ImportPrice = (decimal)(workSheet.Cells[i, 3].Value ?? string.Empty),
-                  Quantity = (int)(workSheet.Cells[i, 3].Value ?? string.Empty)
-                });
+                  ImportPrice = Decimal.Parse((workSheet.Cells[i, 3].Value ?? string.Empty).ToString()),
+                  Quantity = Int32.Parse((workSheet.Cells[i, 3].Value ?? string.Empty).ToString()),
+                }); ;
               }
             }
             importRequestViewModel.ImportRequestDetailListDto = ImportRequestDetailListDto;
@@ -370,7 +287,6 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
       }
       catch (Exception ex)
       {
-
         throw new UserFriendlyException(ex.Message);
       }
 
