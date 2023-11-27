@@ -90,11 +90,10 @@
                 data: 'id',
                 orderable: false,
                 autoWidth: false,
+                className: "text-center",
                 render: function (data, type, row, meta) {
                     console.log(row)
-                    return `<div class='text-right'> 
-                                <a class='doceditfunc text-right' data-objid='` + row.id + `'href='javascript:void(0); ' > Sửa </a>
-                            </div>`;
+                    return `<a class='btn btn-warning doceditfunc text-right text-white' data-objid='` + row.id + `'href='javascript:void(0); ' > Sửa </a>`;
                 }
             },
 

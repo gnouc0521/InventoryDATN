@@ -105,10 +105,9 @@
                 data: null,
                 orderable: false,
                 autoWidth: false,
+                className: "text-center",
                 render: function (data, type, row, meta) {
-                    return `<div class=''> 
-                                <a class='dropdown-item doceditfunc' data-objid='` + row.id + `'href='javascript:void(0); ' > Sửa </a>
-                            </div>`;
+                    return `<a class='btn btn-warning doceditfunc text-white' data-objid='` + row.id + `'href='javascript:void(0); ' > Sửa </a>`;
                 }
             }
         ]
