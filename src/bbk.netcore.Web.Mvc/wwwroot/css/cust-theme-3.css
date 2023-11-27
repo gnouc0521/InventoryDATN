@@ -2386,8 +2386,13 @@ a.text-dark:hover, a.text-dark:focus {
     display: none;
 }
 
+#close-qr {
+  position: relative;
+  z-index: 1024;
+}
+
 .titlecolumn {
-    background: #68c3a6;
+  background: #68c3a6;
 }
 
 .list-block_item-link.active {

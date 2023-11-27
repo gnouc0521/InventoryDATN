@@ -1117,7 +1117,7 @@ html body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  z-index: 1002;
+  z-index: 1000;
   will-change: left, right; }
 
 /* app navigation */
