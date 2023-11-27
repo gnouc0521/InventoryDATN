@@ -20,8 +20,6 @@ namespace bbk.netcore.mdl.OMS.Core.Entities
         public decimal ImportPrice { get; set; }
         public DateTime ExpireDate { get; set; }
 
-      
-
         // public DateTime MFG { get; set; }
 
         // public long ParcelId { get; set; }

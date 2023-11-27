@@ -12,8 +12,6 @@
     </div>
     <div class="modal-body">
         <form name="frmCreate" role="form" class="needs-validation" novalidate="">
-            <input id="IdWarehouseExport" value="@Model.transferListDto.IdWarehouseExport" hidden></input>
-            <input id="Idtransfer" value="@Model.transferListDto.Id" hidden></input>
             <div class="form-group row required">
                 <div class="col-md-4">
                     <label class=" col-form-label">@(new FixedLocalizableString("Kho xuất"))<span class="text-danger">*</span></label>
@@ -38,7 +36,6 @@
                 <div class="col-md-12">
                     <label class=" col-form-label">@(new FixedLocalizableString("Lý do xuất kho"))<span class="text-danger">*</span></label>
                     <div class="input-group">
-                        <input type="text" name="Remark" class="form-control" value="@Model.transferListDto.CommentText" required minlength="">
                         <div class="invalid-feedback">
                             Vui lòng nhập lý do xuất kho
                         </div>

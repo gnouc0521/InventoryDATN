@@ -36,14 +36,7 @@
     ///* DEFINE TABLE */
     var getFilter = function () {
         let dataFilter = {};
-       // var Date = $("#RequestDate").datepicker("getDate");
-        //if (Date != null) {
-        //    dateStart = moment(Date).format('L');
-        //    dataFilter.requestDate = dateStart
-        //}
-       // dataFilter.searchTerm = $('#SearchTerm').val().trim();
-      //  dataFilter.warehouseDestinationId = $('#ProducerCode').val();
-        dataFilter.status = 2;
+        dataFilter.status = 0;
         dataFilter.exportStatus = 0;
         return dataFilter;
     }
@@ -214,14 +207,7 @@
     ///* DEFINE TABLE */
     var getFilterRequiment = function () {
         let dataFilter = {};
-        //var Date = $("#RequestDate").datepicker("getDate");
-        //if (Date != null) {
-        //    dateStart = moment(Date).format('L');
-        //    dataFilter.requestDate = dateStart
-        //}
-        //dataFilter.searchTerm = $('#SearchTerm').val().trim();
-        //dataFilter.warehouseDestinationId = $('#ProducerCode').val();
-        dataFilter.status = 2;
+        dataFilter.status = 0;
         dataFilter.exportStatus = 0;
         return dataFilter;
     }
@@ -245,8 +231,8 @@
             [5, 10, 25, 50, 'Tất cả'],
         ],
         pageLength: 10,
-        listAction: {
-            ajaxFunction: _ExportService.getAllRequirementApprove,
+      listAction: {
+        ajaxFunction: _ExportService.getAll,
             inputFilter: getFilterRequiment
         },
         columnDefs: [

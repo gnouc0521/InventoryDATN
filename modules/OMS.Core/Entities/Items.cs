@@ -29,7 +29,6 @@ namespace bbk.netcore.mdl.OMS.Core.Entities
         public string GroupCode { get; set; }
         [StringLength(10)]
         public string KindCode { get; set; }
-        public ICollection<Assignment> Assignments { get; set; }
 
     }
 }

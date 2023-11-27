@@ -231,168 +231,168 @@
         }
       
         //------------------------------- / Chuyên viên mua hàng -----------------------------
-        //Hàm load lại biểu đồ chung
-        function LoadDataOfChart() {
-            _dashboardService.getAllInDashBoard(getFilter()).done(function (result) {
-                var tongdg = 0;
-                var tonghoanthanhdg = 0;
-                var tongdxldg = 0;
-                var tongchoxldg = 0;
-                var tongquahandg = 0;
+        ////Hàm load lại biểu đồ chung
+        //function LoadDataOfChart() {
+        //    _dashboardService.getAllInDashBoard(getFilter()).done(function (result) {
+        //        var tongdg = 0;
+        //        var tonghoanthanhdg = 0;
+        //        var tongdxldg = 0;
+        //        var tongchoxldg = 0;
+        //        var tongquahandg = 0;
 
-                var tongdag = 0;
-                var tonghoanthanhdag = 0;
-                var tongdxldag = 0;
-                var tongchoxldag = 0;
-                var tongquahandag = 0;
+        //        var tongdag = 0;
+        //        var tonghoanthanhdag = 0;
+        //        var tongdxldag = 0;
+        //        var tongchoxldag = 0;
+        //        var tongquahandag = 0;
 
-                for (var i = 0; i < result.items.length; i++) {
-                    //da giao
-                    if (result.items[i].ownerStatus == 1) {
-                        if (result.items[i].workStatus == 0) {
-                            tonghoanthanhdag += 1;
-                            tongdag += 1;
-                        }
-                        if (result.items[i].workStatus == 1) {
-                            tongdxldag += 1;
-                            tongdag += 1;
-                        }
-                        if (result.items[i].workStatus == 3) {
-                            tongquahandag += 1;
-                            tongdag += 1;
-                        }
-                        if (result.items[i].workStatus == 2) {
-                            tongchoxldag += 1;
-                            tongdag += 1;
-                        }
+        //        for (var i = 0; i < result.items.length; i++) {
+        //            //da giao
+        //            if (result.items[i].ownerStatus == 1) {
+        //                if (result.items[i].workStatus == 0) {
+        //                    tonghoanthanhdag += 1;
+        //                    tongdag += 1;
+        //                }
+        //                if (result.items[i].workStatus == 1) {
+        //                    tongdxldag += 1;
+        //                    tongdag += 1;
+        //                }
+        //                if (result.items[i].workStatus == 3) {
+        //                    tongquahandag += 1;
+        //                    tongdag += 1;
+        //                }
+        //                if (result.items[i].workStatus == 2) {
+        //                    tongchoxldag += 1;
+        //                    tongdag += 1;
+        //                }
 
 
-                    }
-                    //được giao
-                    if (result.items[i].ownerStatus == 2) {
-                        if (result.items[i].workStatus == 0) {
-                            tonghoanthanhdg += 1;
-                            tongdg += 1;
-                        }
-                        if (result.items[i].workStatus == 1) {
-                            tongdxldg += 1;
-                            tongdg += 1;
-                        }
-                        if (result.items[i].workStatus == 3) {
-                            tongquahandg += 1;
-                            tongdg += 1;
-                        }
-                        if (result.items[i].workStatus == 2) {
-                            tongchoxldg += 1;
-                            tongdg += 1;
-                        }
+        //            }
+        //            //được giao
+        //            if (result.items[i].ownerStatus == 2) {
+        //                if (result.items[i].workStatus == 0) {
+        //                    tonghoanthanhdg += 1;
+        //                    tongdg += 1;
+        //                }
+        //                if (result.items[i].workStatus == 1) {
+        //                    tongdxldg += 1;
+        //                    tongdg += 1;
+        //                }
+        //                if (result.items[i].workStatus == 3) {
+        //                    tongquahandg += 1;
+        //                    tongdg += 1;
+        //                }
+        //                if (result.items[i].workStatus == 2) {
+        //                    tongchoxldg += 1;
+        //                    tongdg += 1;
+        //                }
                        
                      
-                    }
-                }
-                //update data
-                chart.config.data.datasets[0].data = [tonghoanthanhdg, tongdxldg, tongchoxldg, tongquahandg];
-                chartDelivered.data.datasets[0].data = [tonghoanthanhdag, tongdxldag, tongchoxldag, tongquahandag];
-                $("#sumdg").html(tongdg);
-                $("#sumdag").html(tongdag);
-                $("#sumtg").html(0);
+        //            }
+        //        }
+        //        //update data
+        //        chart.config.data.datasets[0].data = [tonghoanthanhdg, tongdxldg, tongchoxldg, tongquahandg];
+        //        chartDelivered.data.datasets[0].data = [tonghoanthanhdag, tongdxldag, tongchoxldag, tongquahandag];
+        //        $("#sumdg").html(tongdg);
+        //        $("#sumdag").html(tongdag);
+        //        $("#sumtg").html(0);
                
-                //update lại biểu đồ
-                chart.update();
-                chartDelivered.update();
-                // chartCombination.update();
+        //        //update lại biểu đồ
+        //        chart.update();
+        //        chartDelivered.update();
+        //        // chartCombination.update();
 
-            })
-        }
-        LoadDataOfChart();
-
-
-        function LoadDataOfDelivered() {
-            _dashboardService.getAllInDashBoard(getFilterDelivered()).done(function (result) {
-
-                var tongdag = 0;
-                var tonghoanthanhdag = 0;
-                var tongdxldag = 0;
-                var tongchoxldag = 0;
-                var tongquahandag = 0;
-
-                for (var i = 0; i < result.items.length; i++) {
-                    //đã giao
-                    if (result.items[i].ownerStatus == 1) {
-                        if (result.items[i].workStatus == 0) {
-                            tonghoanthanhdag += 1;
-                            tongdag += 1;
-                        }
-                        if (result.items[i].workStatus == 1) {
-                            tongdxldag += 1;
-                            tongdag += 1;
-                        }
-                        if (result.items[i].workStatus == 3) {
-                            tongquahandag += 1;
-                            tongdag += 1;
-                        }
-                        if (result.items[i].workStatus == 2) {
-                            tongchoxldag += 1;
-                            tongdag += 1;
-                        }
-
-                    }
-                }
-                chartDelivered.data.datasets[0].data = [tonghoanthanhdag, tongdxldag, tongchoxldag, tongquahandag];
-                chartDelivered.update();
-            })
-        }
-
-        //Hàm load lại biểu đồ công việc được giao
-        function LoadDataOfAssigned() {
-            _dashboardService.getAllInDashBoard(getFilter()).done(function (result) {
-                var tongdg = 0;
-                var tonghoanthanhdg = 0;
-                var tongdxldg = 0;
-                var tongchoxldg = 0;
-                var tongquahandg = 0;
-
-                for (var i = 0; i < result.items.length; i++) {
-                    if (result.items[i].ownerStatus == 2) {
-                        if (result.items[i].workStatus == 0) {
-                            tonghoanthanhdg += 1;
-                            tongdg += 1;
-                        }
-                        if (result.items[i].workStatus == 1) {
-                            tongdxldg += 1;
-                            tongdg += 1;
-                        }
-                        if (result.items[i].workStatus == 3) {
-                            tongquahandg += 1;
-                            tongdg += 1;
-                        }
-                        if (result.items[i].workStatus == 2) {
-                            tongchoxldg += 1;
-                            tongdg += 1;
-                        }
-
-                    }
+        //    })
+        //}
+        //LoadDataOfChart();
 
 
-                }
-                chart.config.data.datasets[0].data = [tonghoanthanhdg, tongdxldg, tongchoxldg, tongquahandg];
-                chart.update();
+        //function LoadDataOfDelivered() {
+        //    _dashboardService.getAllInDashBoard(getFilterDelivered()).done(function (result) {
 
-            })
-        }
+        //        var tongdag = 0;
+        //        var tonghoanthanhdag = 0;
+        //        var tongdxldag = 0;
+        //        var tongchoxldag = 0;
+        //        var tongquahandag = 0;
 
-        $("#chart-dg").on("click", ".dataDgSearch", function () {
-            $(".dataDgSearch.active").removeClass("active");
-            $(this).addClass("active");
-            LoadDataOfAssigned();
-        })
+        //        for (var i = 0; i < result.items.length; i++) {
+        //            //đã giao
+        //            if (result.items[i].ownerStatus == 1) {
+        //                if (result.items[i].workStatus == 0) {
+        //                    tonghoanthanhdag += 1;
+        //                    tongdag += 1;
+        //                }
+        //                if (result.items[i].workStatus == 1) {
+        //                    tongdxldag += 1;
+        //                    tongdag += 1;
+        //                }
+        //                if (result.items[i].workStatus == 3) {
+        //                    tongquahandag += 1;
+        //                    tongdag += 1;
+        //                }
+        //                if (result.items[i].workStatus == 2) {
+        //                    tongchoxldag += 1;
+        //                    tongdag += 1;
+        //                }
+
+        //            }
+        //        }
+        //        chartDelivered.data.datasets[0].data = [tonghoanthanhdag, tongdxldag, tongchoxldag, tongquahandag];
+        //        chartDelivered.update();
+        //    })
+        //}
+
+        ////Hàm load lại biểu đồ công việc được giao
+        //function LoadDataOfAssigned() {
+        //    _dashboardService.getAllInDashBoard(getFilter()).done(function (result) {
+        //        var tongdg = 0;
+        //        var tonghoanthanhdg = 0;
+        //        var tongdxldg = 0;
+        //        var tongchoxldg = 0;
+        //        var tongquahandg = 0;
+
+        //        for (var i = 0; i < result.items.length; i++) {
+        //            if (result.items[i].ownerStatus == 2) {
+        //                if (result.items[i].workStatus == 0) {
+        //                    tonghoanthanhdg += 1;
+        //                    tongdg += 1;
+        //                }
+        //                if (result.items[i].workStatus == 1) {
+        //                    tongdxldg += 1;
+        //                    tongdg += 1;
+        //                }
+        //                if (result.items[i].workStatus == 3) {
+        //                    tongquahandg += 1;
+        //                    tongdg += 1;
+        //                }
+        //                if (result.items[i].workStatus == 2) {
+        //                    tongchoxldg += 1;
+        //                    tongdg += 1;
+        //                }
+
+        //            }
 
 
-        $("#chart-dag").on("click", ".dataDagSearch", function () {
-            $(".dataDagSearch.active").removeClass("active");
-            $(this).addClass("active");
-            LoadDataOfDelivered();
-        })
+        //        }
+        //        chart.config.data.datasets[0].data = [tonghoanthanhdg, tongdxldg, tongchoxldg, tongquahandg];
+        //        chart.update();
+
+        //    })
+        //}
+
+        //$("#chart-dg").on("click", ".dataDgSearch", function () {
+        //    $(".dataDgSearch.active").removeClass("active");
+        //    $(this).addClass("active");
+        //    LoadDataOfAssigned();
+        //})
+
+
+        //$("#chart-dag").on("click", ".dataDagSearch", function () {
+        //    $(".dataDagSearch.active").removeClass("active");
+        //    $(this).addClass("active");
+        //    LoadDataOfDelivered();
+        //})
     });
 })();
 

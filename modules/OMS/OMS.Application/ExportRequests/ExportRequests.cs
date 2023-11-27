@@ -25,7 +25,7 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
         private readonly IRepository<User, long> _user;
         private readonly IRepository<Warehouse> _warehouseRepository;
         private readonly IRepository<Subsidiary, long> _subsidiaryRepository;
-        private readonly IRepository<Transfer, long> _tranferRepository;
+        //  private readonly IRepository<Transfer, long> _tranferRepository;
         private ILogger<ExportRequest> logger;
         private IHostingEnvironment _Environment;
         private readonly ISendMailService _sendMailService;
@@ -33,7 +33,7 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
            IRepository<ExportRequestDetail, long> exportRequestsDetailRepository,
            IRepository<Warehouse> warehouseRepository,
            IRepository<Subsidiary, long> subsidiaryRepository,
-           IRepository<Transfer, long> tranferRepository,
+          // IRepository<Transfer, long> tranferRepository,
            ILogger<ExportRequest> _logger,
            IHostingEnvironment Environment,
            ISendMailService sendMailService,
@@ -43,7 +43,7 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
             _exportRequestsDetailRepository = exportRequestsDetailRepository;
             _warehouseRepository = warehouseRepository;
             _subsidiaryRepository = subsidiaryRepository;
-            _tranferRepository = tranferRepository;
+           // _tranferRepository = tranferRepository;
             logger = _logger;
             _Environment = Environment;
             _sendMailService = sendMailService;
@@ -153,29 +153,23 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 var query = _exportRequestsRepository.GetAll()
                                                      .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), x => x.Code.ToLower().Contains(input.SearchTerm.ToLower()))
                                                       .WhereIf(!string.IsNullOrEmpty(input.RequestDate), u => u.RequestDate == DateTime.Parse(input.RequestDate))
-                                                      .WhereIf(input.Status.HasValue, u => u.Status > input.Status)
-                                                      .WhereIf(input.ExportStatus.HasValue, u => u.ExportStatus != input.ExportStatus)
+                                                      .WhereIf(input.Status.HasValue, u => u.Status == input.Status)
                                                      .WhereIf(input.WarehouseDestinationId != null, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
                                                      .ToList();
                 var queryware = _warehouseRepository.GetAll();
                 var queryexp = _exportRequestsRepository.GetAll().Select(x => x.Id);
                 var querydetail = _exportRequestsDetailRepository.GetAll();
-                //Authorization.Users.Dto.GetUsersInput getUsersInput = new GetUsersInput();
-                //getUsersInput.MaxResultCount = 1000;
                 var WareSourceName = (from q in querydetail
                                       join e in queryware on q.WarehouseSourceId equals e.Id into gj
                                       from subpet in gj.DefaultIfEmpty()
                                       select new { q.ExportRequestId, subpet.Name }).ToList();
 
-                //var user = _userAppService.GetUsers(getUsersInput).Result.Items.ToList();
                 var user = _user.GetAll().ToList();
                 var querysubsidiary = _subsidiaryRepository.GetAll();
-                var querytranfer = _tranferRepository.GetAll();
                 var output = (from q in query
                               join exp in queryexp on q.Id equals exp
                               join u in user on q.CreatorUserId equals u.Id
                               join subsidiary in querysubsidiary on q.SubsidiaryId equals subsidiary.Id into g
-                              // join tranfer in querytranfer on q. equals subsidiary.Id into g
                               join ware in queryware on q.WarehouseDestinationId equals ware.Id into gj
                               let ListName = (from z in WareSourceName where exp == z.ExportRequestId select z.Name).Distinct().ToList()
                               from subpet in gj.DefaultIfEmpty()
@@ -195,7 +189,6 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                                   CreatorUserId = q.CreatorUserId,
                                   ReceiverName = q.ReceiverName,
                                   WarehouseDestinationName = subpet == null ?   string.Empty : subpet.Name,
-                                 // LastModificationTime = q.LastModificationTime.Value,
                                   ListWarehouseSourceName = ListName.ToList(),
                                   CodeRequirement = q.CodeRequirement,
                                   SubsidiaryName = (SubsidiaryNull == null || SubsidiaryNull.NameCompany == null ?  string.Empty : SubsidiaryNull.NameCompany),
@@ -229,14 +222,11 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 var queryware = _warehouseRepository.GetAll();
                 var queryexp = _exportRequestsRepository.GetAll().Select(x => x.Id);
                 var querydetail = _exportRequestsDetailRepository.GetAll();
-                //Authorization.Users.Dto.GetUsersInput getUsersInput = new GetUsersInput();
-               // getUsersInput.MaxResultCount = 1000;
                 var WareSourceName = (from q in querydetail
                                       join e in queryware on q.WarehouseSourceId equals e.Id into gj
                                       from subpet in gj.DefaultIfEmpty()
                                       select new { q.ExportRequestId, subpet.Name }).ToList();
 
-                //var user = _userAppService.GetUsers(getUsersInput).Result.Items.ToList();
                 var user = _user.GetAll().ToList();
                 var querysubsidiary = _subsidiaryRepository.GetAll();
                 var output = (from q in query
@@ -292,14 +282,11 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 var queryware = _warehouseRepository.GetAll();
                 var queryexp = _exportRequestsRepository.GetAll().Select(x => x.Id);
                 var querydetail = _exportRequestsDetailRepository.GetAll();
-                //Authorization.Users.Dto.GetUsersInput getUsersInput = new GetUsersInput();
-                //getUsersInput.MaxResultCount = 1000;
                 var WareSourceName = (from q in querydetail
                                       join e in queryware on q.WarehouseSourceId equals e.Id into gj
                                       from subpet in gj.DefaultIfEmpty()
                                       select new { q.ExportRequestId, subpet.Name }).ToList();
 
-                //var user = _userAppService.GetUsers(getUsersInput).Result.Items.ToList();
                 var user = _user.GetAll().ToList();
                 var querysubsidiary = _subsidiaryRepository.GetAll();
                 var output = (from q in query
@@ -388,14 +375,14 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 //var user = _userAppService.GetUsers(getUsersInput).Result.Items.ToList();
                 var user = _user.GetAll().ToList();
                 var querysubsidiary = _subsidiaryRepository.GetAll();
-                var querytranfer = _tranferRepository.GetAll();
+               // var querytranfer = _tranferRepository.GetAll();
                 var output = (from q in query
                               join exp in queryexp on q.Id equals exp
                               join u in user on q.CreatorUserId equals u.Id
                               join subsidiary in querysubsidiary on q.SubsidiaryId equals subsidiary.Id into g
                               from SubsidiaryNull in g.DefaultIfEmpty()
-                              join tranfer in querytranfer on q.TransferId equals tranfer.Id  into tranferempty
-                              from tranferNull in tranferempty.DefaultIfEmpty()
+                             // join tranfer in querytranfer on q.TransferId equals tranfer.Id  into tranferempty
+                            //  from tranferNull in tranferempty.DefaultIfEmpty()
                               join ware in queryware on q.WarehouseDestinationId equals ware.Id into gj
                               let ListName = (from z in WareSourceName where exp == z.ExportRequestId select z.Name).Distinct().ToList()
                             //  let timexuatkho = (from z in WareSourceName where exp == z.ExportRequestId select z.LastModificationTime.Value).ToList()
@@ -419,7 +406,7 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                                   ExportStatus = q.ExportStatus,
                                  // ExportTime = timexuatkho.ToList(),
                                   SubsidiaryName = SubsidiaryNull == null ? String.Empty : SubsidiaryNull.NameCompany,
-                                  TranferCode = tranferNull == null ? String.Empty : tranferNull.TransferCode
+                                  //TranferCode = tranferNull == null ? String.Empty : tranferNull.TransferCode
                               }).OrderBy(x => x.ExportStatus).ToList();
                 var itemscount = query.Count();
                 var itemslist = ObjectMapper.Map<List<ExportRequestsListDto>>(output);
@@ -483,26 +470,6 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
                 path = path.Replace("{{TenNguoiNhan}}", name);
                 path = path.Replace("{{LinkFromEmail}}", passlinkEmail);
                 await _sendMailService.SendEmailCvAsync(email, "Xác nhận công việc :", path);
-                //GetUsersInput getUsersInput = new GetUsersInput();
-                //getUsersInput.MaxResultCount = 1000;
-                //var querya = _userAppService.GetUsers(getUsersInput).Result;
-                //List<UsersListDto> usersListDtos = new List<UsersListDto>((querya.TotalCount));
-                //for (int i = 0; i < querya.TotalCount; i++)
-                //{
-                //    if (querya.Items[i].Id == items.CreatorUserId)
-                //    {
-                //        UsersListDto usersListdata = new UsersListDto();
-                //        email = querya.Items[i].EmailAddress;
-                //        name = querya.Items[i].Name;
-                //        usersListdata.Email = email;
-                //        usersListdata.FullName = name;
-                //        usersListDtos.Add(usersListdata);
-                //        path = path.Replace("{{TenNguoiNhan}}", name);
-                //        path = path.Replace("{{LinkFromEmail}}", passlinkEmail);
-                //        await _sendMailService.SendEmailCvAsync(email, "Xác nhận công việc :", path);
-                //    }
-
-                //}
             }
 
             await _exportRequestsRepository.UpdateAsync(items);

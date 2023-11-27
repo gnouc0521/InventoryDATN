@@ -38,17 +38,17 @@
         <ol class="breadcrumb breadcrumb-seperator-3">
             <li class="breadcrumb-item ">
 
-                <a href="@Url.Action("ImportRequestYCNK", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
+                <a href="@Url.Action("Index", "Dashboard", "PersonalProfile")"> <i class="fal fa-home mr-1"></i>Trang chủ</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="@Url.Action("ImportRequestYCNK", "ImportRequest", "PersonalProfile")">Phiếu nhập kho</a>
+      <a href="@Url.Action("ImportRequest", "ImportRequest", "PersonalProfile")">Phiếu nhập kho</a>
             </li>
             <li class="breadcrumb-item active"> Chi tiết phiếu nhập kho @Model.Code</li>
         </ol>
         <div class="col-xl-12 mb-4 mt-2">
             <div class="form-row align-items-center">
                 <div class="">
-                    <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("ImportRequestYCNK", "ImportRequest", "PersonalProfile")">
+        <a class="btn btn-primary ml-auto text-white btn-back" href="@Url.Action("ImportRequest", "ImportRequest", "PersonalProfile")">
                         <i class="fal fa-arrow-left"></i>
                     </a>
                 </div>

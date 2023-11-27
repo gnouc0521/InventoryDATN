@@ -29,7 +29,6 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="app.config" />
-		<None Include="Areas\Inventorys\Views\WorkGroup\_CreateWorkRootModal.cshtml" />
 		<None Include="wwwroot\libs-ext\summernote\.babelrc" />
 		<None Include="wwwroot\libs-ext\summernote\.editorconfig" />
 		<None Include="wwwroot\libs-ext\summernote\.envrc" />

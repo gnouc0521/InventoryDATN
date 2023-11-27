@@ -3,24 +3,20 @@ using Abp.Application.Services.Dto;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.UI;
-using bbk.netcore.mdl.OMS.Application.PurchasesRequests.Dto;
-using bbk.netcore.mdl.OMS.Application.Ruleses;
 using bbk.netcore.mdl.OMS.Application.Subsidiaries.Dto;
 using bbk.netcore.mdl.OMS.Core.Entities;
-using bbk.netcore.mdl.PersonalProfile.Core.Utils;
 using bbk.netcore.mdl.PersonalProfile.Core;
+using bbk.netcore.mdl.PersonalProfile.Core.Utils;
+using bbk.netcore.mdl.PersonalProfile.Core.Utils.Models;
+using bbk.netcore.Storage.FileSystem;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using bbk.netcore.Storage.FileSystem;
-using bbk.netcore.mdl.PersonalProfile.Core.Utils.Models;
-using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
 
 namespace bbk.netcore.mdl.OMS.Application.Subsidiaries
 {
-    public class SubsidiaryService : ApplicationService,  ISubsidiaryService
+  public class SubsidiaryService : ApplicationService,  ISubsidiaryService
     {
         private readonly IRepository<Subsidiary, long> _subsidiaryRepository;
         private readonly IFileSystemBlobProvider _fileSystemBlobProvider;

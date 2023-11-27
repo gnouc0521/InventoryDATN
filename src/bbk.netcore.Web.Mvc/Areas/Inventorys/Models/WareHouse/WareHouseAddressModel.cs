@@ -1,15 +1,12 @@
-﻿using bbk.netcore.mdl.OMS.Application.ProfileWorks.Dto;
-using bbk.netcore.mdl.OMS.Application.WarehouseItems.Dto;
-using bbk.netcore.mdl.OMS.Application.WarehouseTypes.Dto;
+﻿using bbk.netcore.mdl.OMS.Application.WarehouseTypes.Dto;
 using bbk.netcore.mdl.OMS.Core.Enums;
 using bbk.netcore.mdl.PersonalProfile.Core.Utils.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace bbk.netcore.Web.Areas.Inventorys.Models.WareHouse
 {
-    public class WareHouseAddressModel
+  public class WareHouseAddressModel
     {
         public int Id { get; set; }
         public Address provinces { get; set; }

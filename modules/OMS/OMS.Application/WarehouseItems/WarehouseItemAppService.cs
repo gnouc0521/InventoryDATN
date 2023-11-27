@@ -2,21 +2,18 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Repositories;
-using Abp.Linq.Extensions;
 using Abp.UI;
-using bbk.netcore.mdl.OMS.Application.ProfileWorks.Dto;
 using bbk.netcore.mdl.OMS.Application.WarehouseItems.Dto;
 using bbk.netcore.mdl.OMS.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.WebSockets;
 using System.Threading.Tasks;
 
 namespace bbk.netcore.mdl.OMS.Application.WarehouseItems
 {
-    [AbpAuthorize]
+  [AbpAuthorize]
     public class WarehouseItemAppService : ApplicationService , IWarehouseItemAppService
     {
         private readonly IRepository<Warehouse> _warehouserepository;
@@ -98,49 +95,6 @@ namespace bbk.netcore.mdl.OMS.Application.WarehouseItems
                     var newId = await _warehouseItemrepository.InsertAndGetIdAsync(newItemId);
                     return newId;
                 }
-                //if(input.ParrentId == 0)
-                //{
-                //    var query = await _warehouseItemrepository.GetAll().Where(x => x.WarehouseId == input.WarehouseId && input.ParrentId != 0).ToListAsync();
-
-                //    string sinhma(string ma)
-                //    {
-                //        string s = ma.Substring(4, ma.Length - 4);
-
-                //        int i = int.Parse(s);
-                //        i++;
-                //        if (i < 10) return "0" + Convert.ToString(i);
-                //        else
-                //        if (i >= 10 && i < 100) return Convert.ToString(i);
-                //        else return Convert.ToString(i);
-
-                //    }
-                //    string ma;
-
-                //    var count = query.Count;
-                //    if (count == 0)
-
-                //    {
-                //        ma = "0000000000";
-                //    }
-                //    else
-                //    {
-                //        ma = _warehouseItemrepository.GetAll().Where(x => x.WarehouseId == input.WarehouseId && input.ParrentId != 0).OrderByDescending(x => x.Code).Select(x => x.Code).ToList().First();
-                //    }
-
-                //    input.Code = sinhma(ma.ToString());
-                //    WarehouseItem newItemId = ObjectMapper.Map<WarehouseItem>(input);
-                //    var newId = await _warehouseItemrepository.InsertAndGetIdAsync(newItemId);
-                //    return newId;
-
-
-                //    //WarehouseItem warehouseItem = ObjectMapper.Map<WarehouseItem>(input);
-                //    //var newId = await _warehouseItemrepository.InsertAndGetIdAsync(warehouseItem);
-                //    //return newId;
-                //}
-                //else
-                //{
-
-                //}
 
             }
             catch (Exception ex)
@@ -168,8 +122,6 @@ namespace bbk.netcore.mdl.OMS.Application.WarehouseItems
                                   WarehouseId = i.WarehouseId,
                                   UnitMax = i.UnitMax,  
                               }).ToList();
-
-                //var WorkListDto = ObjectMapper.Map<List<WorkGroupListDto>>(query);
                 return new PagedResultDto<WarehouseItemListDto>(
                   query2.Count(),
                   query2
