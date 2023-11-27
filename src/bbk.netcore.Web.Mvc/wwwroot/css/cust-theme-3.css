@@ -2374,12 +2374,16 @@ a.text-dark:hover, a.text-dark:focus {
     z-index: 100;
 }*/
 
+#btn-qrCode {
+  cursor: pointer;
+}
+
 .qr-content {
-    position: fixed !important;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: 500;
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 500;
 }
 
 .not-view {
