@@ -45,56 +45,36 @@
                     <div class="panel-content">
                         <div class="form-row">
                             <div class="col-lg-6 col-md-12 mb-3">
-
-                                <button id="CreateNewButtonxx" name="CreateNewButton" class="btn btn-sm btn-toolbar-full btn-primary ml-auto">
-                                    <span class="fal fa-plus-square"></span>
-                                    @(new FixedLocalizableString("Thêm mới"))
+                              <button id="CreateNewButtonxx" name="CreateNewButton" class="btn btn-sm btn-toolbar-full btn-primary ml-auto">
+                                  <span class="fal fa-plus-square"></span>
+                                  @(new FixedLocalizableString("Thêm mới"))
                             </button>
-                            @* <button id="DeleteAll" name="DeleteButton" class="btn btn-sm btn-toolbar-full btn-primary ml-auto" disabled>
-                            <span class="fal fa-trash-alt"></span>
-                            @(new FixedLocalizableString("Xóa"))
-                            </button>*@
+                             <button id="DeleteAll" name="DeleteButton" class="btn btn-sm btn-toolbar-full btn-primary ml-auto" disabled>
+                                <span class="fal fa-trash-alt"></span>
+                                @(new FixedLocalizableString("Xóa"))
+                            </button>
                         </div>
                         <div class="col-lg-6 col-md-12 mb-3 d-flex">
                             <input type="text" id="SearchTerm" name="SearchTerm" placeholder="@(new FixedLocalizableString("Nhập tên đơn vị tính"))" class="form-control" required>
                             <button type="button" id="Search" class="btn btn-primary"><i class="fal fa-search"></i></button>
                         </div>
                     </div>
-                    <!-- datatable start -->
-                    @* <table id="unitsTable" class="table table-bordered table-hover table-striped w-100 display nowrap">
-                    <thead class="bg-primary-600">
-                    <tr>
-                    <th><input type="checkbox" name="select_all" value="1" id="example-select-all"></th>
-                    <th>Mã </th>
-                    <th>Tên đơn vị</th>
-                    <th>Ghi chú</th>
-                    <th></th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                    </table>*@
-
-
-                    <!-- datatable end -->
                 </div>
+                <!-- datatable start -->
                 <div class="col-sm-12">
-                    <table class="table table-bordered table-hover table-striped w-100 display nowrap">
+                    <table id="unitsTable" class="table table-bordered table-hover table-striped w-100 display nowrap">
                         <thead class="bg-primary-600">
-                            <tr>
-                                <th>Tên đơn vị</th>
-                                <th>Hành Động</th>
-                            </tr>
+                          <tr>
+                            <th><input type="checkbox" name="select_all" value="1" id="example-select-all"></th>
+                            <th>Tên đơn vị</th>
+                            <th>Ghi chú</th>
+                            <th></th>
+                          </tr>
                         </thead>
-                        <tbody class="tbody_hidden" style="display:none;">
-                            <tr class="odd">
-                                <td valign="top" colspan="5" class="text-center dataTables_empty">Không tìm thấy dữ liệu</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
-
-                <div class="accordion pb-3" id="accordionExample">
-                </div>
+                <!-- datatable end -->
             </div>
         </div>
     </div>

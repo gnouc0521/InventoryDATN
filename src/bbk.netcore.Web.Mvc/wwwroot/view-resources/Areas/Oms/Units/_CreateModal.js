@@ -61,7 +61,6 @@
                     callback.name = data.Name;
                     callback.description = data.Description;
                     callback.parrentId == data.ParrentId
-                    _modalManager.setResult(callback);
                     _modalManager.close();
                     abp.notify.info('Thêm mới thành công!');
                     abp.event.trigger('app.reloadDocTable');

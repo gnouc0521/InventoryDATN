@@ -47,8 +47,9 @@
             _dayOffService.update(data)
                 .done(function () {
                     _modalManager.close();
-                    _modalManager.setResult(data);
-                    abp.notify.info('Cập nhật thành công!');
+                    
+                  abp.notify.info('Cập nhật thành công!');
+                  abp.event.trigger('app.reloadDocTable');
                 }).always(function () {
                     _modalManager.setBusy(false);
                 });

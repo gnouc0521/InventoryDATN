@@ -29,27 +29,7 @@
                 </div>
             </div>
             <input hidden type="text" value="@Model.ParrentId" name="ParrentId" />
-            @if (Model.ParrentId.HasValue)
-            {
-                <div class="form-group row required">
-                    <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Chiều dài"))<span class="text-danger">*</span></label>
-                    <div class="col-md-9">
-                        <input type="text" name="Length" value="@Model.Length" class="form-control" minlength="">
-                    </div>
-                </div>
-                <div class="form-group row required">
-                    <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Chiều rộng"))<span class="text-danger">*</span></label>
-                    <div class="col-md-9">
-                        <input type="text" name="Width" value="@Model.Width" class="form-control" minlength="">
-                    </div>
-                </div>
-                <div class="form-group row required">
-                    <label class="col-md-3 col-form-label">@(new FixedLocalizableString("Chiều cao"))<span class="text-danger">*</span></label>
-                    <div class="col-md-9">
-                        <input type="text" name="Height" value="@Model.Height" class="form-control" minlength="">
-                    </div>
-                </div>
-            }
+            
         </form>
     </div>
 </div>

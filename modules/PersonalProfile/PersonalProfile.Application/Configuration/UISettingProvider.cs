@@ -11,8 +11,8 @@ namespace bbk.netcore.mdl.PersonalProfile.Application.Configuration
         {
             return new[]
                 {
-                    new SettingDefinition(UIConsts.Header,"HỆ THỐNG QUẢN LÝ KHO BBK",scopes: SettingScopes.All, isVisibleToClients: true),
-                    new SettingDefinition(UIConsts.Footer,"CÔNG TY CỔ PHẦN BBK",scopes: SettingScopes.All, isVisibleToClients: true),
+                    new SettingDefinition(UIConsts.Header,"HỆ THỐNG QUẢN LÝ KHO",scopes: SettingScopes.All, isVisibleToClients: true),
+                    new SettingDefinition(UIConsts.Footer,"QUẢN LÝ KHO HÀNG THÔNG MINH",scopes: SettingScopes.All, isVisibleToClients: true),
                     new SettingDefinition(UIConsts.LogoUrl,"/img/logo.png",scopes: SettingScopes.All, isVisibleToClients: true),
                     new SettingDefinition(UIConsts.BannerUrl,"/img/white-img.jpg",scopes: SettingScopes.All, isVisibleToClients: true),
                     new SettingDefinition(UIConsts.LogoPath,"",scopes: SettingScopes.All, isVisibleToClients: false),
