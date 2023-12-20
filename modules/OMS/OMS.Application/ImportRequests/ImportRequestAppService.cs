@@ -83,7 +83,8 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
                           .WhereIf(!string.IsNullOrEmpty(input.ResquestDate), u => u.RequestDate == DateTime.ParseExact(input.ResquestDate, "MM/dd/yyyy", CultureInfo.InvariantCulture))
                           .WhereIf(input.WarehouseDestinationId != 0, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
                           .WhereIf(input.CreatorById != 0, x => x.CreatorUserId == input.CreatorById)
-                          .OrderBy(x => x.Id);
+                          .OrderBy(x => x.Id)
+                          .OrderBy(x=>x.ImportStatus);
                     var warehoue = _wareHouse.GetAll();
                     var user = _user.GetAll().ToList();
                     var results = (from imp in query
@@ -100,10 +101,8 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
                                        WarehouseDestinationId = imp.WarehouseDestinationId,
                                        TransferId = imp.TransferId,
                                        ImportRequestSubsidiaryId = imp.ImportRequestSubsidiaryId,
-                                      // TranferCode = tr?.TransferCode,
-                                      // YcnkCode = ims?.Code,
-
-                                   }).OrderByDescending(x => x.Id);
+                                   }).OrderByDescending(x => x.Id)
+                                   .OrderByDescending(x => x.ImportStatus);
 
                     return new PagedResultDto<ImportRequestListDto>(
                       results.Distinct().Count(),

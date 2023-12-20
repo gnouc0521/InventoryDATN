@@ -25,6 +25,7 @@ namespace bbk.netcore.EntityFrameworkCore
 		public DbSet<WarehouseItem> warehouseItems { get; set; }
 		public DbSet<WarehouseLocationItems> warehouseLocationItems { get; set; }
 		public DbSet<ExportRequest> exportRequests { get; set; }
+		
 		public DbSet<ExportRequestDetail> requestDetails { get; set; }
 		public DbSet<Inventory> inventories { get; set; }
 
@@ -38,13 +39,15 @@ namespace bbk.netcore.EntityFrameworkCore
 
 
 		public DbSet<Subsidiary> subsidiaries { get; set; }
-		
 
-		#endregion
+    public DbSet<WarehouseCardDetail> warehouseCardDetails { get; set; }
+    public DbSet<WarehouseCard> warehouseCard { get; set; }
 
-		#region Core Systems Additions DBSets
-		//public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
-		public virtual DbSet<Friendship> Friendships { get; set; }
+    #endregion
+
+    #region Core Systems Additions DBSets
+    //public virtual DbSet<BinaryObject> BinaryObjects { get; set; }
+    public virtual DbSet<Friendship> Friendships { get; set; }
 
 		public virtual DbSet<ChatMessage> ChatMessages { get; set; }
 

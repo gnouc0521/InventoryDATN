@@ -1,0 +1,151 @@
+﻿@using bbk.netcore.Web.Areas.Inventorys.Models.ImportRequest;
+@model ImportRequestViewModel
+@section Header{
+
+    <!-- should using in layouts -->
+    <link href="~/css/datagrid/datatables/datatables.bundle.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+        <link href="~/libs/select2/css/select2.min.css" rel="stylesheet" asp-append-version="true" />
+        <!-- select 2 -->
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/libs/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
+}
+
+@section Scripts{
+    <environment names="Development">
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ImportRequests/ViewDetail.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js" asp-append-version="true"></script>
+        <script src="~/libs/bootstrap-datepicker/locales/bootstrap-datepicker.vi.min.js" charset="UTF-8" asp-append-version="true"></script>
+        <script src="~/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
+        <script src="/view-resources/Areas/PersonalProfile/_Bundles/documents.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Areas/Oms/ImportRequests/ViewDetail.js" asp-append-version="true"></script>
+    </environment>
+}
+
+<div class="row">
+
+    <input value="@Model.impRequests.Id" name="Id" id="Id" hidden />
+    <div class="col-12">
+        <div class="row">
+            <div class="col-6 text-center">
+                <img src="~/img/Logo_bbk.png" style="width: 24%;" />
+                <p>
+                    Số: @Model.Code
+                </p>
+            </div>
+            <div class="col-6 text-center justify-content-end">
+                <h2>CÔNG TY CỔ PHẦN GIẢI PHÁP CÔNG NGHỆ BBK</h2>
+                <p>Địa chỉ: VP tầng 30 - Toà TheNine - 9 Phạm Văn Đồng,</p>
+                <p>Cầu Giấy - Hà Nội</p>
+                <p>MST: 0109070164 <span class="ml-3">Tel:  02293.896.999</span> <span class="ml-3">Email:  admin@bbksolution.com</span></p>
+                <p class="">
+                    Ngày @Model.CreationTime.Day
+
+                    Tháng @Model.CreationTime.Month
+
+                    Năm @Model.CreationTime.Year
+
+                </p>
+            </div>
+            <div class="col-12 text-center">
+                <h1><b>PHIẾU NHẬP KHO</b></h1>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12 text-left">
+                <p class="mb-2"><span class="font-weight-bold">Tên người vận chuyển: </span> @Model.ShipperName</p>
+                <p class="mb-2"><span class="font-weight-bold">Số điện thoại người vận chuyển:</span> +84 @Model.ShipperPhone</p>
+               @* <p class="mb-2"><span class="font-weight-bold">Lý do nhập kho : </span> @Model.Remark </p>*@
+                <p class="mb-2">
+                    <span class="font-weight-bold">Nhập đến kho: </span> @Model.NameWareHouse &ensp; <span class="font-weight-bold">Địa điêm :</span> @Model.DiaChiKho ,
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12" style="margin-top:25px;" id="pricingDetailTablediv">
+        <table id="PrintTable" class="table table-bordered table-hover table-striped w-100">
+            <thead class="bg-primary-600">
+                <tr>
+                    <th>STT</th>
+                    <th>Mã hàng hóa</th>
+                    <th>Tên hàng hóa</th>
+                    <th>Đơn vị tính</th>
+                    <th id="sl">Số lượng nhập</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th>Cộng</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                </tr>
+            </tfoot>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="col-12 text-left">
+        <p class="mb-2"><span class="font-weight-bold">Tổng số tiền (Viết bằng chữ): </span> </p>
+        <p class="mb-2"><span class="font-weight-bold">Số chứng từ gốc kèm theo :</span> </p>
+    </div>
+
+    <div class="col-10 text-right">
+        <p>
+            <i>
+                Ngày ...
+
+                Tháng ...
+
+                Năm ...
+
+            </i>
+        </p>
+    </div>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-2 text-center">
+                <p><b>Người lập phiếu</b></p>
+                <p><i>(Ký,họ tên)</i></p>
+            </div>
+            <div class="col-2 text-center">
+                <p><b>Người vận chuyển</b></p>
+                <p><i>(Ký,họ tên)</i></p>
+            </div>
+            <div class="col-2 text-center">
+                <p><b>Thủ kho</b></p>
+                <p><i>(Ký,họ tên)</i></p>
+            </div>
+            <div class="col-3 text-center">
+                <p><b>Kế toán trưởng</b></p>
+                <p>(Hoặc bộ phận có nhu cầu nhập)</p>
+                <p><i>(Ký,họ tên)</i></p>
+            </div>
+            <div class="col-3 text-center">
+                <p><b>Giám đốc</b></p>
+                <p><i>(Ký,họ tên)</i></p>
+            </div>
+        </div>
+    </div>
+    <button id="btnPrint" data-action="app-print" class="btn btn-toolbar-full btn-success ">
+        <span class="fal fa-print"></span>
+        @(new FixedLocalizableString("In Phiếu"))
+    </button>
+</div>

@@ -1,0 +1,102 @@
+﻿@{
+    Layout = null;
+}
+@using bbk.netcore.Web.Areas.Inventorys.Models.ImportRequest
+@model ImportRequestViewModel
+<script src="~/view-resources/Areas/Oms/ImportRequests/paging.js" asp-append-version="true"></script>
+<div class="modal-content" id="ItemsCreateModal">
+    <div class="modal-header">
+        <h5 class="modal-title">Cập nhật phiếu nhập </h5><button type="button" class="close" data-dismiss="modal"
+                                                                 aria-label="Close">
+            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form name="FrmEdit" role="form" class="needs-validation" novalidate="">
+            <div class="form-group row required">
+                <input value="@Model.Id" name="Id" id="Id" hidden />
+
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Người vận chuyển"))<span class="text-danger">*</span></label>
+                    <input type="text" name="ShipperName" id="ShipperName" class="form-control" required value="@Model.ShipperName">
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Vui lòng nhập người vận chuyển."))
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-form-label">@(new FixedLocalizableString("SDT"))<span class="text-danger">*</span></label>
+                    <div class="d-flex">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">+84</span>
+                        </div>
+                        <input id="ShipperPhone" type="text" name="ShipperPhone" value="@Model.ShipperPhone" class="form-control" pattern=".{9,}" title="Ký tự nhập ít nhất là 9." maxlength="9" required />
+                    </div>
+                    <div class="invalid-feedback">
+                        @(new FixedLocalizableString("Sai định dạng!"))
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Người tao phiếu"))<span class="text-danger">*</span></label>
+                    <input type="text" name="CreateBy" class="form-control" value="@Model.CreatedBy" disabled minlength="">
+                </div>
+            </div>
+
+            <div class="form-group row required">
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Kho nhập"))<span class="text-danger">*</span></label>
+                    <select class="SubjectName-select form-control" id="WarehouseDestinationId" asp-for="WarehouseDestinationId" name="WarehouseDestinationId" asp-items="@Model.GetWarehouse()" required>
+                        <option value="" selected disabled>Chọn Kho</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn Kho.
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" col-form-label">@(new FixedLocalizableString("Ngày yêu cầu"))<span class="text-danger">*</span></label>
+                    <input type="text" autocomplete="off" class="form-control date-picker" value="@Model.CreationTime.ToString("dd/MM/yyyy")" disabled placeholder="@(new FixedLocalizableString("Nhập ngày"))"
+                           id="RequestDate" name="RequestDate" required>
+                    <div class="invalid-feedback">
+                        Vui lòng chọn thời gian.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <label class=" col-form-label">@(new FixedLocalizableString("Lý do nhập kho"))</label>
+                <textarea id="Remark" name="Remark" class="form-control"></textarea>
+            </div>
+            <div class="col-md-12">
+                <label class=" col-form-label">@(new FixedLocalizableString("Thông tin hàng hóa"))</label>
+                <input id="fileupload" type=file name="files[]" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+                <a href="@Url.Action("Downloadfile", "ImportRequest", "Inventorys")" class="btn btn-sm btn-toolbar-full btn-primary ml-auto">
+                    <span class="fas fa-file-download"> </span>
+                    @(new FixedLocalizableString("Tải file mẫu"))
+                </a>
+                <table id="ItemTable" class="table table-bordered table-hover table-striped w-100">
+                    <thead class="bg-primary-600">
+                        <tr>
+                            <th>STT</th>
+                            <th>HÀNG HOÁ</th>
+                            <th>GIÁ NHẬP</th>
+                            <th>SỐ LƯỢNG</th>
+                            <th>ĐVT</th>
+                            <th>Năm sản xuất</th>
+                            <th>Ngày hết hạn</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+        <div class="col-md-12 text-center">
+            <button id="addRow" name="addRow" class="btn btn-sm btn-primary ml-auto">
+                <span class="fal fa-plus-square"></span>
+                @(new FixedLocalizableString("Thêm mới hàng hóa"))
+            </button>
+        </div>
+    </div>
+</div>
+@await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancelAndHuy.cshtml")
+
+
