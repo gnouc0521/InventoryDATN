@@ -2,7 +2,9 @@
 using bbk.netcore.mdl.OMS.Application.ImportRequestDetails.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequests.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequestSubidiarys.Dto;
+using bbk.netcore.mdl.OMS.Application.Itemses.Dto;
 using bbk.netcore.mdl.OMS.Application.Suppliers.Dto;
+using bbk.netcore.mdl.OMS.Application.Units.Dto;
 using bbk.netcore.mdl.OMS.Application.WareHouses.Dto;
 using bbk.netcore.mdl.OMS.Core.Enums;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -84,5 +86,38 @@ namespace bbk.netcore.Web.Areas.Inventorys.Models.WarehouseCard
             }
             return list;
         }
-    }
+
+        public List<ItemsListDto> ItemList { get; set; }
+
+        public List<SelectListItem> GetItem()
+        {
+          var list = new List<SelectListItem>();
+          foreach (var item1 in ItemList)
+          {
+            var listItems1 = new SelectListItem
+            {
+              Text = item1.Name,
+              Value = item1.Id.ToString(),
+            };
+            list.Add(listItems1);
+          }
+          return list;
+        }
+
+        public List<UnitListDto> unitList { get; set; }
+        public List<SelectListItem> GetUnit()
+        {
+          var list = new List<SelectListItem>();
+          foreach (var item1 in unitList)
+          {
+            var listItems1 = new SelectListItem
+            {
+              Text = item1.Name,
+              Value = item1.Id.ToString(),
+            };
+            list.Add(listItems1);
+          }
+          return list;
+        }
+  }
 }

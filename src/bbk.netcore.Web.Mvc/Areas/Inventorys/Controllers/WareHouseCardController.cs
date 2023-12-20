@@ -80,10 +80,14 @@ namespace bbk.netcore.Web.Areas.Inventorys.Controllers
     {
       var warehouseList = await _wareHouseAppService.GetWarehouseList();
       var User = _userManager.Users.FirstOrDefault(x => x.Id == AbpSession.UserId);
+      var Itemlist = await _itemAppService.GetItemImportList();
+      var UnitList = await _unitService.GetUnitList();
       WarehouseCardViewModel model = new WarehouseCardViewModel
       {
         WarehouseList = warehouseList,
         CreatedBy = User.FullName,
+        ItemList = Itemlist,
+        unitList = UnitList
       };
       return PartialView("_Create", model);
     }
