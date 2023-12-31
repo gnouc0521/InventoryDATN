@@ -195,5 +195,50 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequestDetails
             return newItem;
         }
 
+    public async Task<PagedResultDto<ImportRequestDetailListDto>> GetAllByItems(GetImportRequestDetailInput input)
+    {
+      try
+      {
+        var itemsList = _items.GetAll();
+        var query = _importRequestDetail
+              .GetAll()
+              .Where(x=>x.ItemId == input.ItemsId)
+              .Where(x => x.ImportRequestId == input.importRequestId);
+
+
+        var impquery = _importRequest.GetAll();
+        var result = (from i in query
+                      join im in impquery on i.ImportRequestId equals im.Id
+                      join it in itemsList on i.ItemId equals it.Id
+                      select new ImportRequestDetailListDto
+                      {
+                        Id = i.Id,
+                        ImportRequestId = i.ImportRequestId,
+                        CodeItem = it.ItemCode,
+                        NameItem = it.ItemCode + "-" + it.Name,
+                        UnitId = i.UnitId,
+                        UnitName = i.UnitName,
+                        ImportPrice = i.ImportPrice,
+                        Quantity = i.Quantity,
+                        ItemId = i.ItemId,
+                        ExpireDate = i.ExpireDate,
+                        ShipperName = im.ShipperName,
+                        ShipperPhone = im.ShipperPhone,
+                        QuantityHT = i.QuantityHT,
+                        // MFG = i.MFG,
+                        Thanhtien = i.ImportPrice * i.Quantity
+                      }).ToList();
+
+
+        return new PagedResultDto<ImportRequestDetailListDto>(
+          result.Distinct().Count(),
+          result.Distinct().ToList()
+          );
+      }
+      catch (Exception ex)
+      {
+        throw new UserFriendlyException(ex.Message);
+      }
     }
+  }
 }

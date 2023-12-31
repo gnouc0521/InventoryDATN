@@ -9,20 +9,50 @@
     var _unitService = abp.services.app.unitService;
     var _modalManager;
     var _frmIMP = null;
+
+
+
     this.init = function (modalManager) {
       _modalManager = modalManager;
       _frmIMP = _modalManager.getModal().find('form[name=frmCreate]');
+
+      function delete_row() {
+        $('.delete_row').click(function () {
+          $(this).parents('tr').remove();
+        })
+      }
+
       function unit() {
         _unitService.getAll({}).done(function (results) {
-          $.each(results.items, function (index, value) {
-
-            option = `<option value="` + value.id + `">` + value  .name + `</option>`
-           // $(value).append(option)
+            $.each(results.items, function (index, valueoption) {
+             
+                option = `<option value="` + valueoption.id + `">` + valueoption.name + `</option>`
+                $('.UnitId option:last').after(option)
           })
         })
       }
 
-      function showDataselectItems() {
+
+
+      function tbodytr(length) {
+        var stt = length + 1
+        return html = `<tr>
+                                <th>`+ stt + `</th>
+                                <th><select  class="form-control selectExport ItemId" style="width:100%"  required>
+                                <option value="" selected=""> Chọn hàng hóa </option>
+                                </select></th>
+                                <th><input type="number" id="row-1-age" name="ExportPrice_`+ length + `" class="form-control ImportPrice" value="" fdprocessedid="trygc" required></th>
+                                <th><input type="number" id="row-1-age" name="Quantity_`+ length + `" class="form-control Quantity" value="" fdprocessedid="7ch0d" required></th>
+                                <th><select size="1" id="row-1-office" class="form-control selectUnit UnitId" name="UnitId"  required >
+                                <option value="" selected=""> Chọn đơn vị tính </option>
+                                </select></th>
+                                <th><input type="text" autocomplete="off" class="form-control date-picker MFG" value="" placeholder="Nhập ngày" id="MFG" name="MFG" required></th>
+                                <th><input type="text" autocomplete="off" class="form-control date-picker ExpireDate" value="" placeholder="Nhập ngày" id="ExpireDate" name="ExpireDate" required></th>
+                               <th class="text-center"><a class="delete_row" href='javascript:void(0);'><i class="fal fa-trash-alt  align-bottom "></i></a> </th>
+                            </tr>`;
+      }
+
+      $('#addRow').click(function () {
         _itemsServiceService.getItemImportList().done(function (result) {
           var dataselectItems = $.map(result, function (obj) {
             obj.id = obj.id;
@@ -31,7 +61,8 @@
           });
 
           var length = $('#ItemTable tbody tr').length
-          AddItemImport.delete_row()
+          $('#ItemTable tbody ').append(tbodytr(length))
+          delete_row()
           unit()
 
           $("#ItemTable tbody .selectExport").change(function () {
@@ -39,8 +70,8 @@
             $("#ItemTable tbody .selectExport").each(function () {
               selVal.push(this.value);
             });
-            var select = $(this).parents('th').find('select')// .find("option")
-            $(select).find("option").removeAttr("disabled").filter(function () {
+            var abc = $(this).parents('th').find('select')// .find("option")
+            $(abc).find("option").removeAttr("disabled").filter(function () {
               var a = $(this).parent("select").val();
               return (($.inArray(this.value, selVal) > -1) && (this.value != a))
             }).attr("disabled", "disabled");
@@ -56,6 +87,9 @@
             data: dataselectItems,
           }).on('select2:select', function (e) {
           }).trigger('change');
+
+
+
 
           $('.date-picker').datepicker({
             rtl: false,
@@ -83,24 +117,10 @@
 
 
         })
-      };
-      function tbodytr(length) {
-        var stt = length + 1
-        return html = `<tr>
-                                <th>`+ stt + `</th>
-                                <th><select  class="form-control selectExport ItemId" style="width:100%"  required>
-                                <option value="" selected=""> Chọn hàng hóa </option>
-                                </select></th>
-                                <th><input type="number" id="row-1-age" name="ExportPrice_`+ length + `" class="form-control ImportPrice" value="" fdprocessedid="trygc" required></th>
-                                <th><input type="number" id="row-1-age" name="Quantity_`+ length + `" class="form-control Quantity" value="" fdprocessedid="7ch0d" required></th>
-                                <th><select size="1" id="row-1-office" class="form-control selectUnit UnitId" name="UnitId"  required >
-                                <option value="" selected=""> Chọn đơn vị tính </option>
-                                </select></th>
-                                <th><input type="text" autocomplete="off" class="form-control date-picker MFG" value="" placeholder="Nhập ngày" id="MFG" name="MFG" required></th>
-                                <th><input type="text" autocomplete="off" class="form-control date-picker ExpireDate" value="" placeholder="Nhập ngày" id="ExpireDate" name="ExpireDate" required></th>
-                               <th class="text-center"><a class="delete_row" href='javascript:void(0);'><i class="fal fa-trash-alt  align-bottom "></i></a> </th>
-                            </tr>`;
-      }
+        delete_row()
+      })
+
+
       var ExcelToJSON = function () {
         this.parseExcel = function (file) {
           var reader = new FileReader();
@@ -177,248 +197,12 @@
           reader.readAsBinaryString(file);
         };
       };
+
       function handleFileSelect(evt) {
         var files = evt.target.files; // FileList object
         var xl2json = new ExcelToJSON();
         xl2json.parseExcel(files[0]);
       }
-
-      var AddItemImport = {
-        buttonUpload: $('#UploadFileImport'),
-        buttonDownLoad: $('#UploadFileImport'),
-        ItemTable: $("#ItemTable"),
-        ShipperNameInput: $("#ShipperName"),
-        ShipperPhoneInput: $("#ShipperPhone"),
-        WarehouseDestination: $("#WarehouseDestinationId"),
-        Remark: $("#Remark"),
-        ButtonAddRow: $('#addRow'),
-
-        showDataselectItems: function () {
-          _itemsServiceService.getItemImportList().done(function (result) {
-            var dataselectItems = $.map(result, function (obj) {
-              obj.id = obj.id;
-              obj.text = obj.itemCode + "/" + obj.name;
-              return obj;
-            });
-
-            var length = $('#ItemTable tbody tr').length
-            $('#ItemTable tbody ').append(tbodytr(length))
-            AddItemImport.delete_row()
-            unit()
-
-            $("#ItemTable tbody .selectExport").change(function () {
-              var selVal = [];
-              $("#ItemTable tbody .selectExport").each(function () {
-                selVal.push(this.value);
-              });
-              var select = $(this).parents('th').find('select')// .find("option")
-              $(select).find("option").removeAttr("disabled").filter(function () {
-                var a = $(this).parent("select").val();
-                return (($.inArray(this.value, selVal) > -1) && (this.value != a))
-              }).attr("disabled", "disabled");
-
-            });
-
-            $(".selectExport").eq(0).trigger('change');
-
-            $('.selectExport').select2({
-              width: "100%",
-              dropdownParent: $('#ItemsCreateModal'),
-              placeholder: 'Chọn hàng hóa',
-              data: dataselectItems,
-            }).on('select2:select', function (e) {
-            }).trigger('change');
-
-            $('.date-picker').datepicker({
-              rtl: false,
-              format: 'dd/mm/yyyy',
-              orientation: "left",
-              autoclose: true,
-              language: abp.localization.currentLanguage.name,
-
-            });
-
-            $("#MFG").datepicker({
-              todayBtn: 1,
-              autoclose: true,
-            }).on('changeDate', function (selected) {
-              var minDate = new Date(selected.date.valueOf());
-              $('#ExpireDate').datepicker('setStartDate', minDate);
-
-            });
-
-            $("#ExpireDate").datepicker()
-              .on('changeDate', function (selected) {
-                var maxDate = new Date(selected.date.valueOf());
-                $('#MFG').datepicker('setEndDate', maxDate);
-              });
-
-
-          })
-        },
-        AddRow: function () {
-          this.ButtonAddRow.click(function () {
-            $('#ItemTable tbody ').append(tbodytr(length))
-            AddItemImport.showDataselectItems();
-            AddItemImport.delete_row();
-          })
-        },
-        LoadData: function (datainput) {
-          //region set val input
-          this.ShipperNameInput.val(datainput.shipperName);
-          this.ShipperPhoneInput.val(datainput.shipperPhone);
-          this.WarehouseDestination.val(datainput.warehouseDestination);
-          this.Remark.val(datainput.remark);
-          //endregion
-          //region set val in table
-          var datatable = this.ItemTable.DataTable({
-            "data": datainput.importRequestDetailListDto,
-            columnDefs: [
-              {
-                targets: 0,
-                render: function (data, type, row, meta) {
-                  return ` <th class="text-center">` + row.codeItem + ` </th>`;
-                }
-              },
-              {
-                targets: 1,
-                render: function (data, type, row, meta) {
-                  return ` <th><select class="form-control selectExport ItemId" style="width:100%"  required>
-                                <option value="" selected=""> Chọn hàng hóa </option>
-                                </select></th>`;
-                }
-              },
-              {
-                targets: 2,
-                render: function (data, type, row, meta) {
-                  return `<th><input type="number" class="form-control ImportPrice" value="` + row.importPrice + `" required></th>`
-                }
-              },
-              {
-                targets: 3,
-                render: function (data, type, row, meta) {
-                  return `<th><input type="number"  class="form-control Quantity" value="` + row.quantity + `" required></th>`
-                }
-              },
-              {
-                targets: 4,
-                render: function (data, type, row, meta) {
-                  return `<th><select size="1" id="row-1-office" class="form-control selectUnit UnitId" name="UnitId"  required >
-                                <option value="" selected=""> Chọn đơn vị tính </option>
-                                </select></th>`
-                  return ` <th class="text-center">` + row.unitName + ` </th>`;
-                }
-              },
-              {
-                targets: 5,
-                render: function (data, type, row, meta) {
-                  return ` <th><input type="text" autocomplete="off" class="form-control date-picker MFG" value="" placeholder="Nhập ngày" id="MFG" name="MFG" required></th>
-                              `;
-                }
-              },
-              {
-                targets: 6,
-                render: function (data, type, row, meta) {
-                  return `  <th><input type="text" autocomplete="off" class="form-control date-picker ExpireDate" value="" placeholder="Nhập ngày" id="ExpireDate" name="ExpireDate" required></th>`;
-                }
-              },
-              {
-                targets: 7,
-                render: function (data, type, row, meta) {
-                  return ` <th class="text-center"><a class="delete_row" href='javascript: void (0);'><i class="fal fa-trash-alt  align-bottom "></i></a> </th>`;
-                }
-              }
-            ],
-            "drawCallback": function () {
-              unit();
-              showDataselectItems();
-             // ItemAndUnit();
-            }
-          });
-            var data = datatable.rows().data();
-            var datanode = datatable.rows().nodes();
-            datanode.each(function (value, index) {
-              var selectItem = $(value).find('select.selectExport')
-              var selectUnit = $(value).find('select.selectUnit')
-              var InputDate = $(value).find('select.selectExport')
-
-              selectItem.val(data[index].itemId)
-              selectUnit.val(data[index].unitId)
-            });
-        
-        },
-        loadExcel: function () {
-          let formData = new FormData();
-          formData.append("file", fodata);
-          abp.ajax({
-            url: '/Inventorys/ImportRequest/ImportExcel',
-            type: 'post',
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: formData,
-            dataType: "json",
-            success: (function (response) {
-              setTimeout(() => {
-                AddItemImport.LoadData(response)
-              }, "1000");
-            })
-          }).done(function () {
-            abp.notify.info('Cập nhật file thành công!');
-            //  getDocs();
-          })
-        },
-        delete_row: function () {
-          $('.delete_row').click(function () {
-            $(this).parents('tr').remove();
-          })
-        },
-        onClickHandler: function (ev) {
-          var el = window._protected_reference = document.createElement("INPUT");
-          el.type = "file";
-          el.accept = "file/*";
-          el.multiple = "multiple"; // remove to have a single file selection
-
-          // (cancel will not trigger 'change')
-          el.addEventListener('change', function (ev2) {
-            // access el.files[] to do something with it (test its length!)
-
-            // add first image, if available
-            if (el.files.length) {
-              // document.getElementById('out').src = URL.createObjectURL(el.files[0]);
-              var ext = el.files[0].name.split('.').pop().toLowerCase();
-              if ($.inArray(ext, ['xlsx', 'xls']) == -1) {
-                // alert('File không hợp lệ \nVui lòng nhập lại file');
-                abp.message.error('Vui lòng chọn lại file ', 'File không hợp lệ');
-              } else {
-                fodata = el.files[0];
-                if (fodata != null) {
-                  AddItemImport.loadExcel();
-                }
-              }
-            }
-            // test some async handling
-            new Promise(function (resolve) {
-              setTimeout(function () { console.log(el.files); resolve(); }, 1000);
-            })
-              .then(function () {
-                // clear / free reference
-                el = window._protected_reference = undefined;
-              });
-
-          });
-
-          el.click(); // open
-        },
-        init: function () {
-          this.buttonUpload.on("click", function () {
-            AddItemImport.onClickHandler()
-          });
-          AddItemImport.AddRow();
-        },
-
-      }
-      AddItemImport.init();
 
       document.getElementById('fileupload').addEventListener('change', handleFileSelect, false);
       $('#fileupload').on('change', function () {

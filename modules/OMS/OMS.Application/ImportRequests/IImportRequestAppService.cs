@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Application.Services.Dto;
+using bbk.netcore.mdl.OMS.Application.ImportRequestDetails.Dto;
 using bbk.netcore.mdl.OMS.Application.ImportRequests.Dto;
 using System.Threading.Tasks;
 
@@ -17,8 +18,10 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
         Task<ImportRequestListDto> CreateToTranssfer(ImportRequestCreateDto input);
         Task<long> UpdateStatusImport(ImportRequestListDto input);
         Task<long> UpdateSunmit(ImportRequestListDto input);
+       Task<PagedResultDto<ImportRequestListDto>> GetAllByItems(GetImportRequestInput input);
 
 
 
-    }
+
+  }
 }

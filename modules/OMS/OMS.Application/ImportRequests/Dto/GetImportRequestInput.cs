@@ -13,6 +13,7 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests.Dto
         public int CreatorById { get; set; }
         public int Status { get; set; }
         public string ResquestDate { get; set; }
+        public long ItemsId { get; set; }
 
         //public string NameRequest { get; set; }
         public void Normalize()

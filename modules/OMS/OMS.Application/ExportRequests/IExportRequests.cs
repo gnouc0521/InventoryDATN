@@ -25,6 +25,9 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests
         // Code Ha them
         Task<ExportRequestsListDto> CreateToTransfer(ExportRequestsCreate input);
         Task<int> UpdateCodeSame(int idTransfer);
+        Task<PagedResultDto<ExportRequestsListDto>> GetAllbyItemsId(ExportRequestsSearch input);
 
-    }
+
+
+  }
 }

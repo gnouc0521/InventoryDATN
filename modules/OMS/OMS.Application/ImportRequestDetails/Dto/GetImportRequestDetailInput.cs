@@ -10,6 +10,7 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequestDetails.Dto
     {
         public string SearchTerm { get; set; }
         public long importRequestId { get; set; }
+        public long ItemsId { get; set; }
         public int WarehouseId { get; set; }
         public void Normalize()
         {

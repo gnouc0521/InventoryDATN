@@ -44,5 +44,6 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests.Dto
         public string TranferCode { get; set; }
         public string YcnkCode { get; set; }
         public string UpdatedBy { get; set; }
+        public int QuantityItems { get; set; }
     }
 }

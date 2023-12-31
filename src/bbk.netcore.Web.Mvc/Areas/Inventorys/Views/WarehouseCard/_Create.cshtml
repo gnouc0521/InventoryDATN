@@ -59,7 +59,6 @@
             <thead class="bg-primary-600">
               <tr>
                 <th>STT</th>
-                <th>NGÀY NHẬP</th>
                 <th>PHIẾU NHẬP</th>
                 <th>PHIẾU XUẤT</th>
                 <th>SỐ LƯỢNG NHẬP</th>
@@ -74,11 +73,13 @@
           </table>
         </div>
       </div>
-
-     
-
-      
     </form>
+     <div class="col-md-12 text-center">
+      <button id="addRow" name="addRow" class="btn btn-sm btn-primary ml-auto">
+        <span class="fal fa-plus-square"></span>
+        @(new FixedLocalizableString("Thêm mới"))
+      </button>
+    </div>
   </div>
 </div>
 @await Html.PartialAsync("~/Areas/App/Views/Common/Modals/_ModalFooterWithSaveAndCancel_Custom.cshtml")

@@ -287,5 +287,92 @@ namespace bbk.netcore.mdl.OMS.Application.ImportRequests
             await _importRequest.UpdateAsync(IMP);
             return input.Id;
         }
+
+    public async Task<PagedResultDto<ImportRequestListDto>> GetAllByItems(GetImportRequestInput input)
+    {
+      try
+      {
+        if (input.Status == 1)
+        {
+          var query = _importRequest
+                .GetAll().Where(x => x.ImportStatus != ImportResquestEnum.ImportResquestStatus.Draft && x.ImportStatus != ImportResquestEnum.ImportResquestStatus.Approve)
+                .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), u => u.Code.Contains(input.SearchTerm))
+                .WhereIf(!string.IsNullOrEmpty(input.ResquestDate), u => u.RequestDate == DateTime.ParseExact(input.ResquestDate, "MM/dd/yyyy", CultureInfo.InvariantCulture))
+                .WhereIf(input.WarehouseDestinationId != 0, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
+                .WhereIf(input.CreatorById != 0, x => x.CreatorUserId == input.CreatorById)
+                .OrderBy(x => x.Id);
+          var queryDetail = _importRequestdetail
+            .GetAll()
+            .Where(x => x.ItemId == input.ItemsId);
+
+          var impquery = _importRequest.GetAll();
+
+          var warehoue = _wareHouse.GetAll();
+          var user = _user.GetAll().ToList();
+          var results = (from imp in query
+                         join u in user on imp.CreatorUserId equals u.Id
+                         join detail in queryDetail on imp.Id equals detail.ImportRequestId
+                         join wh in warehoue on imp.WarehouseDestinationId equals wh.Id
+                         select new ImportRequestListDto
+                         {
+                           Id = imp.Id,
+                           Code = imp.Code,
+                           CreatedBy = u.Surname + " " + u.Name,
+                           RequestDate = imp.RequestDate,
+                           NameWareHouse = wh.Name,
+                           ImportStatus = imp.ImportStatus,
+                           WarehouseDestinationId = imp.WarehouseDestinationId,
+                           TransferId = imp.TransferId,
+                           ImportRequestSubsidiaryId = imp.ImportRequestSubsidiaryId,
+                           QuantityItems = detail.Quantity,
+
+                         }).OrderByDescending(x => x.Id);
+
+          return new PagedResultDto<ImportRequestListDto>(
+            results.Distinct().Count(),
+            results.Distinct().ToList()
+            );
+        }
+        else
+        {
+          var query = _importRequest
+                .GetAll()
+                .WhereIf(!string.IsNullOrEmpty(input.SearchTerm), u => u.Code.Contains(input.SearchTerm))
+                .WhereIf(!string.IsNullOrEmpty(input.ResquestDate), u => u.RequestDate == DateTime.ParseExact(input.ResquestDate, "MM/dd/yyyy", CultureInfo.InvariantCulture))
+                .WhereIf(input.WarehouseDestinationId != 0, x => x.WarehouseDestinationId == input.WarehouseDestinationId)
+                .WhereIf(input.CreatorById != 0, x => x.CreatorUserId == input.CreatorById)
+                .OrderBy(x => x.Id)
+                .OrderBy(x => x.ImportStatus);
+          var warehoue = _wareHouse.GetAll();
+          var user = _user.GetAll().ToList();
+          var results = (from imp in query
+                         join u in user on imp.CreatorUserId equals u.Id
+                         join wh in warehoue on imp.WarehouseDestinationId equals wh.Id
+                         select new ImportRequestListDto
+                         {
+                           Id = imp.Id,
+                           Code = imp.Code,
+                           CreatedBy = u.Surname + " " + u.Name,
+                           RequestDate = imp.RequestDate,
+                           NameWareHouse = wh.Name,
+                           ImportStatus = imp.ImportStatus,
+                           WarehouseDestinationId = imp.WarehouseDestinationId,
+                           TransferId = imp.TransferId,
+                           ImportRequestSubsidiaryId = imp.ImportRequestSubsidiaryId,
+                         }).OrderByDescending(x => x.Id)
+                         .OrderByDescending(x => x.ImportStatus);
+
+          return new PagedResultDto<ImportRequestListDto>(
+            results.Distinct().Count(),
+            results.Distinct().ToList()
+            );
+        }
+
+      }
+      catch (Exception ex)
+      {
+        throw new UserFriendlyException(ex.Message);
+      }
     }
+  }
 }

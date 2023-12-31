@@ -19,6 +19,7 @@ namespace bbk.netcore.mdl.OMS.Application.ExportRequests.Dto
         public int? WarehouseDestinationId { get; set; }
 
         public long? UserIdCreate { get; set; }
+        public long ItemsId { get; set; }
 
         public void Normalize()
         {
