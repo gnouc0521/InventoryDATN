@@ -22,6 +22,7 @@ namespace bbk.netcore.EntityFrameworkCore
 		public DbSet<WarehouseType> warehouseTypes { get; set; }
 		public DbSet<Items> items { get; set; }
 		public DbSet<Rules> rules { get; set; }
+		public DbSet<Statistical> statisticals { get; set; }
 		public DbSet<WarehouseItem> warehouseItems { get; set; }
 		public DbSet<WarehouseLocationItems> warehouseLocationItems { get; set; }
 		public DbSet<ExportRequest> exportRequests { get; set; }

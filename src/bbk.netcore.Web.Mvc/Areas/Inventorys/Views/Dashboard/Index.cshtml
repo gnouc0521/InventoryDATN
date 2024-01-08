@@ -14,16 +14,7 @@
         <script src="~/libs/chart.js/dist/Chart.js"></script>
         <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"></script>
         <script src="~/view-resources/Areas/Oms/Dashboard/Index.js"></script>
-        <script src="~/view-resources/Areas/Oms/Dashboard/Ycxuatnhap.js"></script>
         <script src="/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/libs/chartjs/dist/Chart.js"></script>
-        <script src="~/libs-ext/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.js"></script>
-        <script src="/js/datagrid/datatables/datatables.bundle.js" asp-append-version="true"></script>
-        <script src="~/view-resources/Areas/Oms/Dashboard/Index.js"></script>
-        <script src="~/view-resources/Areas/Oms/Dashboard/Ycxuatnhap.js"></script>
-        <script src="~/_cdn/_bundles/js/pps.dashboard.min.js" rel="stylesheet" asp-append-version="true"></script>
     </environment>
 }
 
@@ -97,7 +88,7 @@
             <div class="p-3 bg-white rounded mb-g shadow-2 h-400">
                 <div class="d-flex justify-content-between">
                     <h3>Công việc được giao</h3>
-                    <div class="dropdown d-inline-block" id="chart-dg">
+          <div class="dropdown d-inline-block chart" id="chart-dg">
                         <a href="#" class="btn btn-sm btn-icon btn-outline-primary rounded-circle shadow-0" data-toggle="dropdown" aria-expanded="true" title="More options">
                             <i class="fal fa-ellipsis-v"></i>
                         </a>
