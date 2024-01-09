@@ -73,6 +73,7 @@
         orderable: false,
         targets: 4,
         data: null,
+        visible: true,
         render: function () {
           return `<input class="form-control" disabled>`
         }

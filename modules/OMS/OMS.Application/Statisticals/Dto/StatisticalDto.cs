@@ -16,5 +16,21 @@ namespace bbk.netcore.mdl.OMS.Application.Statisticals.Dto
     public long? WarehouseId { get; set; }
     public int Quantity { get; set; }
     public DateTime? DateStatistical { get; set; }
+    public DateTime? DateTimeFrom { get; set; }
+    public DateTime? DateTimeTo { get; set; }
+  }
+
+  public class ReportDto
+  {
+    public virtual List<string> ListReportTaskDate { get; set; }
+
+    public virtual List<int> ListReportQuantity { get; set; }
+    
+
+    public ReportDto()
+    {
+      ListReportTaskDate = new List<string>();
+      ListReportQuantity = new List<int>();
+    }
   }
 }

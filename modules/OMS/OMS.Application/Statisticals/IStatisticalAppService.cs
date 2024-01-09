@@ -12,5 +12,6 @@ namespace bbk.netcore.mdl.OMS.Application.Statisticals
   {
     public Task Create (StatisticalDto statisticalDto);
     public Task<PagedResultDto<StatisticalDto>> GetTask (StatisticalDto statisticalDto);
+    public Task<ReportDto> GetReport(StatisticalDto statisticalDto);
   }
 }
